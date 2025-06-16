@@ -1,43 +1,32 @@
 "use client";
-import * as motion from "motion/react-client";
+import { useMotionValue, useTransform, motion } from "framer-motion";
 
-export default function SearchPanel() {
+export default function SearchPanel({ constraintRef }) {
+  const y = useMotionValue(0); // track drag position
+
   const styles = {
-    resizeHandler: "bg-blue-800 text-white h-18",
-    content: "bg-blue-200 min-h-72 flex gap-x-3",
+    container: "absolute left-0 w-full",
+    handle: "bg-blue-800 text-white h-8 w-full cursor-row-resize",
+    panel: "bg-blue-200 w-full min-h-72",
   };
 
   return (
-    <motion.div drag="y" whileDrag={{ backgroundColor: "#f00" }}>
-      <div className={styles.resizeHandler}>I am resize handler</div>
+    <div className={styles.container}>
+      {/* DRAGGABLE HANDLE */}
+      <motion.div
+        drag="y"
+        style={{ y }}
+        dragConstraints={constraintRef}
+        className={styles.handle}
+      />
 
-      <div
-        className={styles.content}
-        onPointerDownCapture={(e) => {
-          if (e.target === e.currentTarget) {
-            e.stopPropagation();
-          }
-        }}
+      {/* PANEL THAT FOLLOWS HANDLE */}
+      <motion.div
+        style={{ y }}
+        className={styles.panel}
       >
-        {/* Card 1 */}
-        <motion.div
-          className="bg-red-300 w-16 h-24 rounded-md"
-          drag
-          whileDrag={{ backgroundColor: "black" }}
-        ></motion.div>
-        {/* Card 2 */}
-        <motion.div
-          className="bg-red-300 w-16 h-24 rounded-md"
-          drag
-          whileDrag={{ backgroundColor: "black" }}
-        ></motion.div>
-        {/* Card 3 */}
-        <motion.div
-          className="bg-red-300 w-16 h-24 rounded-md"
-          drag
-          whileDrag={{ backgroundColor: "black" }}
-        ></motion.div>
-      </div>
-    </motion.div>
+        I am the content panel
+      </motion.div>
+    </div>
   );
 }
