@@ -1,0 +1,6 @@
+layout = purple
+mainWrapper = green
+deckPanel = orange
+searchPanel wrapper = pink (fuxia)
+
+
