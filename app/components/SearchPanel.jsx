@@ -7,7 +7,7 @@ export default function SearchPanel({ constraintRef }) {
 
   const styles = {
     container: "absolute left-0 w-full",
-    handle: "bg-blue-800 text-white h-15 w-full cursor-row-resize",
+    handle: "bg-blue-800 text-white h-22 w-full cursor-row-resize",
     panel: "absolute bg-blue-200 w-full h-[calc(var(--vh)_*_100)]",
   };
 

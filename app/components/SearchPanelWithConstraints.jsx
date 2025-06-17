@@ -5,7 +5,7 @@ import { useStableSize } from "@/app/hooks/useStableSize";
 
 export default function SearchPanelWithConstraints() {
   const styles = {
-    wrapper: "h-full pt-10 overflow-hidden",
+    wrapper: "h-full pt-[calc(var(--vh)*30)] overflow-hidden",
     constraintArea: "relative h-full border border-2 border-red-500 rounded-xl",
   };
 
