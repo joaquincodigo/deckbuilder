@@ -1,12 +1,17 @@
-"use client";
-import useRealVh from "@/app/hooks/useRealVh";
+import * as motion from "motion/react-client";
 
-export default function MainWrapper({ children }) {
+import DeckPanel from "@/app/components/DeckPanel";
+import AllCardsPanel from "@/app/components/AllCardsPanel"
+
+export default function MainWrapper({ cards }) {
   const styles = {
-    main: "relative bg-green-500 flex flex-col h-[calc(var(--vh)_*_100)] w-screen overflow-hidden",
+    main: "bg-green-500 h-screen w-screen overflow-hidden z-10",
   };
 
-  useRealVh(); // Allow us to get the real VH units from the real viewport size
-
-  return <main className={styles.main}>{children}</main>;
+  return (
+    <main className={styles.main}>
+      <DeckPanel />
+      <AllCardsPanel/>
+    </main>
+  );
 }
