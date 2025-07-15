@@ -1,7 +1,7 @@
-import * as motion from "motion/react-client";
 
-import DeckPanel from "@/app/components/DeckPanel";
-import AllCardsPanel from "@/app/components/AllCardsPanel"
+import DeckPanel from "@/app/components/deck-panel/DeckPanel";
+import AllCardsPanel from "@/app/components/all-cards-panel/AllCardsPanel";
+import DarkOverlay from "@/app/components/all-cards-panel/DarkOverlay";
 
 export default function MainWrapper({ cards }) {
   const styles = {
@@ -11,7 +11,8 @@ export default function MainWrapper({ cards }) {
   return (
     <main className={styles.main}>
       <DeckPanel />
-      <AllCardsPanel/>
+      <DarkOverlay />
+      <AllCardsPanel />
     </main>
   );
 }
