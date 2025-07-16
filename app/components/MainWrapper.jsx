@@ -1,18 +1,19 @@
-
+import * as motion from "motion/react-client";
 import DeckPanel from "@/app/components/deck-panel/DeckPanel";
 import AllCardsPanel from "@/app/components/all-cards-panel/AllCardsPanel";
-import DarkOverlay from "@/app/components/all-cards-panel/DarkOverlay";
 
 export default function MainWrapper({ cards }) {
   const styles = {
-    main: "bg-green-500 h-screen w-screen overflow-hidden z-10",
+    main: "w-screen h-screen z-10 flex bg-green-500 overflow-hidden",
+    panelsContainer: "flex"
   };
 
   return (
     <main className={styles.main}>
-      <DeckPanel />
-      <DarkOverlay />
-      <AllCardsPanel />
+      <motion.div className={styles.panelsContainer} animate={{ x: "-20%" }}>
+        <DeckPanel />
+        <AllCardsPanel />
+      </motion.div>
     </main>
   );
 }
