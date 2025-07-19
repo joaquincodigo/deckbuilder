@@ -1,18 +1,40 @@
+"use client";
+import { useState, useRef } from "react";
+import { useDrag } from "@use-gesture/react";
 import * as motion from "motion/react-client";
-import DeckPanel from "@/app/components/deck-panel/DeckPanel";
-import AllCardsPanel from "@/app/components/all-cards-panel/AllCardsPanel";
 
-export default function MainWrapper({ cards }) {
+export default function MainWrapper({ children }) {
+  const [currentPanel, setCurrentPanel] = useState("deck");
+
+  const bind = useDrag(({ movement: [mx] }) => {
+    const threshold = 90;
+    if (mx > threshold && currentPanel !== "deck") {
+      setCurrentPanel("deck");
+    } else if (mx < -threshold && currentPanel !== "allcards") {
+      setCurrentPanel("allcards");
+    }
+  });
+
   const styles = {
-    main: "w-screen h-screen z-10 flex bg-green-500 overflow-hidden",
-    panelsContainer: "flex"
+    main: "flex w-screen h-screen overflow-hidden z-10  bg-green-500",
+    panelsContainer: "flex",
   };
 
   return (
     <main className={styles.main}>
-      <motion.div className={styles.panelsContainer} animate={{ x: "-20%" }}>
-        <DeckPanel />
-        <AllCardsPanel />
+      <motion.div
+        {...bind()}
+        style={{ touchAction: "none" }}
+        className={styles.panelsContainer}
+        animate={{ x: currentPanel === "deck" ? "0%" : "-50%" }}
+        transition={{
+          type: "spring",
+          stiffness: "1000",
+          damping: "35",
+        }}
+      >
+        {/* Children are DeckPanel and AllCardsPanel */}
+        {children}
       </motion.div>
     </main>
   );

@@ -1,6 +1,12 @@
-import cards from "@/devfiles/dummy_data.json";
 import MainWrapper from "@/app/components/MainWrapper";
+import DeckScreen from "./components/deck-panel/DeckPanel";
+import AllCardsScreen from "./components/all-cards-panel/AllCardsPanel";
 
 export default function DeckBuilderPage() {
-  return <MainWrapper cards={cards} />;
+  return (
+    <MainWrapper>
+      <DeckScreen />
+      <AllCardsScreen />
+    </MainWrapper>
+  );
 }
