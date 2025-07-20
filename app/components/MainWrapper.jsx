@@ -6,17 +6,23 @@ import * as motion from "motion/react-client";
 export default function MainWrapper({ children }) {
   const [currentPanel, setCurrentPanel] = useState("deck");
 
-  const bind = useDrag(({ movement: [mx] }) => {
-    const threshold = 90;
-    if (mx > threshold && currentPanel !== "deck") {
-      setCurrentPanel("deck");
-    } else if (mx < -threshold && currentPanel !== "allcards") {
-      setCurrentPanel("allcards");
+  const bind = useDrag(
+    ({ movement: [mx] }) => {
+      const threshold = 70;
+      if (mx > threshold && currentPanel !== "deck") {
+        setCurrentPanel("deck");
+      } else if (mx < -threshold && currentPanel !== "allcards") {
+        setCurrentPanel("allcards");
+      }
+    },
+    {
+      axis: "x", // Lock to horizontal gestures only
+      filterTaps: true, // Ignore tap events
     }
-  });
+  );
 
   const styles = {
-    main: "flex w-screen h-screen overflow-hidden z-10  bg-green-500",
+    main: "flex w-screen h-full overflow-hidden z-10 bg-green-500",
     panelsContainer: "flex",
   };
 
@@ -24,7 +30,6 @@ export default function MainWrapper({ children }) {
     <main className={styles.main}>
       <motion.div
         {...bind()}
-        style={{ touchAction: "none" }}
         className={styles.panelsContainer}
         animate={{ x: currentPanel === "deck" ? "0%" : "-50%" }}
         transition={{

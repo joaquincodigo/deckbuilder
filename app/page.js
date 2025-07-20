@@ -1,6 +1,6 @@
 import MainWrapper from "@/app/components/MainWrapper";
-import DeckScreen from "./components/deck-panel/DeckPanel";
-import AllCardsScreen from "./components/all-cards-panel/AllCardsPanel";
+import DeckScreen from "./components/deck-screen/DeckScreen";
+import AllCardsScreen from "./components/all-cards-screen/AllCardsScreen";
 
 export default function DeckBuilderPage() {
   return (
