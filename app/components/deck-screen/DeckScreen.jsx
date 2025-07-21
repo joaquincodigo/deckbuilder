@@ -9,7 +9,8 @@ export default function DeckScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    body: "w-screen h-screen flex flex-col py-3 ps-3 pe-9 bg-amber-500",
+    body: "w-screen h-screen flex flex-row bg-indigo-500",
+    outerWrapper: "flex flex-col bg-amber-500 p-3",
     heading: "font-bold text-2xl",
     separator: "mb-3",
     selectLabel: "text-lg",
@@ -20,32 +21,34 @@ export default function DeckScreen() {
 
   return (
     <div className={styles.body}>
-      {/* HEADER */}
-      <p className={styles.heading}>Deck</p>
-      <hr className={styles.separator} />
+      <div className={styles.outerWrapper}>
+        {/* HEADER */}
+        <p className={styles.heading}>Deck</p>
+        <hr className={styles.separator} />
 
-      {/* Deck selector*/}
-      <div>
-        <label htmlFor="deck-select" className={styles.selectLabel}>
-          Selected deck:
-        </label>
-        <select name="decks" id="deck-select" className={styles.select}>
-          <option value="dog">Fairy aggro</option>
-          <option value="cat">Monarchs</option>
-          <option value="hamster">Moki-moki</option>
-          <option value="goldfish">Beatdown</option>
-          <option value="goldfish">Earth aggro</option>
-        </select>
-      </div>
-      {/* /HEADER */}
+        {/* Deck selector*/}
+        <div>
+          <label htmlFor="deck-select" className={styles.selectLabel}>
+            Selected deck:
+          </label>
+          <select name="decks" id="deck-select" className={styles.select}>
+            <option value="dog">Fairy aggro</option>
+            <option value="cat">Monarchs</option>
+            <option value="hamster">Moki-moki</option>
+            <option value="goldfish">Beatdown</option>
+            <option value="goldfish">Earth aggro</option>
+          </select>
+        </div>
+        {/* /HEADER */}
 
-      {/* DECK LIST */}
-      <div className={styles.cardContainer}>
-        {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
-        {Array.from({ length: 36 }).map((_, i) => (
-          <Card key={i} width={108} atk={random1to9()} def={random1to9()} />
-        ))}
-        {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
+        {/* DECK LIST */}
+        <div className={styles.cardContainer}>
+          {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
+          {Array.from({ length: 36 }).map((_, i) => (
+            <Card key={i} width={108} atk={random1to9()} def={random1to9()} />
+          ))}
+          {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
+        </div>
       </div>
       <EdgeIndicator />
     </div>

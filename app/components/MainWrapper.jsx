@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useDrag } from "@use-gesture/react";
 import * as motion from "motion/react-client";
 
