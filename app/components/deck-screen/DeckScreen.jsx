@@ -1,5 +1,5 @@
 import Card from "@/app/components/card/Card";
-import EdgeIndicator from "@/app/components/EdgeIndicator";
+import DeckEdgeIndicator from "@/app/components/deck-screen/DeckEdgeIndicator";
 
 export default function DeckScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -50,7 +50,7 @@ export default function DeckScreen() {
           {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
         </div>
       </div>
-      <EdgeIndicator />
+      <DeckEdgeIndicator />
     </div>
   );
 }
