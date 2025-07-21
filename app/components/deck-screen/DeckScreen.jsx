@@ -1,13 +1,15 @@
 import Card from "@/app/components/card/Card";
-import Modal from "@/app/components/modal/Modal";
+import EdgeIndicator from "@/app/components/EdgeIndicator";
 
 export default function DeckScreen() {
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   const random1to9 = () => {
     return Math.floor(Math.random() * 9) + 1;
   };
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    body: "w-screen h-screen flex flex-col bg-amber-500 py-3 px-3", // Use full viewport height + flex column
+    body: "w-screen h-screen flex flex-col py-3 ps-3 pe-9 bg-amber-500",
     heading: "font-bold text-2xl",
     separator: "mb-3",
     selectLabel: "text-lg",
@@ -18,11 +20,11 @@ export default function DeckScreen() {
 
   return (
     <div className={styles.body}>
-      {/* Header section */}
+      {/* HEADER */}
       <p className={styles.heading}>Deck</p>
       <hr className={styles.separator} />
 
-      {/* Deck selection section */}
+      {/* Deck selector*/}
       <div>
         <label htmlFor="deck-select" className={styles.selectLabel}>
           Selected deck:
@@ -35,14 +37,17 @@ export default function DeckScreen() {
           <option value="goldfish">Earth aggro</option>
         </select>
       </div>
-      {/* <Modal/> */}
+      {/* /HEADER */}
 
-      {/* Scrollable cards container */}
+      {/* DECK LIST */}
       <div className={styles.cardContainer}>
+        {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
         {Array.from({ length: 36 }).map((_, i) => (
           <Card key={i} width={108} atk={random1to9()} def={random1to9()} />
         ))}
+        {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
       </div>
+      <EdgeIndicator />
     </div>
   );
 }
