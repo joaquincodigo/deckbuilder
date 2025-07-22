@@ -9,10 +9,10 @@ export default function DeckScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    body: "w-screen h-screen flex flex-row bg-indigo-500",
+    body: "w-screen h-screen flex flex-row bg-indigo-500 touch-pan-y",
     outerWrapper: "flex flex-col bg-amber-500 p-3",
     heading: "font-bold text-2xl",
-    separator: "mb-3",
+    separator: "mb-3 te",
     selectLabel: "text-lg",
     select: "text-lg ms-3 bg-slate-200 p-1",
     cardContainer:

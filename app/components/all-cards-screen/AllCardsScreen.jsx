@@ -1,5 +1,6 @@
 import Card from "@/app/components/card/Card";
 import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllcardsEdgeIndicator";
+import SearchFiltersIcon from "@/app/components/all-cards-screen/SearchFiltersIcon";
 
 export default function AllCardsScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -7,9 +8,8 @@ export default function AllCardsScreen() {
     return Math.floor(Math.random() * 9) + 1;
   };
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
   const styles = {
-    body: "w-screen h-screen flex flex-row bg-indigo-500",
+    body: "w-screen h-screen flex flex-row bg-indigo-500 touch-pan-y",
     outerWrapper: "flex flex-col bg-blue-500 p-3",
     heading: "font-bold text-2xl text-white",
     separator: "mb-3",
@@ -33,6 +33,8 @@ export default function AllCardsScreen() {
           placeholder="Search"
           className="bg-white px-2 py-1"
         />
+
+        <SearchFiltersIcon />
 
         {/* Filters */}
         <div></div>
