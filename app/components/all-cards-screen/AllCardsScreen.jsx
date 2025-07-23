@@ -1,6 +1,7 @@
 import Card from "@/app/components/card/Card";
 import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllcardsEdgeIndicator";
-import SearchFiltersIcon from "@/app/components/all-cards-screen/SearchFiltersIcon";
+import FiltersButton from "@/app/components/all-cards-screen/FiltersButton";
+import SearchInput from "@/app/components/all-cards-screen/SearchInput";
 
 export default function AllCardsScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -28,16 +29,9 @@ export default function AllCardsScreen() {
         <hr className={styles.separator} />
 
         {/* Search */}
-        <input
-          type="search"
-          placeholder="Search"
-          className="bg-white px-2 py-1"
-        />
-
-        <SearchFiltersIcon />
-
+        <SearchInput />
         {/* Filters */}
-        <div></div>
+        <FiltersButton />
 
         {/* /HEADER */}
 
