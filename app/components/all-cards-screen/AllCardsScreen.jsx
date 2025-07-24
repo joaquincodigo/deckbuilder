@@ -1,7 +1,7 @@
 import Card from "@/app/components/card/Card";
-import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllcardsEdgeIndicator";
-import FiltersButton from "@/app/components/all-cards-screen/FiltersButton";
-import SearchInput from "@/app/components/all-cards-screen/SearchInput";
+import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllCardsEdgeIndicator";
+import SearchForm from "@/app/components/all-cards-screen/search-form/SearchForm";
+import AllCardsHeader from "@/app/components/all-cards-screen/AllCardsHeader";
 
 export default function AllCardsScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -12,7 +12,6 @@ export default function AllCardsScreen() {
   const styles = {
     body: "w-screen h-screen flex flex-row bg-indigo-500 touch-pan-y",
     outerWrapper: "flex flex-col bg-blue-500 p-3",
-    heading: "font-bold text-2xl text-white",
     separator: "mb-3",
     selectLabel: "text-lg",
     select: "text-lg ms-3 bg-slate-200 p-1",
@@ -24,16 +23,8 @@ export default function AllCardsScreen() {
     <div className={styles.body}>
       <AllcardsEdgeIndicator />
       <div className={styles.outerWrapper}>
-        {/* HEADER */}
-        <p className={styles.heading}>All cards</p>
-        <hr className={styles.separator} />
-
-        {/* Search */}
-        <SearchInput />
-        {/* Filters */}
-        <FiltersButton />
-
-        {/* /HEADER */}
+        <AllCardsHeader/>
+        <SearchForm />
 
         {/* DECK LIST */}
         <div className={styles.cardContainer}>
@@ -43,6 +34,7 @@ export default function AllCardsScreen() {
           ))}
           {/*  TESTING-TESTING-TESTING-TESTING-TESTING-TESTING */}
         </div>
+
       </div>
     </div>
   );

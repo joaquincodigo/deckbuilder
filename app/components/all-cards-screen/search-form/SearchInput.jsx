@@ -1,4 +1,4 @@
-import SearchIcon from "@/app/components/all-cards-screen/SearchIcon";
+import SearchIcon from "@/app/components/all-cards-screen/search-form/SearchIcon";
 
 export default function SearchInput() {
   const styles = {

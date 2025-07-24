@@ -1,5 +1,6 @@
 import Card from "@/app/components/card/Card";
 import DeckEdgeIndicator from "@/app/components/deck-screen/DeckEdgeIndicator";
+import Modal from "@/app/components/modals/Modal";
 
 export default function DeckScreen() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -25,8 +26,8 @@ export default function DeckScreen() {
         {/* HEADER */}
         <p className={styles.heading}>Deck</p>
         <hr className={styles.separator} />
-
-        {/* Deck selector*/}
+        {/* <Modal /> */}
+        {/* Deck selector */}
         <div>
           <label htmlFor="deck-select" className={styles.selectLabel}>
             Selected deck:
