@@ -6,7 +6,8 @@ import FiltersPanel from "@/app/components/all-cards-screen/search-form/FiltersP
 
 export default function SearchForm() {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
-  const toggleFiltersPanel = () => {
+  const toggleFiltersPanel = (e) => {
+    e.preventDefault();
     setIsFiltersPanelOpen((prev) => !prev);
   };
 

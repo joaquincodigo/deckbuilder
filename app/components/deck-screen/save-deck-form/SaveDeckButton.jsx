@@ -1,12 +1,21 @@
+import SaveDeckIcon from "@/app/components/deck-screen/save-deck-form/SaveDeckIcon";
+import Button from "@/app/components/ui/Button";
+
 export default function SaveDeckButton() {
+  const handleClick = () => {
+    alert("Saved deck");
+  };
 
   const styles = {
-    btn: "",
+    btn: "bg-purple-800",
   };
 
   return (
-    <button type="submit" className={styles.btn}>
-      Save
-    </button>
+    <Button
+      icon={SaveDeckIcon}
+      onClick={handleClick}
+      className={styles.btn}
+      type="submit"
+    />
   );
 }

@@ -9,26 +9,30 @@ const styles = {
 };
 
 export default function SaveDeckForm() {
-  const [name, setName] = useState("");
+  const [deckName, setDeckName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name.trim()) return;
+    if (!deckName.trim()) return; // ToDo: Warning Toast
 
     const stored = localStorage.getItem("decks");
     const decks = stored ? JSON.parse(stored) : [];
 
-    if (!decks.includes(name)) {
-      decks.push(name);
+    if (!decks.includes(deckName)) {
+      decks.push(deckName);
       localStorage.setItem("decks", JSON.stringify(decks));
     }
 
-    setName("");
+    setDeckName("");
+  };
+
+  const handleChange = (e) => {
+    setDeckName(e.target.value);
   };
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <SaveDeckInput onChange={(e) => setName(e.target.value)} />
+      <SaveDeckInput onChange={handleChange} value={deckName} />
       <SaveDeckButton />
     </form>
   );

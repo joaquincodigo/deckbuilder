@@ -1,9 +1,7 @@
-// import SearchIcon from "@/app/components/all-cards-screen/search-form/SearchIcon";
-
-export default function SaveDeckInput({ onChange }) {
+export default function SaveDeckInput({ onChange, deckName }) {
   const styles = {
     wrapper: "relative w-full me-3",
-    input: "w-full bg-white py-2 pr-2 pl-10 text-lg",
+    input: "w-full bg-white p-2 text-lg",
   };
   return (
     <div className={styles.wrapper}>
@@ -11,10 +9,11 @@ export default function SaveDeckInput({ onChange }) {
         type="text"
         placeholder="Deck name"
         className={styles.input}
-        id="deck-save"
-        name="deck-save"
+        id="deckNameInput"
+        name="deckNameInput"
+        onChange={onChange}
+        value={deckName}
       />
-      {/* <SearchIcon /> */}
     </div>
   );
 }

@@ -2,7 +2,6 @@ import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllCardsEdg
 import SearchForm from "@/app/components/all-cards-screen/search-form/SearchForm";
 import AllCardsHeader from "@/app/components/all-cards-screen/AllCardsHeader";
 import CardsList from "@/app/components/cards/CardsList";
-import CardModal from "@/app/components/modals/CardModal"
 
 export default function AllCardsScreen() {
   const styles = {
@@ -18,9 +17,6 @@ export default function AllCardsScreen() {
         <SearchForm />
         <CardsList />
       </div>
-
-      {/* Modals */}
-      {/* <CardModal /> */}
     </div>
   );
 }
