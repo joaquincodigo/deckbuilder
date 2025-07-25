@@ -38,7 +38,7 @@ export default function MainWrapper({ children }) {
         transition={{
           type: "spring",
           stiffness: "1000",
-          damping: "35",
+          damping: "45",
         }}
       >
         {/* Children are DeckScreen and AllCardsScreen */}
