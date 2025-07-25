@@ -1,11 +1,12 @@
 export default function DeckSelector() {
   const styles = {
+    wrapper: "mb-3",
     selectLabel: "text-lg",
     select: "text-lg ms-3 bg-slate-200 p-1",
   };
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <label htmlFor="deck-select" className={styles.selectLabel}>
         Selected deck:
       </label>

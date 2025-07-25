@@ -11,10 +11,10 @@ export default function SearchForm() {
   };
 
   return (
-    <>
+    <form>
       <SearchInput />
       <FiltersButton onClick={toggleFiltersPanel} />
       <FiltersPanel isOpen={isFiltersPanelOpen} />
-    </>
+    </form>
   );
 }
