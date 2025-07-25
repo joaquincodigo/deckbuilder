@@ -1,7 +1,8 @@
 "use client";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
-export default function Modal() {
+export default function Modal({ children }) {
   useEffect(() => {
     /*
   Intercept and block all drag-related events at the "capture phase"
@@ -39,12 +40,10 @@ export default function Modal() {
     body: "bg-white p-4 rounded z-90 pointer-events-auto",
   };
 
-  return (
+  return createPortal(
     <div className={styles.darkOverlay}>
-      <div className={styles.body}>
-        <div>Hello world</div>
-        <button>Click Me</button>
-      </div>
-    </div>
+      <div className={styles.body}>{children}</div>
+    </div>,
+    document.body
   );
 }

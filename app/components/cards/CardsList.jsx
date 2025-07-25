@@ -1,6 +1,6 @@
-import Card from "@/app/components/card/Card";
+import Card from "@/app/components/cards/Card";
 
-export default function DeckCards() {
+export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   const random1to9 = () => {
     return Math.floor(Math.random() * 9) + 1;
