@@ -1,49 +1,39 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function Modal({ children }) {
-  useEffect(() => {
-    /*
-  Intercept and block all drag-related events at the "capture phase"
-  using the value true inside the event listeners. This way we prevent
-  drag gestures from reaching any underlying components. 
-  */
-
-    const stop = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-    };
-
-    window.addEventListener("dragstart", stop, true);
-    window.addEventListener("mousedown", stop, true);
-    window.addEventListener("mousemove", stop, true);
-    window.addEventListener("touchstart", stop, true);
-    window.addEventListener("touchmove", stop, true);
-    window.addEventListener("pointerdown", stop, true);
-    window.addEventListener("pointermove", stop, true);
-
-    return () => {
-      window.removeEventListener("dragstart", stop, true);
-      window.removeEventListener("mousedown", stop, true);
-      window.removeEventListener("mousemove", stop, true);
-      window.removeEventListener("touchstart", stop, true);
-      window.removeEventListener("touchmove", stop, true);
-      window.removeEventListener("pointerdown", stop, true);
-      window.removeEventListener("pointermove", stop, true);
-    };
-  }, []);
+  // Prevent SSR Prevent SSR Prevent SSR Prevent SSR
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+  // Prevent SSR Prevent SSR Prevent SSR Prevent SSR
 
   const styles = {
-    darkOverlay:
-      "fixed inset-0 bg-black/70 flex items-center justify-center z-80 pointer-events-none touch-none select-none",
-    body: "bg-white p-4 rounded z-90 pointer-events-auto",
+    backdrop: "fixed inset-0 bg-black/50 z-80 flex items-center justify-center",
+    container: "shadow-xl z-90 w-80",
   };
 
   return createPortal(
-    <div className={styles.darkOverlay}>
-      <div className={styles.body}>{children}</div>
-    </div>,
+    <AnimatePresence>
+      <motion.div
+        className={styles.backdrop}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <motion.div
+          className={styles.container}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>,
     document.body
   );
 }

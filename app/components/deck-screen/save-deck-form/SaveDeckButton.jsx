@@ -2,12 +2,12 @@ import SaveDeckIcon from "@/app/components/deck-screen/save-deck-form/SaveDeckIc
 import Button from "@/app/components/ui/Button";
 
 export default function SaveDeckButton() {
-  const handleClick = () => {
-    alert("Saved deck");
-  };
-
   const styles = {
     btn: "bg-purple-800",
+  };
+
+  const handleClick = () => {
+    return;
   };
 
   return (

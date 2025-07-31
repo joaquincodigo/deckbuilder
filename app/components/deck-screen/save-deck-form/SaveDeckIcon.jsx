@@ -1,6 +1,6 @@
 export default function SaveDeckIcon() {
   const styles = {
-    svg: "text-orange-600 w-7 h-7",
+    svg: "text-white w-7 h-7",
   };
 
   return (

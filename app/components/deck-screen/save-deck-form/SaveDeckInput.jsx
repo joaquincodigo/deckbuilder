@@ -9,8 +9,8 @@ export default function SaveDeckInput({ onChange, deckName }) {
         type="text"
         placeholder="Deck name"
         className={styles.input}
-        id="deckNameInput"
-        name="deckNameInput"
+        id="deckName"
+        name="deckName"
         onChange={onChange}
         value={deckName}
       />
