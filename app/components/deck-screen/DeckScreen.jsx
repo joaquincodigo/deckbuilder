@@ -1,9 +1,6 @@
-import DeckEdgeIndicator from "@/app/components/deck-screen/DeckEdgeIndicator";
-import DeckSelector from "@/app/components/deck-screen/DeckSelector";
-import DeckScreenHeader from "@/app/components/deck-screen/DeckScreenHeader";
-import SaveDeckForm from "@/app/components/deck-screen/save-deck-form/SaveDeckForm";
-import CardsList from "@/app/components/cards/CardsList";
-import Modal from "@/app/components/modals/Modal";
+import Header from "./header/Header";
+import CardsList from "./cards-list/CardList";
+import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 
 export default function DeckScreen() {
   const styles = {
@@ -14,12 +11,10 @@ export default function DeckScreen() {
   return (
     <div className={styles.screen}>
       <div className={styles.contentWrapper}>
-        <DeckScreenHeader />
-        <DeckSelector />
-        <SaveDeckForm />
+        <Header />
         <CardsList />
       </div>
-      <DeckEdgeIndicator />
+      <EdgeIndicator />
     </div>
   );
 }

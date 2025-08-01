@@ -3,7 +3,7 @@ import SearchFiltersIcon from "@/app/components/all-cards-screen/search-form/Sea
 
 export default function FiltersButton({ onClick }) {
   const styles = {
-    btn: "bg-red-200",
+    btn: "bg-red-200 mb-3",
   };
 
   return (

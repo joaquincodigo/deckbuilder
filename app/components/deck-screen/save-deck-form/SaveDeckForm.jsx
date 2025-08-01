@@ -7,10 +7,6 @@ import { showToast } from "@/app/components/modals/ToastManager";
 import DeckDeletionModal from "@/app/components/modals/DeckDeletionModal";
 import DeckOverwriteModal from "@/app/components/modals/DeckOverwriteModal";
 
-const styles = {
-  form: "flex w-full",
-};
-
 export default function SaveDeckForm() {
   const [deckName, setDeckName] = useState("");
   const [deletionModalVisible, setDeletionModalVisible] = useState(false);
@@ -36,8 +32,9 @@ export default function SaveDeckForm() {
     // If new deck, save it.
     if (!decks.includes(deckName)) {
       decks.push(deckName);
+      // TODO: Each deck should be an object with cards in it
       localStorage.setItem("decks", JSON.stringify(decks));
-      showToast("New deck saved");
+      showToast("New deck saved ✓");
     } else {
       // If deck already exist, ask if overwrite.
       setOverwriteModalVisible(true);
@@ -45,9 +42,22 @@ export default function SaveDeckForm() {
   };
 
   const overwriteDeck = () => {
-    return;
+    const storedDecks = localStorage.getItem("decks");
+    const decks = storedDecks ? JSON.parse(storedDecks) : [];
+
+    // TODO: Overwrite deck cards
+
+    showToast("Deck overwritten ✓");
+    closeOverwriteModal();
   };
 
+  const closeOverwriteModal = () => {
+    setOverwriteModalVisible(false);
+  };
+
+  const styles = {
+    form: "flex w-full",
+  };
 
   return (
     <>
@@ -60,10 +70,8 @@ export default function SaveDeckForm() {
         {overwriteModalVisible && (
           <DeckOverwriteModal
             currentDeck={deckName}
-            onOverwriteClick={() => {
-              alert("overwrite");
-            }}
-            onCancelClick={() => setOverwriteModalVisible(false)}
+            onOverwriteClick={overwriteDeck}
+            onCancelClick={closeOverwriteModal}
           />
         )}
       </form>

@@ -18,7 +18,7 @@ export default function Button({
     <motion.button
       type={type}
       onClick={onClick}
-      whileTap={{ scale: 0.95, y: 2 }}
+      whileTap={{ scale: 0.95  }}
       className={`${styles.btn} ${className}`}
     >
       {Icon && <Icon className="mr-1" />}

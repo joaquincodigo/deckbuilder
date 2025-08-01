@@ -8,7 +8,7 @@ export default function DeckOverwriteModal({
 }) {
   const styles = {
     body: "flex flex-col p-3 bg-white rounded-md shadow-lg shadow-black",
-    text: "mb-6",
+    textContainer: "mb-6",
     footer: "flex gap-x-3 justify-end",
     overwrite: "bg-blue-500 text-white",
     cancel: "border border-slate-500 text-slate-800",
@@ -17,10 +17,14 @@ export default function DeckOverwriteModal({
   return (
     <Modal>
       <div className={styles.body}>
-        <p className={styles.text}>
-          Do you want to <strong>overwrite</strong> your existing{" "}
-          <strong>{currentDeck}</strong> deck?
-        </p>
+        <div className={styles.textContainer}>
+          <p className={styles.text}>
+            A deck named <strong>{currentDeck}</strong> already exist.
+          </p>
+          <p>
+            Do you want to <strong>overwrite</strong> it?
+          </p>
+        </div>
         <div className={styles.footer}>
           <Button
             label="Cancel"
