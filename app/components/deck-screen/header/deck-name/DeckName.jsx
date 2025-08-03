@@ -5,7 +5,7 @@ import Button from "@/app/components/ui/Button";
 import TickIcon from "./TickIcon";
 
 export default function DeckName({ deckName, onDeckNameChange }) {
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
 	const inputRef = useRef(null)
 
   useEffect(() => {
