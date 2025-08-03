@@ -2,27 +2,15 @@
 
 import { motion } from "motion/react";
 
-export default function Button({
-  onClick,
-  label,
-  icon: Icon,
-  className = "",
-  type = "button",
-}) {
-  const styles = {
-    btn: "flex items-center rounded w-fit px-2 py-1",
-    label: "font-bold",
-  };
-
+export default function Button({ children, onClick, className = "" }) {
   return (
     <motion.button
-      type={type}
       onClick={onClick}
-      whileTap={{ scale: 0.95  }}
-      className={`${styles.btn} ${className}`}
+      whileTap={{ scale: 0.9 }}
+      className={`touch-none ${className}`} // To prevent accidental swipes
+      onPointerDown={(e) => e.stopPropagation()} // Also to prevent accidental swipes
     >
-      {Icon && <Icon className="mr-1" />}
-      {label && <span className={styles.label}>{label}</span>}
+      {children}
     </motion.button>
   );
 }

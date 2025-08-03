@@ -1,10 +1,10 @@
 import Button from "@/app/components/ui/Button";
-import NewIcon from "./NewIcon";
+import SaveDeckIcon from "./SaveIcon";
 
-export default function NewButton() {
+export default function SaveButton() {
   const styles = {
     container: "flex flex-col items-center",
-    button: "bg-green-500 p-3 rounded",
+    button: "bg-cyan-500 p-3 rounded",
     text: "font-bold text-white",
     wrapper: "flex flex-col",
   };
@@ -13,10 +13,10 @@ export default function NewButton() {
     <div className={styles.container}>
       <Button className={styles.button}>
         <div className={styles.wrapper}>
-          <NewIcon />
+          <SaveDeckIcon />
         </div>
       </Button>
-      <p>New</p>
+      <p>Save</p>
     </div>
   );
 }

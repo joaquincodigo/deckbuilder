@@ -1,0 +1,58 @@
+"use client";
+import { useState, useRef, useEffect } from "react";
+import PencilIcon from "./PencilIcon";
+import Button from "@/app/components/ui/Button";
+import TickIcon from "./TickIcon";
+
+export default function DeckName({ deckName, onDeckNameChange }) {
+  const [isEditable, setIsEditable] = useState(true);
+	const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (isEditable && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isEditable]);
+
+  const styles = {
+    container: "flex items-center gap-2",
+    form: "flex bg-black gap-2",
+    input: "bg-white border border-black px-2 py-1",
+    name: "font-bold text-lg",
+    editButton: "bg-green-600 rounded p-0.5",
+    confirmButton:
+      "bg-green-600 rounded  aspect-square h-9 flex justify-center items-center",
+  };
+
+  const handleEditClick = () => {
+    if (!isEditable) {
+      setIsEditable(true);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    // SAVE DECK NAME LOGIC
+    e.preventDefault();
+    setIsEditable(false);
+  };
+
+  if (isEditable) {
+    return (
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input type="text" className={styles.input} ref={inputRef} />
+        <Button className={styles.confirmButton}>
+          <TickIcon />
+        </Button>
+      </form>
+    );
+  }
+
+  return (
+    <span className={styles.container} onClick={handleEditClick}>
+      <p className={styles.name}>Chaos Control</p>
+      <Button className={styles.editButton} onClick={handleEditClick}>
+        <PencilIcon />
+      </Button>
+    </span>
+  );
+}
