@@ -1,6 +1,6 @@
 export default function LeftArrowIcon() {
   const styles = {
-    svg: "text-white w-7 h-7", // DECREASE SIZE
+    svg: "text-white/70 w-7 h-7", // DECREASE SIZE
   };
 
   return (

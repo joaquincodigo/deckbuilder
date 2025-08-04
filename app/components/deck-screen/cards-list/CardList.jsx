@@ -1,4 +1,4 @@
-import Card from "@/app/components/cards/Card";
+import Card from "@/app/components/ui/Card";
 
 export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING

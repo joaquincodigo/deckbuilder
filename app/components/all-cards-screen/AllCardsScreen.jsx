@@ -1,7 +1,7 @@
-import AllcardsEdgeIndicator from "@/app/components/all-cards-screen/AllCardsEdgeIndicator";
-import SearchForm from "@/app/components/all-cards-screen/search-form/SearchForm";
-import AllCardsHeader from "@/app/components/all-cards-screen/AllCardsHeader";
-import CardsList from "@/app/components/deck-screen/cards-list/CardList";
+import EdgeIndicator from "./edge-indicator/EdgeIndicator";
+import SearchForm from "./header/search-form/SearchForm";
+import Header from "./header/Header";
+import CardsList from "./cards-list/CardsList";
 
 export default function AllCardsScreen() {
   const styles = {
@@ -11,9 +11,9 @@ export default function AllCardsScreen() {
 
   return (
     <div className={styles.body}>
-      <AllcardsEdgeIndicator />
+      <EdgeIndicator />
       <div className={styles.outerWrapper}>
-        <AllCardsHeader />
+        <Header />
         <SearchForm />
         <CardsList />
       </div>

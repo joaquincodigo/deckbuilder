@@ -1,5 +1,5 @@
 import Button from "@/app/components/ui/Button"
-import SearchFiltersIcon from "@/app/components/all-cards-screen/search-form/SearchFiltersIcon";
+import SearchFiltersIcon from "@/app/components/all-cards-screen/header/search-form/SearchFiltersIcon";
 
 export default function FiltersButton({ onClick }) {
   const styles = {
