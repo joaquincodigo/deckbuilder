@@ -7,8 +7,7 @@ export default function Button({ children, onClick, className = "" }) {
     <motion.button
       onClick={onClick}
       whileTap={{ scale: 0.9 }}
-      className={`touch-none ${className}`} // To prevent accidental swipes
-      onPointerDown={(e) => e.stopPropagation()} // Also to prevent accidental swipes
+      className={`${className}`}
     >
       {children}
     </motion.button>

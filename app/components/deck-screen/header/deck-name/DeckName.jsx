@@ -4,9 +4,9 @@ import PencilIcon from "./PencilIcon";
 import Button from "@/app/components/ui/Button";
 import TickIcon from "./TickIcon";
 
-export default function DeckName({ deckName, onDeckNameChange }) {
+export default function DeckName({ deckName, setDeckName }) {
   const [isEditable, setIsEditable] = useState(false);
-	const inputRef = useRef(null)
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (isEditable && inputRef.current) {
@@ -16,8 +16,8 @@ export default function DeckName({ deckName, onDeckNameChange }) {
 
   const styles = {
     container: "flex items-center gap-2",
-    form: "flex bg-black gap-2",
-    input: "bg-white border border-black px-2 py-1",
+    form: "flex gap-2",
+    input: "flex-1 bg-white border border-black px-2 py-1",
     name: "font-bold text-lg",
     editButton: "bg-green-600 rounded p-0.5",
     confirmButton:
@@ -38,9 +38,9 @@ export default function DeckName({ deckName, onDeckNameChange }) {
 
   if (isEditable) {
     return (
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form className={styles.form}>
         <input type="text" className={styles.input} ref={inputRef} />
-        <Button className={styles.confirmButton}>
+        <Button onClick={handleSubmit} className={styles.confirmButton}>
           <TickIcon />
         </Button>
       </form>
@@ -48,8 +48,10 @@ export default function DeckName({ deckName, onDeckNameChange }) {
   }
 
   return (
-    <span className={styles.container} onClick={handleEditClick}>
-      <p className={styles.name}>Chaos Control</p>
+    <span className={styles.container}>
+      <p className={styles.name} onClick={handleEditClick}>
+        Chaos Control
+      </p>
       <Button className={styles.editButton} onClick={handleEditClick}>
         <PencilIcon />
       </Button>
