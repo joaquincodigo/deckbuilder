@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 
 export default function FiltersPanel({ isOpen }) {
   const styles = {
-    body: "w-full h-72 bg-blue-200 overflow-hidden mb-3",
+    body: "w-full h-72 bg-blue-200 overflow-hidden mb-3 p-3",
   };
 
   return (

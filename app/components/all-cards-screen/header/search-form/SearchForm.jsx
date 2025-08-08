@@ -17,6 +17,8 @@ export default function SearchForm() {
     searchBarWrapper: "flex h-10 gap-x-3 mb-3",
   };
 
+
+
   return (
     <form className={styles.form}>
       <div className={styles.searchBarWrapper}>

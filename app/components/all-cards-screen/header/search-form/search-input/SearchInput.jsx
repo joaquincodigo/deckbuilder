@@ -1,13 +1,11 @@
-import SearchIcon from "./SearchIcon";
-import Button from "@/app/components/ui/Button";
+import SearchButton from "./SearchButton";
 
 export default function SearchInput({ onChange }) {
   const styles = {
     wrapper: "flex w-full h-full",
     input: "w-full bg-white p-2 text-lg h-full",
-    button:
-      "flex justify-center items-center aspect-square h-full bg-green-500",
   };
+
   return (
     <div className={styles.wrapper}>
       <input
@@ -18,9 +16,7 @@ export default function SearchInput({ onChange }) {
         name="card-search"
         onChange={onChange}
       />
-      <Button className={styles.button}>
-        <SearchIcon />
-      </Button>
+    <SearchButton/> 
     </div>
   );
 }
