@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from "motion/react";
+import ApplyFiltersButton from "./ApplyFiltersButton";
 
-export default function FiltersPanel({ isOpen }) {
+export default function FiltersPanel({ isOpen, onApplyFiltersClick }) {
   const styles = {
-    body: "w-full h-72 bg-blue-200 overflow-hidden mb-3 p-3",
+    panel: "w-full h-72 bg-blue-200 overflow-hidden mb-3 p-3",
+    footer: "flex justify-end w-full",
   };
 
   return (
@@ -13,9 +15,11 @@ export default function FiltersPanel({ isOpen }) {
           animate={{ height: "250px", opacity: 1 }}
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className={styles.body}
+          className={styles.panel}
         >
-          I AM FILTERS PANEL
+          <div className={styles.footer}>
+            <ApplyFiltersButton onClick={onApplyFiltersClick} />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

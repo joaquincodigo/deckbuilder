@@ -12,12 +12,15 @@ export default function SearchForm() {
     setIsFiltersPanelOpen((prev) => !prev);
   };
 
+  const handleApplyFilters = (e) => {
+    e.preventDefault();
+    setIsFiltersPanelOpen((prev) => !prev);
+  };
+
   const styles = {
     form: "flex flex-col h-fit",
     searchBarWrapper: "flex h-10 gap-x-3 mb-3",
   };
-
-
 
   return (
     <form className={styles.form}>
@@ -26,7 +29,10 @@ export default function SearchForm() {
         <FiltersButton onClick={toggleFiltersPanel} />
       </div>
 
-      <FiltersPanel isOpen={isFiltersPanelOpen} />
+      <FiltersPanel
+        isOpen={isFiltersPanelOpen}
+        onApplyFiltersClick={handleApplyFilters}
+      />
     </form>
   );
 }
