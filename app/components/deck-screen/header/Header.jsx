@@ -11,14 +11,14 @@ export default function Header() {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   const styles = {
-    headingContainer: "flex gap-x-3 items-top mb-3",
+    headingContainer: `flex gap-x-3 items-top ${isMenuOpen ? "mb-3" : ""}`,
   };
 
   return (
     <>
       <div className={styles.headingContainer}>
         <Heading />
-        <MenuButton onClick={toggleMenu} />
+        <MenuButton onClick={toggleMenu} isMenuOpen={isMenuOpen} />
       </div>
       <Menu isOpen={isMenuOpen} />
       <DeckName />

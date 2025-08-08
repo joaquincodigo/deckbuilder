@@ -1,5 +1,4 @@
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
-import SearchForm from "./header/search-form/SearchForm";
 import Header from "./header/Header";
 import CardsList from "./cards-list/CardsList";
 
@@ -14,7 +13,6 @@ export default function AllCardsScreen() {
       <EdgeIndicator />
       <div className={styles.outerWrapper}>
         <Header />
-        <SearchForm />
         <CardsList />
       </div>
     </div>

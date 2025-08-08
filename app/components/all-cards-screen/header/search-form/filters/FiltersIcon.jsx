@@ -1,4 +1,4 @@
-export default function SearchFiltersIcon() {
+export default function FiltersIcon() {
   const styles = {
     icon: "w-7 h-7 me-1",
   };

@@ -1,6 +1,6 @@
 export default function SearchIcon() {
   const styles = {
-    icon: "absolute left-2 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400",
+    icon: "w-7 h-7 text-white",
   };
   return (
     <svg
