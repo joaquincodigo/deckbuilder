@@ -33,6 +33,7 @@ export default function MainWrapper({ children }) {
     <main className={styles.main}>
       <motion.div
         {...bind()}
+        style={{ touchAction: "none" }}
         className={styles.screensContainer}
         animate={{ x: currentScreen === "deck" ? "0%" : "-50%" }}
         transition={{
