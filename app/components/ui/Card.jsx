@@ -1,10 +1,11 @@
 import Image from "next/image";
 
-export default function Card({ atk, def }) {
+export default function Card({ name, atk, def, ability }) {
   const styles = {
-    body: "aspect-[59/86] p-1 bg-white w-30",
+    body: "aspect-[59/86] p-1 bg-white w-full",
     stats: "font-bold",
-    text: "text-xs leading-tight",
+    name: "font-bold truncate",
+    ability: "text-xs leading-tight overflow-hidden line-clamp-2",
   };
 
   return (
@@ -16,7 +17,8 @@ export default function Card({ atk, def }) {
         width={300}
         height={300}
       />
-      <p className={styles.text}>Lorem ipsum sit, amet consectetur.</p>
+      <p className={styles.name}>{name}</p>
+      <p className={styles.ability}>{ability}</p>
     </div>
   );
 }

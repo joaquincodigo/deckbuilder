@@ -1,7 +1,7 @@
 export default function Heading() {
   const styles = {
     container: "flex-1",
-    heading: "font-bold text-2xl",
+    heading: "font-bold",
     separator: "mb-3",
   };
   return (

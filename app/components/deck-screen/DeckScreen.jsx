@@ -1,5 +1,5 @@
 import Header from "./header/Header";
-import CardsList from "./cards-list/CardList";
+import CardsList from "./cards-list/CardsList";
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 
 export default function DeckScreen() {
