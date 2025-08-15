@@ -1,6 +1,7 @@
 {
   "cards": [
     {
+      "id": "000-001",
       "name": "Blazing Dragon",
       "atk": 7,
       "defense": 5,
@@ -9,6 +10,7 @@
       "ability": "When this card destroys a monster, inflict 500 damage to your opponent."
     },
     {
+      "id": "000-002",
       "name": "Tidal Serpent",
       "atk": 6,
       "defense": 7,
@@ -17,6 +19,7 @@
       "ability": "Once per turn, you can return one spell card from your graveyard to your hand."
     },
     {
+      "id": "000-003",
       "name": "Gale Falcon",
       "atk": 4,
       "defense": 3,
@@ -25,6 +28,7 @@
       "ability": "This card can attack directly if your opponent controls no monsters."
     },
     {
+      "id": "000-004",
       "name": "Granite Golem",
       "atk": 5,
       "defense": 8,
@@ -33,6 +37,7 @@
       "ability": "This card cannot be destroyed by battle with a monster that has 2000 or less ATK."
     },
     {
+      "id": "000-005",
       "name": "Stormcaller Mage",
       "atk": 3,
       "defense": 4,
@@ -41,6 +46,7 @@
       "ability": "Once per turn, you can discard 1 card to destroy one spell/trap on the field."
     },
     {
+      "id": "000-006",
       "name": "Shadow Reaper",
       "atk": 6,
       "defense": 2,
@@ -49,6 +55,7 @@
       "ability": "When this card destroys a monster by battle, banish that monster instead of sending it to the graveyard."
     },
     {
+      "id": "000-007",
       "name": "Radiant Angel",
       "atk": 5,
       "defense": 5,
@@ -57,6 +64,7 @@
       "ability": "When this card is summoned, gain 1000 life points."
     },
     {
+      "id": "000-008",
       "name": "Void Specter",
       "atk": 8,
       "defense": 1,
@@ -65,6 +73,7 @@
       "ability": "This card cannot be targeted by card effects."
     },
     {
+      "id": "000-009",
       "name": "Inferno Knight",
       "atk": 7,
       "defense": 6,
@@ -73,6 +82,7 @@
       "ability": "This card gains 300 ATK for each Fire monster in your graveyard."
     },
     {
+      "id": "000-010",
       "name": "Abyssal Leviathan",
       "atk": 9,
       "defense": 4,
@@ -81,6 +91,7 @@
       "ability": "This card can attack twice per battle phase."
     },
     {
+      "id": "000-011",
       "name": "Whirlwind Fox",
       "atk": 3,
       "defense": 6,
@@ -89,6 +100,7 @@
       "ability": "When this card is destroyed by battle, draw 1 card."
     },
     {
+      "id": "000-012",
       "name": "Obsidian Colossus",
       "atk": 4,
       "defense": 9,
@@ -97,6 +109,7 @@
       "ability": "This card cannot be destroyed by card effects."
     },
     {
+      "id": "000-013",
       "name": "Thunderstorm Drake",
       "atk": 6,
       "defense": 5,
@@ -105,6 +118,7 @@
       "ability": "When this card is summoned, destroy one face-up monster on the field."
     },
     {
+      "id": "000-014",
       "name": "Necrotic Assassin",
       "atk": 5,
       "defense": 3,
@@ -113,6 +127,7 @@
       "ability": "When this card attacks, your opponent cannot activate trap cards until the end of the damage step."
     },
     {
+      "id": "000-015",
       "name": "Celestial Guardian",
       "atk": 4,
       "defense": 7,
@@ -121,6 +136,7 @@
       "ability": "Once per turn, you can negate the activation of a spell card and destroy it."
     },
     {
+      "id": "000-016",
       "name": "Rift Walker",
       "atk": 2,
       "defense": 9,
@@ -129,6 +145,7 @@
       "ability": "This card cannot be destroyed by battle with a monster that has higher ATK."
     },
     {
+      "id": "000-017",
       "name": "Pyroclasm Phoenix",
       "atk": 8,
       "defense": 3,
@@ -137,6 +154,7 @@
       "ability": "If this card is destroyed, you can special summon 1 Fire monster from your deck."
     },
     {
+      "id": "000-018",
       "name": "Frostbite Kraken",
       "atk": 7,
       "defense": 7,
@@ -145,6 +163,7 @@
       "ability": "Once per turn, you can change one attack position monster to defense position."
     },
     {
+      "id": "000-019",
       "name": "Zephyr Hawk",
       "atk": 5,
       "defense": 4,
@@ -153,6 +172,7 @@
       "ability": "When this card is normal summoned, you can return one spell/trap to the hand."
     },
     {
+      "id": "000-020",
       "name": "Crystal Sentinel",
       "atk": 3,
       "defense": 8,
@@ -161,6 +181,7 @@
       "ability": "When this card is summoned, you can set one trap card directly from your deck."
     },
     {
+      "id": "000-021",
       "name": "Volcanic Titan",
       "atk": 8,
       "defense": 6,
@@ -169,6 +190,7 @@
       "ability": "If this card attacks, your opponent cannot activate monster effects until the end of the Damage Step."
     },
     {
+      "id": "000-022",
       "name": "Tsunami Oracle",
       "atk": 4,
       "defense": 7,
@@ -177,6 +199,7 @@
       "ability": "Once per turn, you can discard 1 card to negate the effect of a Trap Card."
     },
     {
+      "id": "000-023",
       "name": "Cyclone Falcon",
       "atk": 5,
       "defense": 4,
@@ -185,6 +208,7 @@
       "ability": "If this card destroys a monster by battle, you can Special Summon 1 Level 4 or lower WIND monster from your Deck."
     },
     {
+      "id": "000-024",
       "name": "Quake Mammoth",
       "atk": 6,
       "defense": 9,
@@ -193,6 +217,7 @@
       "ability": "Unaffected by Spell Cards."
     },
     {
+      "id": "000-025",
       "name": "Stormbringer Sorcerer",
       "atk": 7,
       "defense": 3,
@@ -201,6 +226,7 @@
       "ability": "When this card is Summoned, destroy all face-up Spell/Trap Cards on the field."
     },
     {
+      "id": "000-026",
       "name": "Dread Phantom",
       "atk": 5,
       "defense": 2,
@@ -209,6 +235,7 @@
       "ability": "If this card is sent to the Graveyard, you can banish 1 card from your opponent's Graveyard."
     },
     {
+      "id": "000-027",
       "name": "Solar Paladin",
       "atk": 6,
       "defense": 6,
@@ -217,6 +244,7 @@
       "ability": "This card gains 300 ATK for each LIGHT monster in your Graveyard."
     },
     {
+      "id": "000-028",
       "name": "Nullifier Wraith",
       "atk": 3,
       "defense": 8,
@@ -225,6 +253,7 @@
       "ability": "Cannot be targeted by your opponent's card effects."
     },
     {
+      "id": "000-029",
       "name": "Ember Knight",
       "atk": 4,
       "defense": 5,
@@ -233,6 +262,7 @@
       "ability": "If this card battles a WATER monster, it gains 1000 ATK during damage calculation."
     },
     {
+      "id": "000-030",
       "name": "Abyss Diver",
       "atk": 2,
       "defense": 6,
@@ -241,6 +271,7 @@
       "ability": "When this card is destroyed by battle, add 1 WATER monster from your Deck to your hand."
     },
     {
+      "id": "000-031",
       "name": "Skybound Archer",
       "atk": 5,
       "defense": 3,
@@ -249,6 +280,7 @@
       "ability": "Once per turn, you can inflict 500 damage to your opponent."
     },
     {
+      "id": "000-032",
       "name": "Boulder Guardian",
       "atk": 7,
       "defense": 7,
@@ -257,6 +289,7 @@
       "ability": "Cannot be destroyed by battle with a monster that has 2500 or less ATK."
     },
     {
+      "id": "000-033",
       "name": "Thunderclap Wyvern",
       "atk": 6,
       "defense": 4,
@@ -265,6 +298,7 @@
       "ability": "If this card attacks, your opponent cannot activate monster effects until the end of the Damage Step."
     },
     {
+      "id": "000-034",
       "name": "Nightshade Assassin",
       "atk": 4,
       "defense": 1,
@@ -273,6 +307,7 @@
       "ability": "When this card destroys a monster by battle, you can Special Summon 1 DARK monster from your hand."
     },
     {
+      "id": "000-035",
       "name": "Luminous Sage",
       "atk": 3,
       "defense": 5,
@@ -281,6 +316,7 @@
       "ability": "Once per turn, you can reveal 1 LIGHT monster in your hand to draw 1 card."
     },
     {
+      "id": "000-036",
       "name": "Voidshift Specter",
       "atk": 9,
       "defense": 0,
@@ -289,6 +325,7 @@
       "ability": "If this card battles, your opponent cannot activate any cards or effects until the end of the Damage Step."
     },
     {
+      "id": "000-037",
       "name": "Magma Berserker",
       "atk": 7,
       "defense": 2,
@@ -297,6 +334,7 @@
       "ability": "This card can attack all monsters your opponent controls once each."
     },
     {
+      "id": "000-038",
       "name": "Deepsea Serpent",
       "atk": 5,
       "defense": 8,
@@ -305,6 +343,7 @@
       "ability": "Unaffected by Trap Cards."
     },
     {
+      "id": "000-039",
       "name": "Gale Ninja",
       "atk": 4,
       "defense": 4,
@@ -313,6 +352,7 @@
       "ability": "If this card is attacked, you can return it to your hand instead of destroying it."
     },
     {
+      "id": "000-040",
       "name": "Ironclad Behemoth",
       "atk": 9,
       "defense": 5,

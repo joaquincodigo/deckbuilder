@@ -1,18 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Card from "@/app/components/ui/Card";
-import CardModal from "../../modals/CardModal";
+import CardCell from "./cards-list/card-cell/CardCell";
 
 export default function CardsList() {
   const [cards, setCards] = useState([]);
-  const [isCardModalVisible, setIsCardModalVisible] = useState(false);
+  const [selectedCardId, setSelectedCardId] = useState(null);
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
     fetch("/testing-cards.json")
       .then((res) => res.json())
       .then((data) => setCards(data.cards));
   }, []);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
     grid: "flex-grow grid grid-cols-3 gap-y-2 gap-x-2 overflow-y-auto touch-pan-y bg-amber-800 mt-3",
@@ -21,16 +22,16 @@ export default function CardsList() {
   return (
     <div className={styles.grid}>
       {cards.map((card, i) => (
-        <Card
-          key={i}
-          width={108}
-          name={card.name}
-          ability={card.ability}
-          atk={card.atk}
-          def={card.defense}
+        <CardCell
+          key={card.id}
+          card={card}
+          isSelected={selectedCardId === card.id}
+          onSelect={() => {
+            console.log(card.id);
+            setSelectedCardId(card.id);
+          }}
         />
       ))}
-      {/* {isCardModalVisible && <CardModal />} */}
     </div>
   );
 }
