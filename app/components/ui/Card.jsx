@@ -1,10 +1,6 @@
 import Image from "next/image";
-import { forwardRef } from "react";
 
-const Card = forwardRef(function Card(
-  { name, atk, def, ability, onClick },
-  ref
-) {
+export default function Card({ name, atk, def, ability }) {
   const styles = {
     body: "aspect-[59/86] p-1 bg-white w-full",
     stats: "font-bold",
@@ -13,7 +9,7 @@ const Card = forwardRef(function Card(
   };
 
   return (
-    <div ref={ref} onClick={onClick} className={styles.body}>
+    <div className={styles.body}>
       <div className={styles.stats}>{`${atk}/${def}`}</div>
       <Image
         src="/dummy-image.jpg"
@@ -25,6 +21,4 @@ const Card = forwardRef(function Card(
       <p className={styles.ability}>{ability}</p>
     </div>
   );
-});
-
-export default Card;
+}

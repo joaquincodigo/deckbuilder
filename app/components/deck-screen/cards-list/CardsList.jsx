@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import CardCell from "./cards-list/card-cell/CardCell";
+import CardCell from "./card-cell/CardCell";
 
 export default function CardsList() {
   const [cards, setCards] = useState([]);
