@@ -3,7 +3,8 @@ import CardSelector from "./card-selector/CardSelector";
 
 export default function CardCell({ card, isSelected, onSelect }) {
   const styles = {
-    cell: "relative overflow-visible",
+    cell: "relative overflow-visible bg-purple-400 aspect-[59/86]",
+    
   };
 
   return (

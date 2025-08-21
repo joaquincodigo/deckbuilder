@@ -16,7 +16,7 @@ export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    grid: "flex-grow grid grid-cols-3 gap-y-2 gap-x-2 overflow-y-auto touch-pan-y bg-amber-800 mt-3",
+    grid: "grid grid-cols-3 flex-grow gap-y-2 gap-x-2 p-2 overflow-y-auto touch-pan-y bg-amber-800 mt-3",
   };
 
   return (

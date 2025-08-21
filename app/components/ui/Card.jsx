@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Card({ name, atk, def, ability }) {
   const styles = {
-    body: "aspect-[59/86] p-1 bg-white w-full",
+    body: "p-1 bg-white h-full w-full overflow-hidden",
     stats: "font-bold",
     name: "font-bold truncate",
     ability: "text-xs leading-tight overflow-hidden line-clamp-2",
@@ -14,8 +14,8 @@ export default function Card({ name, atk, def, ability }) {
       <Image
         src="/dummy-image.jpg"
         alt="dummy card image"
-        width={300}
-        height={300}
+        width={150}
+        height={150}
       />
       <p className={styles.name}>{name}</p>
       <p className={styles.ability}>{ability}</p>

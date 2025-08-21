@@ -4,5 +4,5 @@ export default function ViewButton() {
   const styles = {
     button: "bg-blue-500 font-bold rounded text-white",
   };
-  return <Button className={styles.button}>View</Button>;
+  return <Button className={styles.button}>View card info</Button>;
 }
