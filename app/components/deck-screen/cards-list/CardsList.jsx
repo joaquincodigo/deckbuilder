@@ -9,9 +9,12 @@ export default function CardsList() {
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
-    fetch("/testing-cards.json")
-      .then((res) => res.json())
-      .then((data) => setCards(data.cards));
+    async function fetchCardData() {
+      const res = await fetch("/all_goat_cards.json");
+      const json = await res.json();
+      setCards(json.data);
+    }
+    fetchCardData();
   }, []);
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
@@ -21,13 +24,12 @@ export default function CardsList() {
 
   return (
     <div className={styles.grid}>
-      {cards.map((card, i) => (
+      {cards.map((card) => (
         <CardCell
           key={card.id}
           card={card}
           isSelected={selectedCardId === card.id}
           onSelect={() => {
-            console.log(card.id);
             setSelectedCardId(card.id);
           }}
         />

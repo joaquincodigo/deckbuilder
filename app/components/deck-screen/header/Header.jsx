@@ -23,6 +23,6 @@ export default function Header() {
       </div>
       <Menu isOpen={isMenuOpen} />
       <DeckName />
-    </div>
+    </div>  
   );
 }
