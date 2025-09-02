@@ -1,7 +1,7 @@
-import ViewButton from "./ViewButton";
+import ShowInfoButton from "./ShowInfoButton";
 import RemoveButton from "./RemoveButton";
 
-export default function CardSelector({ card }) {
+export default function CardSelector({ onShowInfo, onRemoveFromDeck }) {
   const styles = {
     selector:
       "absolute -inset-1 flex flex-col justify-center gap-y-1.5 p-1.5 border-black bg-green-400/60 border-2 border-black z-50",
@@ -9,8 +9,8 @@ export default function CardSelector({ card }) {
 
   return (
     <div className={styles.selector}>
-      <ViewButton card={card} />
-      <RemoveButton />
+      <ShowInfoButton onClick={onShowInfo} />
+      <RemoveButton onClick={onRemoveFromDeck} />
     </div>
   );
 }

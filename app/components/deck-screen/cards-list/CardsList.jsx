@@ -10,7 +10,7 @@ export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
     async function fetchCardData() {
-      const res = await fetch("/all_goat_cards.json");
+      const res = await fetch("/api/cards");
       const json = await res.json();
       setCards(json.data);
     }
@@ -19,7 +19,7 @@ export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    grid: "grid grid-cols-3 flex-grow gap-y-2 gap-x-2 p-2 overflow-y-auto touch-pan-y bg-amber-800 mt-3",
+    grid: "grid grid-cols-3 flex-grow overflow-y-auto touch-pan-y bg-amber-800 mt-3",
   };
 
   return (
@@ -31,6 +31,12 @@ export default function CardsList() {
           isSelected={selectedCardId === card.id}
           onSelect={() => {
             setSelectedCardId(card.id);
+          }}
+          onShowInfo={() => {
+            alert("onShowInfo: not implemented yet !");
+          }}
+          onRemoveFromDeck={() => {
+            alert("onRemoveDeck: not implemented yet");
           }}
         />
       ))}
