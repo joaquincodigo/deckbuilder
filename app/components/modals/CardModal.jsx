@@ -1,5 +1,5 @@
 import Modal from "./Modal";
-import Card from "../ui/Card";
+import Image from "next/image";
 
 export default function CardModal({ card }) {
   const styles = {
@@ -8,12 +8,20 @@ export default function CardModal({ card }) {
 
   return (
     <Modal>
-      <Card
-        name={card.name}
-        atk={card.atk}
-        def={card.def}
-        ability={card.ability}
-      />
+      <div className={styles.body}>
+        <Image
+          src={`/card_images/${card.id}.jpg`}
+          alt="dummy card image"
+          width={150}
+          height={150}
+        />
+        <ul>
+          <li>{card.name}</li>
+          <li>{card.atk}</li>
+          <li>{card.def}</li>
+          <li>{card.ability}</li>
+        </ul>
+      </div>
     </Modal>
   );
 }

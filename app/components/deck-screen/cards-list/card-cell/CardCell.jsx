@@ -9,7 +9,7 @@ export default function CardCell({
   onRemoveFromDeck,
 }) {
   const styles = {
-    cell: "relative overflow-visible bg-purple-400 aspect-[59/86]",
+    cell: "relative overflow-visible aspect-[59/86]",
   };
 
   return (

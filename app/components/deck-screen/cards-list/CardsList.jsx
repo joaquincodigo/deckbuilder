@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import CardCell from "./card-cell/CardCell";
+import CardModal from "../../modals/CardModal";
 
 export default function CardsList() {
   const [cards, setCards] = useState([]);
-  const [selectedCardId, setSelectedCardId] = useState(null);
+  const [selectedCard, setSelectedCard] = useState({});
+  const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
@@ -18,6 +20,10 @@ export default function CardsList() {
   }, []);
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
+  useEffect(() => {
+    console.log(selectedCard);
+  }, [selectedCard]);
+
   const styles = {
     grid: "grid grid-cols-3 flex-grow overflow-y-auto touch-pan-y bg-amber-800 mt-3",
   };
@@ -28,18 +34,19 @@ export default function CardsList() {
         <CardCell
           key={card.id}
           card={card}
-          isSelected={selectedCardId === card.id}
+          isSelected={card.id === selectedCard.id}
           onSelect={() => {
-            setSelectedCardId(card.id);
+            setSelectedCard(card);
           }}
           onShowInfo={() => {
-            alert("onShowInfo: not implemented yet !");
+            setIsCardModalOpen(true);
           }}
           onRemoveFromDeck={() => {
             alert("onRemoveDeck: not implemented yet");
           }}
         />
       ))}
+      {isCardModalOpen && <CardModal card={selectedCard} />}
     </div>
   );
 }
