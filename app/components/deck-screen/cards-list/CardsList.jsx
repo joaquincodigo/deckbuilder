@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import CardCell from "./card-cell/CardCell";
-import CardModal from "../../modals/CardModal";
+import CardModal from "../../modals/CardModal/CardModal";
 
 export default function CardsList() {
-  const [cards, setCards] = useState([]);
-  const [selectedCard, setSelectedCard] = useState({});
+  const [cards, setCards] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
@@ -21,12 +21,16 @@ export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   useEffect(() => {
-    console.log(selectedCard);
-  }, [selectedCard]);
+    console.log(cards);
+  }, [cards]);
 
   const styles = {
     grid: "grid grid-cols-3 flex-grow overflow-y-auto touch-pan-y bg-amber-800 mt-3",
   };
+
+  if (!cards) {
+   return <p>Loading...</p> 
+  }
 
   return (
     <div className={styles.grid}>
@@ -34,7 +38,7 @@ export default function CardsList() {
         <CardCell
           key={card.id}
           card={card}
-          isSelected={card.id === selectedCard.id}
+          isSelected={card.id === selectedCard?.id}
           onSelect={() => {
             setSelectedCard(card);
           }}
@@ -46,7 +50,12 @@ export default function CardsList() {
           }}
         />
       ))}
-      {isCardModalOpen && <CardModal card={selectedCard} />}
+      <CardModal
+        isOpen={isCardModalOpen}
+        card={selectedCard}
+        onBackdropClick={() => setIsCardModalOpen(false)}
+        onBodyClick={() => setIsCardModalOpen(false)}
+      />
     </div>
   );
 }

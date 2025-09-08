@@ -3,10 +3,11 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "motion/react";
 
-export default function Modal({ children }) {
+export default function Modal({ isOpen=false, children, onBackdropClick }) {
   // Prevent SSR Prevent SSR Prevent SSR Prevent SSR
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  useEffect(() => console.log(isOpen), [isOpen]);
   if (!mounted) return null;
   // Prevent SSR Prevent SSR Prevent SSR Prevent SSR
 
@@ -17,22 +18,25 @@ export default function Modal({ children }) {
 
   return createPortal(
     <AnimatePresence>
-      <motion.div
-        className={styles.backdrop}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-      >
+      {isOpen && (
         <motion.div
-          className={styles.container}
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={onBackdropClick}
+          className={styles.backdrop}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          {children}
+          <motion.div
+            className={styles.container}
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {children}
+          </motion.div>
         </motion.div>
-      </motion.div>
+      )}
     </AnimatePresence>,
     document.body
   );

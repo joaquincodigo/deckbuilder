@@ -1,4 +1,4 @@
-import Button from "@/app/components/ui/Button";
+import { motion } from "motion/react";
 
 export default function showInfoButton({ onClick }) {
   const styles = {
@@ -7,9 +7,14 @@ export default function showInfoButton({ onClick }) {
 
   return (
     <>
-      <Button onClick={onClick} className={styles.button}>
+      {/* We are using a normal button here instead of "button" because we need to trigger the modals onPointerUp , not onPointerDown. This ensure a better experience scrolling while accidentally clicking a modal button */}
+      <motion.button
+        onClick={onClick}
+        className={styles.button}
+        whileTap={{ scale: 0.9 }}
+      >
         View card info
-      </Button>
+      </motion.button>
     </>
   );
 }
