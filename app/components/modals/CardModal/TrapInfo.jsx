@@ -1,7 +1,7 @@
 export default function TrapInfo({ card }) {
   const styles = {
     list: "bg-[#01233a] p-3 border-1 border-white/50",
-    name: "px-1 mb-1 font-bold text-lg text-white bg-[radial-gradient(circle_at_30%_30%,#a51970,#803d65)]",
+    name: "px-1 mb-1 font-bold text-lg text-white bg-[radial-gradient(circle_at_30%_30%,#803d65,#a51970)]",
     textbox: "bg-[#e9c9de] border border-4 border-[#9c4710] p-1",
     type: "font-semibold text-white mb-1",
   };

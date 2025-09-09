@@ -2,6 +2,7 @@ export default function MonsterInfo({ card }) {
   const nameGradients = {
     "Normal Monster": "bg-[radial-gradient(circle_at_30%_30%,#cbac6b,#b4843c)]",
     "Effect Monster": "bg-[radial-gradient(circle_at_30%_30%,#c5845a,#a66330)]",
+    "Flip Effect Monster": "bg-[radial-gradient(circle_at_30%_30%,#c5845a,#a66330)]",
     // ToDo: Ritual
     // ToDo: Fusion
     // ToDo: Token

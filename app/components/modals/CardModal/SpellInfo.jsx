@@ -2,7 +2,7 @@ export default function SpellInfo({ card }) {
 
   const styles = {
     list: "bg-[#01233a] p-3 border-1 border-white/50",
-    name: "px-1 mb-1 font-bold text-lg text-white bg-[radial-gradient(circle_at_30%_30%,#078c78,#49b3a6)]",
+    name: "px-1 mb-1 font-bold text-lg text-white bg-[radial-gradient(circle_at_30%_30%,#047862,#49b3a6)]",
     textbox: "bg-[#d3f2eb] border border-4 border-[#9c4710] p-1",
     type: "font-semibold text-white mb-1",
   };
