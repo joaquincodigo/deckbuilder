@@ -12,7 +12,7 @@ export default function CardModal({
 }) {
   const styles = {
     body: "z-90 shadow-lg",
-    imageContainer: "aspect-[59/86] relative ",
+    imageContainer: "aspect-[59/86] relative mb-3 shadow-lg shadow-black/80",
     image: "object-contain",
   };
 
