@@ -1,5 +1,6 @@
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 import Header from "./header/Header";
+import CardsList from "./cards-list/CardsList";
 
 export default function AllCardsScreen() {
   const styles = {
@@ -12,7 +13,7 @@ export default function AllCardsScreen() {
       <EdgeIndicator />
       <div className={styles.outerWrapper}>
         <Header />
-        {/* <CardsList /> */}
+        <CardsList />
       </div>
     </div>
   );

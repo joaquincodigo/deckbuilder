@@ -1,5 +1,4 @@
 import Header from "./header/Header";
-import CardsList from "./cards-list/CardsList";
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 
 export default function DeckScreen() {
@@ -12,7 +11,7 @@ export default function DeckScreen() {
     <div className={styles.screen}>
       <div className={styles.contentWrapper}>
         <Header />
-        <CardsList />
+        <p>I am deck list</p>
       </div>
       <EdgeIndicator />
     </div>
