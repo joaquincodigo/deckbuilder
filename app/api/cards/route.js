@@ -1,17 +1,25 @@
+import { log } from "console";
 import fs from "fs";
 import path from "path";
 
-export async function GET(req, { params }) {
-  const filePath = path.join(process.cwd(), "app", "data", "all_goat_cards.json");
-  const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  const cards = jsonData.data;
+export async function GET(request) {
+  // Data Source
+  const filePath = path.join(
+    process.cwd(),
+    "app",
+    "data",
+    "all_goat_cards.json"
+  );
+  const cardsJSON = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  const cardsData = cardsJSON.data;
 
-  const withImages = cards.slice(0, 30).map(card => ({
-    ...card,
-    imageUrl: `/card_images/${card.id}.jpg`, // assumes /public/cards/86988864.jpg
-  }));
+  // Params
+  const { searchParams } = new URL(request.url);
+  const start = parseInt(searchParams.get("offset") || 0);
+  const limit = parseInt(searchParams.get("limit") || 20);
+  const end = start + limit;
+  const results = cardsData.slice(start, end);
 
-  return new Response(JSON.stringify({ data: withImages }), {
-    headers: { "Content-Type": "application/json" },
-  });
+  // Response
+  return Response.json(cardsData.slice(start, end));
 }

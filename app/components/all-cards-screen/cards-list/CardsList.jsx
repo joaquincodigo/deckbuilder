@@ -3,33 +3,41 @@
 import { useState, useEffect } from "react";
 import CardCell from "./card-cell/CardCell";
 import CardModal from "../../modals/CardModal/CardModal";
+import LoadingSpinner from "../../ui/LoadingSpinner";
 
 export default function CardsList() {
-  const [cards, setCards] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
     async function fetchCardData() {
-      const res = await fetch("/api/cards");
-      const json = await res.json();
-      setCards(json.data);
+      if (isLoading) return;
+
+      setIsLoading(true);
+      const offset = cards.length;
+      const response = await fetch(`/api/cards?offset=${offset}&limit=21`);
+      const json = await response.json(); // fetched json is an array of cards
+
+      setCards((prev) => [...prev, ...json]);
+      setIsLoading(false);
     }
     fetchCardData();
   }, []);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   useEffect(() => {
-    console.log(cards);
+    console.log("Cards state is:", cards);
   }, [cards]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
     grid: "grid grid-cols-3 flex-grow overflow-y-auto touch-pan-y bg-amber-800 mt-3",
   };
 
   if (!cards) {
-   return <p>Loading...</p> 
+    return <LoadingSpinner />;
   }
 
   return (

@@ -15,7 +15,7 @@ export default function CardCell({
   return (
     <div className={styles.cell} onClick={onSelect}>
       <Image
-        src={card.imageUrl}
+        src={`/card_images/${card.id}.jpg`}
         alt="dummy card image"
         width={150}
         height={150}
