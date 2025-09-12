@@ -16,6 +16,7 @@ export async function GET(request) {
   // Params
   const { searchParams } = new URL(request.url);
   const start = parseInt(searchParams.get("offset") || 0);
+  console.log("START IS:", start);
   const limit = parseInt(searchParams.get("limit") || 20);
   const end = start + limit;
   const results = cardsData.slice(start, end);
