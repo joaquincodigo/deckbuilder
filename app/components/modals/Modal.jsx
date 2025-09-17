@@ -14,7 +14,7 @@ export default function Modal({ isOpen = false, children, onBackdropClick }) {
   const styles = {
     backdrop:
       "fixed inset-0 bg-black/50 z-80 flex items-center justify-center backdrop-blur-md",
-    container: "shadow-xl z-90 w-80",
+    container: "shadow-xl z-90 h-screen w-screen",
   };
 
   return createPortal(

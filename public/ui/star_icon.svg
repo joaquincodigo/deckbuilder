@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="redGradient" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ff4d4d"/>
+      <stop offset="100%" stop-color="#990000"/>
+    </radialGradient>
+    <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffff99"/>
+      <stop offset="100%" stop-color="#ffd700"/>
+    </linearGradient>
+  </defs>
+
+  <!-- red circular background -->
+  <circle cx="256" cy="256" r="256" fill="url(#redGradient)" />
+
+  <!-- larger, thicker five-pointed star -->
+  <polygon
+    fill="url(#starGradient)"
+    points="
+      256,56
+      315,175
+      446,194
+      351,287
+      374,418
+      256,356
+      138,418
+      161,287
+      66,194
+      197,175
+    "
+  />
+</svg>

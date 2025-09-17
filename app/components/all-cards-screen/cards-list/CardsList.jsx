@@ -12,6 +12,7 @@ export default function CardsList() {
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const currentCardsRef = useRef(currentCards);
   const observerRef = useRef(null);
+  const gridRef = useRef(null);
 
   useEffect(() => {
     // This is needed to avoid stale state in the function loadMoreCards
@@ -19,22 +20,19 @@ export default function CardsList() {
   }, [currentCards]);
 
   const fetchMoreCards = async () => {
-    if (isLoading) return;
-
-    setIsLoading(true);
+    if (isLoading) setIsLoading(true);
 
     const offset = currentCardsRef.current.length; // always latest
-    console.log("offset is", offset);
-    const res = await fetch(`/api/cards?offset=${offset}&limit=21`);
+    console.log("FETCHING CARDS");
+    const res = await fetch(`/api/cards?offset=${offset}&limit=36`);
     const newCards = await res.json();
 
+    console.log("SETTING CARDS");
     setCurrentCards((prev) => [...prev, ...newCards]);
     setIsLoading(false);
   };
 
   const sentinelRef = (node) => {
-    console.log("sentinel ref defined");
-    console.log("node is", node);
     // This gets executed when the sentinel div mounts
 
     // Removing the previous old observer if there's any
@@ -55,7 +53,7 @@ export default function CardsList() {
         },
         {
           root: null,
-          rootMargin: "200px",
+          rootMargin: "0px 0px 800px 0px", //Only bottom margin
           threshold: 0,
         }
       );
@@ -66,13 +64,13 @@ export default function CardsList() {
   };
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log("CARDS:", currentCards);
-  }, [currentCards]);
+  // useEffect(() => {
+  //   console.log("CARDS:", currentCards);
+  // }, [currentCards]);
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    grid: "grid grid-cols-3 flex-grow overflow-y-auto touch-pan-y bg-amber-800 mt-3",
+    grid: "grid grid-cols-3 flex-grow overflow-y-scroll touch-pan-y bg-amber-800 mt-3",
   };
 
   if (!currentCards) {
@@ -80,7 +78,7 @@ export default function CardsList() {
   }
 
   return (
-    <div className={styles.grid}>
+    <div ref={gridRef} className={styles.grid}>
       {/* The actual cards list */}
       {currentCards.map((card) => (
         <CardCell

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CardSelector from "./card-selector/CardSelector";
 import { useState } from "react";
 
 export default function CardCell({
@@ -12,7 +13,7 @@ export default function CardCell({
 
   const styles = {
     cell: "relative overflow-visible aspect-[59/86] bg-gray-900", // gray background as fallback
-    img: "transition-opacity duration-300 ease-in-out",
+    img: "transition-opacity duration-300 ease-in-out object-cover",
   };
 
   return (
@@ -20,9 +21,10 @@ export default function CardCell({
       <Image
         src={`/card_images/${card.id}.jpg`}
         alt="dummy card image"
-        fill
+        fill={true}
+        sizes="25vw"
         className={`${styles.img} ${loading ? "opacity-0" : "opacity-100"}`}
-        onLoadingComplete={() => setLoading(false)}
+        onLoad={() => setLoading(false)}
       />
       {isSelected && (
         <CardSelector

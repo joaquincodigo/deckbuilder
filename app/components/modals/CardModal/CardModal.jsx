@@ -11,9 +11,10 @@ export default function CardModal({
   onBackdropClick,
 }) {
   const styles = {
-    body: "z-90 shadow-lg",
+    body: "z-90 shadow-lg h-screen flex flex-col p-3",
     imageContainer: "aspect-[59/86] relative mb-3 shadow-lg shadow-black/80",
     image: "object-contain",
+    infoContainer: "flex flex-col min-h-0 flex-1 bg-[#01233a] p-3 border-1 border-white/50",
   };
 
   if (!card) {
@@ -33,9 +34,11 @@ export default function CardModal({
           />
         </div>
 
-        {card.type.includes("Monster") && <MonsterInfo card={card} />}
-        {card.type.includes("Spell") && <SpellInfo card={card} />}
-        {card.type.includes("Trap") && <TrapInfo card={card} />}
+        <div className={styles.infoContainer}>
+          {card.type.includes("Monster") && <MonsterInfo card={card} />}
+          {card.type.includes("Spell") && <SpellInfo card={card} />}
+          {card.type.includes("Trap") && <TrapInfo card={card} />}
+        </div>
       </div>
     </Modal>
   );
