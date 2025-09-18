@@ -3,3 +3,11 @@
 :root {
   --vh: 100%;
 }
+
+@theme inline {
+  --font-matrix-card-name: var(--font-matrix-card-name);
+  --font-matrix-card-type: var(--font-matrix-card-type);
+  --font-matrix-italic: var(--font-matrix-italic);
+}
+
+
