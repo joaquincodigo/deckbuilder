@@ -25,18 +25,19 @@ export default function MonsterInfo({ card }) {
   };
 
   const styles = {
-    name: `px-1 mb-1 font-bold text-lg ${nameGradients[card.type]}`,
+    name: `px-1.5 pb-[0.18rem] leading-none mb-1 text-3xl font-semibold font-matrix-card-name ${nameGradients[card.type]}`,
+    
     levelAndAttributeContainer: "flex text-white mb-1 gap-x-1 justify-end",
-    level: "flex gap-x-0.5 items-center",
-    textbox: `flex flex-col min-h-0 border border-4 border-[#9c4710] p-1 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] ${
+    level: "flex gap-x-0.5 items-center font-matrix-card-type",
+    textbox: `flex flex-col min-h-0 border border-4 border-[#9c4710] pt-[0.5] pb-1 px-1 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] ${
       textboxBackgrounds[card.type]
     }`,
-    type: "font-semibold",
-    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 ${
-      card.type === "Normal Monster" ? "italic" : ""
+    type: "font-matrix-card-type mb-0.5",
+    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 text-lg${
+      card.type === "Normal Monster" ? "font-matrix-italic" : ""
     }`,
     separator: "border-1",
-    stats: "flex justify-end font-bold gap-x-3 shrink-0",
+    stats: "flex justify-end font-bold gap-x-3 shrink-0 font-matrix-card-type text-sm",
   };
 
   return (
@@ -58,7 +59,7 @@ export default function MonsterInfo({ card }) {
 
       <div className={styles.textbox}>
         <p className={styles.type}>
-          [{card.race} / {card.type}]
+          [{card.race}/{card.type}]
         </p>
         <p className={styles.description}>{card.desc}</p>
         <hr className={styles.separator} />

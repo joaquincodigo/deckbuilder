@@ -18,7 +18,7 @@ export default function DeckName({ deckName, setDeckName }) {
     container: "flex items-center gap-2",
     form: "flex gap-2",
     input: "flex-1 bg-white border border-black px-2 py-1",
-    name: "font-bold text-lg font-matrix-card-name",
+    name: "text-2xl font-matrix-card-name",
     editButton: "bg-green-600 rounded p-0.5",
     confirmButton:
       "bg-green-600 rounded  aspect-square h-9 flex justify-center items-center",

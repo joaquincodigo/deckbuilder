@@ -21,13 +21,11 @@ export default function CardsList() {
 
   const fetchMoreCards = async () => {
     if (isLoading) setIsLoading(true);
-
     const offset = currentCardsRef.current.length; // always latest
     console.log("FETCHING CARDS");
     const res = await fetch(`/api/cards?offset=${offset}&limit=36`);
     const newCards = await res.json();
 
-    console.log("SETTING CARDS");
     setCurrentCards((prev) => [...prev, ...newCards]);
     setIsLoading(false);
   };
@@ -52,8 +50,8 @@ export default function CardsList() {
           }
         },
         {
-          root: null,
-          rootMargin: "0px 0px 800px 0px", //Only bottom margin
+          root: gridRef.current,
+          rootMargin: "0px 0px 1000px 0px", //Only bottom margin
           threshold: 0,
         }
       );
@@ -70,7 +68,7 @@ export default function CardsList() {
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
-    grid: "grid grid-cols-3 flex-grow overflow-y-scroll touch-pan-y bg-amber-800 mt-3",
+    grid: "grid grid-cols-3 flex-grow overflow-y-scroll touch-pan-y bg-amber-800",
   };
 
   if (!currentCards) {
@@ -98,7 +96,7 @@ export default function CardsList() {
       ))}
 
       {/* Sentinel Div for fetching */}
-      <div ref={sentinelRef} className="bg-yellow-400 col-span-3 h-12"></div>
+      <div ref={sentinelRef} className="bg-yellow-400 col-span-3 h-12" />
 
       {/* Modal for showing card details */}
       <CardModal
