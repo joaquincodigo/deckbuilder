@@ -23,7 +23,7 @@ export default function CardsList() {
     if (isLoading) setIsLoading(true);
     const offset = currentCardsRef.current.length; // always latest
     console.log("FETCHING CARDS");
-    const res = await fetch(`/api/cards?offset=${offset}&limit=36`);
+    const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
     const newCards = await res.json();
 
     setCurrentCards((prev) => [...prev, ...newCards]);
@@ -51,7 +51,7 @@ export default function CardsList() {
         },
         {
           root: gridRef.current,
-          rootMargin: "0px 0px 1000px 0px", //Only bottom margin
+          rootMargin: "0px 0px 1500px 0px", //Only bottom margin
           threshold: 0,
         }
       );

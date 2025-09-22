@@ -32,8 +32,8 @@ export default function MonsterInfo({ card }) {
     textbox: `flex flex-col min-h-0 border border-4 border-[#9c4710] pt-[0.5] pb-1 px-1 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] ${
       textboxBackgrounds[card.type]
     }`,
-    type: "font-matrix-card-type mb-0.5",
-    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 text-lg${
+    type: "font-matrix-card-type",
+    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 text-lg ${
       card.type === "Normal Monster" ? "font-matrix-italic" : ""
     }`,
     separator: "border-1",
