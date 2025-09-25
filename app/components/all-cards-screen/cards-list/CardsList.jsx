@@ -12,7 +12,10 @@ export default function CardsList() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
-  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+  const [gridContainerSize, setGridContainerSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
   const currentCardsRef = useRef(currentCards);
   const observerRef = useRef(null);
@@ -41,8 +44,8 @@ export default function CardsList() {
   }, []);
 
   useEffect(() => {
-    console.log(containerSize);
-  }, [containerSize]);
+    console.log(gridContainerSize);
+  }, [gridContainerSize]);
 
   // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
@@ -81,7 +84,7 @@ export default function CardsList() {
     if (!containerRef.current) return;
     const observer = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      setContainerSize({ width, height });
+      setGridContainerSize({ width, height });
     });
 
     observer.observe(containerRef.current);
@@ -92,8 +95,8 @@ export default function CardsList() {
   }, []);
 
   const styles = {
-    container: "flex-grow bg-green-400",
-    grid: "grid grid-cols-3 flex-grow overflow-y-scroll touch-pan-y bg-amber-800", // FIX ME
+    container: "flex-grow bg-gray-900 overflow-y-scroll",
+    grid: "grid grid-cols-3 flex-grow touch-pan-y bg-amber-800", // FIX ME
   };
 
   if (!currentCards) {
@@ -109,21 +112,36 @@ export default function CardsList() {
           selectedCard,
           setSelectedCard,
           setIsCardModalOpen,
-          onRemoveFromDeck: () => alert("onRemoveDeck: not implemented yet"),
-          onShowInfo: () => {},
+          gridContainerSize,
+          totalRows: Math.ceil(currentCards.length / 3),
+          removeFromDeck: () => alert("removeFromDeck: not implemented yet"),
+          openModal: () => {
+            setIsCardModalOpen(true);
+          },
         }}
         columnCount={3}
         rowCount={Math.ceil(currentCards.length / 3)}
-        columnWidth={containerSize.width / 3}
-        rowHeight={(containerSize.width / 3) * 1.45762} // 59:86 Ratio
+        columnWidth={gridContainerSize.width / 3}
+        rowHeight={(gridContainerSize.width / 3) * 1.45762} // 59:86 Ratio
         overscanCount={10}
         style={{
           // Using Tailwind doesnt work
-          width: `${containerSize.width}px`, // total grid width
+          width: `${gridContainerSize.width}px`, // total grid width
           height: `${containerRef.height}px`, // total grid height
           backgroundColor: "#f0f0f0",
+          overflow: "scroll",
         }}
       />
+
+      {/* Card Details Modal */}
+      {isCardModalOpen && (
+        <CardModal
+          isOpen={isCardModalOpen}
+          card={selectedCard}
+          onBackdropClick={() => setIsCardModalOpen(false)}
+          onBodyClick={() => setIsCardModalOpen(false)}
+        />
+      )}
     </div>
 
     // <div ref={gridRef} className={styles.grid}>
@@ -147,14 +165,6 @@ export default function CardsList() {
 
     //   {/* Sentinel Div for fetching */}
     //   <div ref={sentinelRef} className="bg-yellow-400 col-span-3 h-12" />
-
-    //   {/* Modal for showing card details */}
-    //   <CardModal
-    //     isOpen={isCardModalOpen}
-    //     card={selectedCard}
-    //     onBackdropClick={() => setIsCardModalOpen(false)}
-    //     onBodyClick={() => setIsCardModalOpen(false)}
-    //   />
     // </div>
   );
 }
