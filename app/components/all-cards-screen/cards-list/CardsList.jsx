@@ -8,104 +8,88 @@ import CardModal from "../../modals/CardModal/CardModal";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 
 export default function CardsList() {
+  // data + UI state
   const [currentCards, setCurrentCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
-  const [gridContainerSize, setGridContainerSize] = useState({
-    width: 0,
-    height: 0,
-  });
+  const [gridContainerSize, setGridContainerSize] = useState({ width: 0, height: 0 });
 
+  // stable refs to avoid stale closures and duplicate fetches
   const currentCardsRef = useRef(currentCards);
-  const observerRef = useRef(null);
+  const isLoadingRef = useRef(isLoading);
   const gridRef = useRef(null);
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    // This is needed to avoid stale state in the function loadMoreCards
-    currentCardsRef.current = currentCards;
-  }, [currentCards]);
+  useEffect(() => { currentCardsRef.current = currentCards; }, [currentCards]);
+  useEffect(() => { isLoadingRef.current = isLoading; }, [isLoading]);
 
-  const fetchMoreCards = async () => {
-    if (isLoading) setIsLoading(true);
-    const offset = currentCardsRef.current.length; // always latest
-    console.log("FETCHING CARDS");
-    const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
-    const newCards = await res.json();
+  // fetch function guarded by isLoadingRef
+  const fetchMoreCards = useCallback(async () => {
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true;
+    setIsLoading(true);
 
-    setCurrentCards((prev) => [...prev, ...newCards]);
-    setIsLoading(false);
-  };
-
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    fetchMoreCards();
+    const offset = currentCardsRef.current.length;
+    try {
+      const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
+      const newCards = await res.json();
+      setCurrentCards((prev) => [...prev, ...newCards]);
+    } catch (err) {
+      console.error("fetchMoreCards error", err);
+    } finally {
+      isLoadingRef.current = false;
+      setIsLoading(false);
+    }
   }, []);
 
-  useEffect(() => {
-    console.log(gridContainerSize);
-  }, [gridContainerSize]);
+  // initial load
+  useEffect(() => { fetchMoreCards(); }, [fetchMoreCards]);
 
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
-  const sentinelRef = (node) => {
-    // This gets executed when the sentinel div mounts
-
-    // Removing the previous old observer if there's any
-    if (observerRef.current) {
-      observerRef.current.disconnect();
-      observerRef.current = null;
-    }
-
-    if (node) {
-      // Define an observer
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          const sentinelEntry = entries[0];
-          if (sentinelEntry.isIntersecting) {
-            console.log("intersection detected");
-            fetchMoreCards();
-          }
-        },
-        {
-          root: gridRef.current,
-          rootMargin: "0px 0px 1500px 0px", //Only bottom margin
-          threshold: 0,
-        }
-      );
-
-      // Observe the sentinel element
-      observerRef.current.observe(node);
-    }
-  };
-
+  // measure container with ResizeObserver
   useEffect(() => {
     if (!containerRef.current) return;
-    const observer = new ResizeObserver(([entry]) => {
+    const ro = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      setGridContainerSize({ width, height });
+      setGridContainerSize({ width: Math.floor(width), height: Math.floor(height) });
     });
-
-    observer.observe(containerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
+    ro.observe(containerRef.current);
+    return () => ro.disconnect();
   }, []);
 
-  const styles = {
-    container: "flex-grow bg-gray-900 overflow-y-scroll",
-    grid: "grid grid-cols-3 flex-grow touch-pan-y bg-amber-800", // FIX ME
+  // render Grid only after we measured container to avoid width/height 0
+  const columnCount = 3;
+  const totalRows = Math.ceil(currentCards.length / columnCount);
+  const columnWidth = gridContainerSize.width ? Math.floor(gridContainerSize.width / columnCount) : 0;
+  const rowHeight = columnWidth ? Math.round(columnWidth * 1.45762) : 0; // 59:86 ratio
+
+  // Called whenever react-window changes visible range
+  const handleCellsRendered = ({ rowStopIndex } = {}) => {
+    if (rowStopIndex === undefined) return;
+    const prefetchThreshold = 2; // rows before end to trigger load
+    if (rowStopIndex >= totalRows - 1 - prefetchThreshold) {
+      fetchMoreCards();
+    }
   };
 
-  if (!currentCards) {
-    return <LoadingSpinner />;
+  // simple styles
+  const styles = {
+    container: "bg-gray-900 overflow-auto", // scrollable container
+  };
+
+  // wait for measurement
+  if (gridContainerSize.width === 0 || gridContainerSize.height === 0) {
+    return (
+      <div ref={containerRef} className={styles.container} style={{ height: "100%" }}>
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   return (
-    <div ref={containerRef} className={styles.container}>
+    <div ref={containerRef} className={styles.container} style={{ height: "100%" }}>
       <Grid
+        // react-window props
         cellComponent={CardCell}
         cellProps={{
           currentCards,
@@ -113,27 +97,25 @@ export default function CardsList() {
           setSelectedCard,
           setIsCardModalOpen,
           gridContainerSize,
-          totalRows: Math.ceil(currentCards.length / 3),
+          totalRows,
           removeFromDeck: () => alert("removeFromDeck: not implemented yet"),
-          openModal: () => {
-            setIsCardModalOpen(true);
-          },
+          openModal: () => setIsCardModalOpen(true),
         }}
-        columnCount={3}
-        rowCount={Math.ceil(currentCards.length / 3)}
-        columnWidth={gridContainerSize.width / 3}
-        rowHeight={(gridContainerSize.width / 3) * 1.45762} // 59:86 Ratio
+        columnCount={columnCount}
+        rowCount={totalRows}
+        columnWidth={columnWidth}
+        rowHeight={rowHeight}
         overscanCount={10}
+        // imperative ref + measured size
+        gridRef={gridRef}
         style={{
-          // Using Tailwind doesnt work
-          width: `${gridContainerSize.width}px`, // total grid width
-          height: `${containerRef.height}px`, // total grid height
-          backgroundColor: "#f0f0f0",
-          overflow: "scroll",
+          width: gridContainerSize.width,
+          height: gridContainerSize.height,
         }}
+        // use onCellsRendered instead of sentinel div
+        onCellsRendered={handleCellsRendered}
       />
 
-      {/* Card Details Modal */}
       {isCardModalOpen && (
         <CardModal
           isOpen={isCardModalOpen}
@@ -143,28 +125,5 @@ export default function CardsList() {
         />
       )}
     </div>
-
-    // <div ref={gridRef} className={styles.grid}>
-    //   {/* The actual cards list */}
-    //   {currentCards.map((card) => (
-    //     <CardCell
-    //       key={card.id}
-    //       card={card}
-    //       isSelected={card.id === selectedCard?.id}
-    //       onSelect={() => {
-    //         setSelectedCard(card);
-    //       }}
-    //       onShowInfo={() => {
-    //         setIsCardModalOpen(true);
-    //       }}
-    //       onRemoveFromDeck={() => {
-    //         alert("onRemoveDeck: not implemented yet");
-    //       }}
-    //     />
-    //   ))}
-
-    //   {/* Sentinel Div for fetching */}
-    //   <div ref={sentinelRef} className="bg-yellow-400 col-span-3 h-12" />
-    // </div>
   );
 }
