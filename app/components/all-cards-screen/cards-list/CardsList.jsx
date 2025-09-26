@@ -82,37 +82,29 @@ export default function CardsList() {
     if (rowStopIndex === undefined) return;
 
     const lastRowIndex = totalRows - 1;
-  
+
     // rowStopIndex includes overscan rows beyond the end the visible virtualized window.
     // When the rendered range reaches or exceeds the last row, trigger fetching more cards.
     if (rowStopIndex >= lastRowIndex) {
       fetchMoreCards();
     }
   };
-  
-  };
 
   const styles = {
-    container: "bg-gray-900 overflow-auto h-100%"
+    container: "bg-gray-900 overflow-auto h-100%",
   };
 
   // Wait for the container measurement before rendering the <Grid/>
   if (gridContainerSize.width === 0 || gridContainerSize.height === 0) {
     return (
-      <div
-        ref={containerRef}
-        className={styles.container}
-      >
+      <div ref={containerRef} className={styles.container}>
         <LoadingSpinner />
       </div>
     );
   }
 
   return (
-    <div
-      ref={containerRef}
-      className={styles.container}
-    >
+    <div ref={containerRef} className={styles.container}>
       {/* React-Window Grid */}
       <Grid
         cellComponent={CardCell}
