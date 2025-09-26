@@ -8,30 +8,37 @@ import CardModal from "../../modals/CardModal/CardModal";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 
 export default function CardsList() {
-  // data + UI state
+  // State
   const [currentCards, setCurrentCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
-  const [gridContainerSize, setGridContainerSize] = useState({ width: 0, height: 0 });
+  const [gridContainerSize, setGridContainerSize] = useState({
+    width: 0,
+    height: 0,
+  });
 
-  // stable refs to avoid stale closures and duplicate fetches
+  // Refs to prevent getting stale state
   const currentCardsRef = useRef(currentCards);
   const isLoadingRef = useRef(isLoading);
-  const gridRef = useRef(null);
   const containerRef = useRef(null);
 
-  useEffect(() => { currentCardsRef.current = currentCards; }, [currentCards]);
-  useEffect(() => { isLoadingRef.current = isLoading; }, [isLoading]);
+  useEffect(() => {
+    currentCardsRef.current = currentCards;
+  }, [currentCards]);
+  useEffect(() => {
+    isLoadingRef.current = isLoading;
+  }, [isLoading]);
 
-  // fetch function guarded by isLoadingRef
+  // Functions
   const fetchMoreCards = useCallback(async () => {
     if (isLoadingRef.current) return;
-    isLoadingRef.current = true;
+    isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
     setIsLoading(true);
 
     const offset = currentCardsRef.current.length;
     try {
+      // Fetch the next 72 cards 
       const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
       const newCards = await res.json();
       setCurrentCards((prev) => [...prev, ...newCards]);
@@ -43,31 +50,39 @@ export default function CardsList() {
     }
   }, []);
 
-  // initial load
-  useEffect(() => { fetchMoreCards(); }, [fetchMoreCards]);
+  // Initial load
+  useEffect(() => {
+    fetchMoreCards();
+  }, [fetchMoreCards]);
 
-  // measure container with ResizeObserver
+  // Measure the grid container with a ResizeObserver
   useEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
       const { width, height } = entry.contentRect;
-      setGridContainerSize({ width: Math.floor(width), height: Math.floor(height) });
+      setGridContainerSize({
+        width: Math.floor(width),
+        height: Math.floor(height),
+      });
     });
     ro.observe(containerRef.current);
     return () => ro.disconnect();
   }, []);
 
-  // render Grid only after we measured container to avoid width/height 0
-  const columnCount = 3;
+  // We render Grid only after we measured container to avoid width/height 0
+  const columnCount = 3; // this is for mobile - TODO: Make it responsive
   const totalRows = Math.ceil(currentCards.length / columnCount);
-  const columnWidth = gridContainerSize.width ? Math.floor(gridContainerSize.width / columnCount) : 0;
+  const columnWidth = gridContainerSize.width
+    ? Math.floor(gridContainerSize.width / columnCount)
+    : 0;
   const rowHeight = columnWidth ? Math.round(columnWidth * 1.45762) : 0; // 59:86 ratio
 
-  // Called whenever react-window changes visible range
+  // Infinite scrolling fetching trigger 
   const handleCellsRendered = ({ rowStopIndex } = {}) => {
     if (rowStopIndex === undefined) return;
-    const prefetchThreshold = 2; // rows before end to trigger load
-    if (rowStopIndex >= totalRows - 1 - prefetchThreshold) {
+    const prefetchThreshold = 5; // rows before the last one to trigger fecthing
+    const lastRowIndex = totalRows -1
+    if (rowStopIndex >= lastRowIndex - prefetchThreshold) {
       fetchMoreCards();
     }
   };
@@ -80,14 +95,22 @@ export default function CardsList() {
   // wait for measurement
   if (gridContainerSize.width === 0 || gridContainerSize.height === 0) {
     return (
-      <div ref={containerRef} className={styles.container} style={{ height: "100%" }}>
+      <div
+        ref={containerRef}
+        className={styles.container}
+        style={{ height: "100%" }}
+      >
         <LoadingSpinner />
       </div>
     );
   }
 
   return (
-    <div ref={containerRef} className={styles.container} style={{ height: "100%" }}>
+    <div
+      ref={containerRef}
+      className={styles.container}
+      style={{ height: "100%" }}
+    >
       <Grid
         // react-window props
         cellComponent={CardCell}
@@ -106,13 +129,10 @@ export default function CardsList() {
         columnWidth={columnWidth}
         rowHeight={rowHeight}
         overscanCount={10}
-        // imperative ref + measured size
-        gridRef={gridRef}
         style={{
           width: gridContainerSize.width,
           height: gridContainerSize.height,
         }}
-        // use onCellsRendered instead of sentinel div
         onCellsRendered={handleCellsRendered}
       />
 
