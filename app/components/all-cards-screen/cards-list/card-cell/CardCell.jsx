@@ -9,7 +9,6 @@ export default function CardCell({
   currentCards,
   selectedCard,
   setSelectedCard,
-  setIsCardModalOpen,
   gridContainerSize,
   openModal,
   removeFromDeck,
@@ -23,18 +22,27 @@ export default function CardCell({
   const imgHeight = Math.round(imgWidth * 1.45762);
 
   return (
-    <div style={style} className="bg-gray-900" onClick={() => setSelectedCard(card)}>
+    <div
+      style={style}
+      className="bg-gray-900"
+      onClick={() => setSelectedCard(card)}
+    >
       <Image
         src={`/card_images/${card.id}.jpg`}
         alt={`card ${card.id}`}
         width={imgWidth}
         height={imgHeight}
-        className={`transition-opacity duration-300 ease-in-out object-cover ${loading ? "opacity-0" : "opacity-100"}`}
+        className={`transition-opacity duration-200 ease-in-out object-cover ${
+          loading ? "opacity-0" : "opacity-100"
+        }`}
         onLoad={() => setLoading(false)}
       />
 
       {selectedCard?.id === card.id && (
-        <CardSelector onShowInfo={openModal} onRemoveFromDeck={removeFromDeck} />
+        <CardSelector
+          onShowInfo={openModal}
+          onRemoveFromDeck={removeFromDeck}
+        />
       )}
     </div>
   );

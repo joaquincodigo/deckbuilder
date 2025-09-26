@@ -38,7 +38,7 @@ export default function CardsList() {
 
     const offset = currentCardsRef.current.length;
     try {
-      // Fetch the next 72 cards 
+      // Fetch the next 72 cards
       const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
       const newCards = await res.json();
       setCurrentCards((prev) => [...prev, ...newCards]);
@@ -77,28 +77,31 @@ export default function CardsList() {
     : 0;
   const rowHeight = columnWidth ? Math.round(columnWidth * 1.45762) : 0; // 59:86 ratio
 
-  // Infinite scrolling fetching trigger 
+  // Infinite scrolling fetching trigger
   const handleCellsRendered = ({ rowStopIndex } = {}) => {
     if (rowStopIndex === undefined) return;
-    const prefetchThreshold = 5; // rows before the last one to trigger fecthing
-    const lastRowIndex = totalRows -1
-    if (rowStopIndex >= lastRowIndex - prefetchThreshold) {
+
+    const lastRowIndex = totalRows - 1;
+  
+    // rowStopIndex includes overscan rows beyond the end the visible virtualized window.
+    // When the rendered range reaches or exceeds the last row, trigger fetching more cards.
+    if (rowStopIndex >= lastRowIndex) {
       fetchMoreCards();
     }
   };
-
-  // simple styles
-  const styles = {
-    container: "bg-gray-900 overflow-auto", // scrollable container
+  
   };
 
-  // wait for measurement
+  const styles = {
+    container: "bg-gray-900 overflow-auto h-100%"
+  };
+
+  // Wait for the container measurement before rendering the <Grid/>
   if (gridContainerSize.width === 0 || gridContainerSize.height === 0) {
     return (
       <div
         ref={containerRef}
         className={styles.container}
-        style={{ height: "100%" }}
       >
         <LoadingSpinner />
       </div>
@@ -109,16 +112,14 @@ export default function CardsList() {
     <div
       ref={containerRef}
       className={styles.container}
-      style={{ height: "100%" }}
     >
+      {/* React-Window Grid */}
       <Grid
-        // react-window props
         cellComponent={CardCell}
         cellProps={{
           currentCards,
           selectedCard,
           setSelectedCard,
-          setIsCardModalOpen,
           gridContainerSize,
           totalRows,
           removeFromDeck: () => alert("removeFromDeck: not implemented yet"),
@@ -128,7 +129,7 @@ export default function CardsList() {
         rowCount={totalRows}
         columnWidth={columnWidth}
         rowHeight={rowHeight}
-        overscanCount={10}
+        overscanCount={11}
         style={{
           width: gridContainerSize.width,
           height: gridContainerSize.height,
