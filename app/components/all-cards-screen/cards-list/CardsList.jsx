@@ -91,7 +91,8 @@ export default function CardsList() {
   };
 
   const styles = {
-    container: "bg-gray-900 overflow-auto h-100%",
+    container: "bg-gray-900 overflow-auto flex-1",
+    // container: "bg-gray-900 overflow-auto h-[400px]",
   };
 
   // Wait for the container measurement before rendering the <Grid/>
