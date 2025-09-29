@@ -25,15 +25,14 @@ export default function MonsterInfo({ card }) {
   };
 
   const styles = {
-    name: `px-1.5 pb-[0.18rem] leading-none mb-1 text-3xl font-semibold font-matrix-card-name ${nameGradients[card.type]}`,
-    
+    name: `px-1.5 pb-[0.18rem] leading-none mb-1 text-3xl font-matrix-card-name ${nameGradients[card.type]}`,
     levelAndAttributeContainer: "flex text-white mb-1 gap-x-1 justify-end",
     level: "flex gap-x-0.5 items-center font-matrix-card-type",
     textbox: `flex flex-col min-h-0 border border-4 border-[#9c4710] pt-[0.5] pb-1 px-1 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)] ${
       textboxBackgrounds[card.type]
     }`,
     type: "font-matrix-card-type",
-    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 text-lg ${
+    description: `min-h-0 mb-1.5 overflow-y-auto flex-1 text-xl ${
       card.type === "Normal Monster" ? "font-matrix-italic" : ""
     }`,
     separator: "border-1",

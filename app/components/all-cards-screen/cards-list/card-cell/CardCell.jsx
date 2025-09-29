@@ -28,7 +28,7 @@ export default function CardCell({
       onClick={() => setSelectedCard(card)}
     >
       <Image
-        src={`/card_images/${card.id}.jpg`}
+        src={`/card_images/lowres/${card.id}.webp`}
         alt={`card ${card.id}`}
         width={imgWidth}
         height={imgHeight}
