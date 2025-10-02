@@ -49,7 +49,7 @@ export default function DeckName({ deckName, setDeckName }) {
 
   return (
     <span className={styles.container}>
-      <p className={styles.name} onClick={handleEditClick}>
+      <p className={styles.name} onMouseDown={handleEditClick}>
         Chaos Control
       </p>
       <Button className={styles.editButton} onClick={handleEditClick}>

@@ -11,7 +11,7 @@ export default function CardCell({
   setSelectedCard,
   gridContainerSize,
   openModal,
-  removeFromDeck,
+  addToDeck,
 }) {
   const [loading, setLoading] = useState(true);
   const cardIndex = rowIndex * 3 + columnIndex;
@@ -25,7 +25,7 @@ export default function CardCell({
     <div
       style={style}
       className="bg-gray-900"
-      onClick={() => setSelectedCard(card)}
+      onMouseDown={() => setSelectedCard(card)}
     >
       <Image
         src={`/card_images/lowres/${card.id}.webp`}
@@ -41,7 +41,7 @@ export default function CardCell({
       {selectedCard?.id === card.id && (
         <CardSelector
           onShowInfo={openModal}
-          onRemoveFromDeck={removeFromDeck}
+          addToDeck={addToDeck}
         />
       )}
     </div>

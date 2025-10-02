@@ -128,7 +128,7 @@ export default function Example2() {
     <>
       <button
         className="bg-blue-500 text-white p-2 rounded-full"
-        onClick={() => addItem()}
+        onMouseDown={() => addItem()}
       >
         Add item
       </button>

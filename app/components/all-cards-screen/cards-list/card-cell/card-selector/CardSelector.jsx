@@ -1,16 +1,16 @@
-import ShowInfoButton from "./ShowInfoButton";
-import RemoveButton from "./RemoveButton";
+import ShowInfoButton from "./show-info-button/ShowInfoButton";
+import AddToDeckButton from "./add-to-deck-button/AddToDeckButton";
 
-export default function CardSelector({ onShowInfo, onRemoveFromDeck }) {
+export default function CardSelector({ onShowInfo, addToDeck }) {
   const styles = {
     selector:
-      "absolute -inset-1 flex flex-col justify-center gap-y-1.5 p-1.5 border-black bg-green-400/60 border-2 border-black z-50",
+      "absolute -inset-1 flex flex-col justify-center gap-y-2 p-2 z-50 bg-[#01233a]/60 border-green-500",
   };
 
   return (
     <div className={styles.selector}>
       <ShowInfoButton onClick={onShowInfo} />
-      <RemoveButton onClick={onRemoveFromDeck} />
+      <AddToDeckButton onClick={addToDeck} />
     </div>
   );
 }

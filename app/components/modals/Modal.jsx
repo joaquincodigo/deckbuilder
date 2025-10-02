@@ -21,7 +21,7 @@ export default function Modal({ isOpen = false, children, onBackdropClick }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          onClick={onBackdropClick}
+          onMouseDown={onBackdropClick}
           className={styles.backdrop}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -32,7 +32,7 @@ export default function Modal({ isOpen = false, children, onBackdropClick }) {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
           >
             {children}
           </motion.div>

@@ -23,14 +23,14 @@ export default function CardModal({
 
   return (
     <Modal isOpen={isOpen} onBackdropClick={onBackdropClick}>
-      <div onClick={onBodyClick} className={styles.body}>
+      <div onMouseDown={onBodyClick} className={styles.body}>
         <div className={styles.imageContainer}>
           <Image
             src={`/card_images/${card.id}.jpg`}
             alt="dummy card image"
             fill
             className={styles.image}
-            onClick={onBackdropClick}
+            onMouseDown={onBackdropClick}
           />
         </div>
 

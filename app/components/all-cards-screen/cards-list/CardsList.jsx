@@ -114,7 +114,7 @@ export default function CardsList() {
           setSelectedCard,
           gridContainerSize,
           totalRows,
-          removeFromDeck: () => alert("removeFromDeck: not implemented yet"),
+          addToDeck: () => alert("addToDeck: not implemented yet"),
           openModal: () => setIsCardModalOpen(true),
         }}
         columnCount={columnCount}
