@@ -4,7 +4,7 @@ FiltersIcon;
 
 export default function FiltersButton({ onClick }) {
   const styles = {
-    btn: "flex p-2 bg-red-200",
+    btn: "flex items-center justifyt-center px-2 bg-btn-bg border-2 border-btn-border text-white",
   };
 
   return (

@@ -4,7 +4,7 @@ import AddToDeckIcon from "./AddToDeckIcon";
 export default function AddToDeckButton({ onClick }) {
   const styles = {
     button:
-      "flex flex-col justify-center items-center font-bold text-white flex-1 border-2 border-[#00d6f7] bg-[#0181cc]",
+      "flex flex-col justify-center items-center font-bold text-white flex-1 border-2 border-btn-border bg-btn-bg",
   };
 
   return (

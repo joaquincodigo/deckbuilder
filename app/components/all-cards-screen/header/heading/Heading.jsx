@@ -1,6 +1,6 @@
 export default function Heading() {
   const styles = {
-    heading: "font-bold text-white",
+    heading: "font-bold text-white ",
   };
 
   return (

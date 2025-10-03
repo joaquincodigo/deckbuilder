@@ -1,4 +1,4 @@
-import ShowInfoButton from "./show-info-button/ShowInfoButton";
+import ViewCardInfoButton from "./view-card-info-button/ViewCardInfoButton";
 import AddToDeckButton from "./add-to-deck-button/AddToDeckButton";
 
 export default function CardSelector({ onShowInfo, addToDeck }) {
@@ -9,7 +9,7 @@ export default function CardSelector({ onShowInfo, addToDeck }) {
 
   return (
     <div className={styles.selector}>
-      <ShowInfoButton onClick={onShowInfo} />
+      <ViewCardInfoButton onClick={onShowInfo} />
       <AddToDeckButton onClick={addToDeck} />
     </div>
   );
