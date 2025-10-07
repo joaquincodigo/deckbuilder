@@ -1,6 +1,10 @@
+"use client";
+import { useState } from "react";
+
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 import Header from "./header/Header";
 import CardsList from "./cards-list/CardsList";
+import { use } from "react";
 
 export default function AllCardsScreen() {
   const styles = {
@@ -8,12 +12,14 @@ export default function AllCardsScreen() {
     outerWrapper: "relative flex flex-col w-full",
   };
 
+  const [searchFormData, setSearchFormData] = useState({});
+
   return (
     <div className={styles.body}>
       <EdgeIndicator />
       <div className={styles.outerWrapper}>
-        <Header />
-        <CardsList />
+        <Header setSearchFormData={setSearchFormData} />
+        <CardsList searchFormData={searchFormData}/>
       </div>
     </div>
   );

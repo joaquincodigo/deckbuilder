@@ -1,6 +1,6 @@
 import SearchButton from "./SearchButton";
 
-export default function SearchInput({ onChange }) {
+export default function SearchInput() {
   const styles = {
     wrapper: "flex w-full h-full focus-within:outline focus-within:outline-2 focus-within:outline-btn-border",
     input:
@@ -11,11 +11,10 @@ export default function SearchInput({ onChange }) {
     <div className={styles.wrapper}>
       <input
         type="search"
-        placeholder="Search in all cards"
+        placeholder="Search cards"
         className={styles.input}
-        id="card-search"
-        name="card-search"
-        onChange={onChange}
+        id="allCardsQuery"
+        name="allCardsQuery"
       />
       <SearchButton />
     </div>

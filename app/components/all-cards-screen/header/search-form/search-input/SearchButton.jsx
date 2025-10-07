@@ -4,19 +4,14 @@ import Button from "@/app/components/ui/Button";
 export default function SearchButton() {
   const styles = {
     wrapper: "h-full bg-green-500",
-    button:
-      "flex justify-center items-center aspect-square h-full bg-btn-bg",
-  };
-
-  const testing = (e) => {
-    e.preventDefault();
+    button: "flex justify-center items-center aspect-square h-full bg-btn-bg",
   };
 
   return (
     <div className={styles.wrapper}>
-      <Button onClick={testing} className={styles.button}>
+      <button className={styles.button}>
         <SearchIcon />
-      </Button>
+      </button>
     </div>
   );
 }

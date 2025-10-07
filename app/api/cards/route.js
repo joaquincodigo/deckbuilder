@@ -19,6 +19,7 @@ export async function GET(request) {
   const start = parseInt(searchParams.get("offset") || 0);
   const limit = parseInt(searchParams.get("limit") || 20);
   const end = start + limit;
+  const query = parseInt(searchParams.get("query") || "");
 
   const results = cardsData.slice(start, end);
   return Response.json(cardsData.slice(start, end));

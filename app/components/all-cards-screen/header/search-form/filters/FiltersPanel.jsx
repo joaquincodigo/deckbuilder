@@ -3,7 +3,7 @@ import ApplyFiltersButton from "./ApplyFiltersButton";
 
 export default function FiltersPanel({ isOpen, onApplyFiltersClick }) {
   const styles = {
-    panel: "w-full h-72 bg-blue-200 overflow-hidden mb-3 p-3",
+    panel: "w-full h-72 border-2 border-btn-border overflow-hidden mb-3 p-3",
     footer: "flex justify-end w-full",
   };
 

@@ -7,7 +7,7 @@ import CardCell from "./card-cell/CardCell";
 import CardModal from "../../modals/CardModal/CardModal";
 import LoadingSpinner from "../../ui/LoadingSpinner";
 
-export default function CardsList() {
+export default function CardsList({ searchFormData }) {
   // State
   const [currentCards, setCurrentCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,12 +26,13 @@ export default function CardsList() {
   useEffect(() => {
     currentCardsRef.current = currentCards;
   }, [currentCards]);
+
   useEffect(() => {
     isLoadingRef.current = isLoading;
   }, [isLoading]);
 
   // Functions
-  const fetchMoreCards = useCallback(async () => {
+  const fetchMoreCards = useCallback(async (query, filters) => {
     if (isLoadingRef.current) return;
     isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
     setIsLoading(true);
@@ -39,7 +40,9 @@ export default function CardsList() {
     const offset = currentCardsRef.current.length;
     try {
       // Fetch the next 72 cards
-      const res = await fetch(`/api/cards?offset=${offset}&limit=72`);
+      const res = await fetch(
+        `/api/cards?query=${query}&offset=${offset}&limit=72`
+      );
       const newCards = await res.json();
       setCurrentCards((prev) => [...prev, ...newCards]);
     } catch (err) {

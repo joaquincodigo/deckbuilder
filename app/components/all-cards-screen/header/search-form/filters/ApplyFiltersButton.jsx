@@ -2,11 +2,12 @@ import Button from "@/app/components/ui/Button";
 
 export default function ApplyFiltersButton({ onClick }) {
   const styles = {
-    button: "p-1.5 bg-blue-500 text-white",
+    button: "p-2 flex items-center text-white bg-btn-bg border-2 border-btn-border",
+    text: "inline-block leading-none relative -top-[2px] font-bold",
   };
   return (
     <Button onClick={onClick} className={styles.button}>
-      <p>Apply filters</p>
+      <span className={styles.text}>Apply filters</span>
     </Button>
   );
 }
