@@ -32,31 +32,67 @@ export default function CardsList({ searchFormData }) {
   }, [isLoading]);
 
   // Functions
-  const fetchMoreCards = useCallback(async (query, filters) => {
-    if (isLoadingRef.current) return;
-    isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
-    setIsLoading(true);
+  // const fetchMoreCards = useCallback(async (formData) => {
+  //   const { allCardsQuery } = formData;
 
-    const offset = currentCardsRef.current.length;
+  //   if (isLoadingRef.current) return;
+  //   isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
+  //   setIsLoading(true);
+
+  //   const offset = currentCardsRef.current.length;
+  //   try {
+  //     // Fetch the next 72 cards
+  //     const res = await fetch(
+  //       `/api/cards?query=${query}&offset=${offset}&limit=72`
+  //     );
+  //     const newCards = await res.json();
+  //     setCurrentCards((prev) => [...prev, ...newCards]);
+  //   } catch (err) {
+  //     console.error("fetchMoreCards error", err);
+  //   } finally {
+  //     isLoadingRef.current = false;
+  //     setIsLoading(false);
+  //   }
+  // }, []);
+
+  const fetchMoreCards = async () => {
+    return;
+  };
+
+  const fetchCards = async (searchFormData) => {
+    let URL;
+
+    if (!searchFormData) {
+      // First 72 cards of the entire card pool
+      URL = "/api/cards";
+    } else {
+      // Fetch with query and filters
+      let query = searchFormData.allCardsQuery;
+      URL = `/api/cards?query=${query}`;
+    }
+
+    // Fetch and load the cards
     try {
-      // Fetch the next 72 cards
-      const res = await fetch(
-        `/api/cards?query=${query}&offset=${offset}&limit=72`
-      );
-      const newCards = await res.json();
-      setCurrentCards((prev) => [...prev, ...newCards]);
+      const response = await fetch(URL);
+      const fetchedCards = await response.json();
+      setCurrentCards(fetchedCards);
     } catch (err) {
-      console.error("fetchMoreCards error", err);
+      console.error("Error fetching cards:", err);
     } finally {
       isLoadingRef.current = false;
       setIsLoading(false);
     }
-  }, []);
+  };
 
   // Initial load
   useEffect(() => {
-    fetchMoreCards();
-  }, [fetchMoreCards]);
+    fetchCards();
+  }, []);
+
+  // Queried load
+  useEffect(() => {
+    fetchCards(searchFormData);
+  }, [searchFormData]);
 
   // Measure the grid container with a ResizeObserver
   useEffect(() => {

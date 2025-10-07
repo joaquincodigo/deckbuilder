@@ -1,26 +1,26 @@
-import { log } from "console";
-import fs from "fs";
-import path from "path";
+import fs from "fs"
+import path from "path"
 
 export async function GET(request) {
-  // Data Source
-  const filePath = path.join(
-    process.cwd(),
-    "app",
-    "data",
-    "all_goat_cards.json"
-  );
-  const cardsJSON = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-  const cardsData = cardsJSON.data;
+  const filePath = path.join(process.cwd(), "app", "data", "all_goat_cards.json")
+  const cardsJSON = JSON.parse(fs.readFileSync(filePath, "utf-8"))
+  const cardsData = cardsJSON.data
 
-  // Params
-  const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(request.url)
+  const start = parseInt(searchParams.get("offset") || 0)
+  const limit = parseInt(searchParams.get("limit") || 72)
+  const query = searchParams.get("query")?.toLowerCase() || ""
 
-  const start = parseInt(searchParams.get("offset") || 0);
-  const limit = parseInt(searchParams.get("limit") || 20);
-  const end = start + limit;
-  const query = parseInt(searchParams.get("query") || "");
+  let filtered = cardsData
 
-  const results = cardsData.slice(start, end);
-  return Response.json(cardsData.slice(start, end));
+  if (query) {
+    filtered = cardsData.filter(card =>
+      card.name.toLowerCase().includes(query)
+    )
+  }
+
+  const end = start + limit
+  const results = filtered.slice(start, end)
+
+  return Response.json(results)
 }

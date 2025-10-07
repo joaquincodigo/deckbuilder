@@ -20,7 +20,6 @@ export default function SearchForm({ setSearchFormData }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    alert(data.allCardsQuery);
     setSearchFormData(data);
   };
 
