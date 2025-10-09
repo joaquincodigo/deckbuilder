@@ -4,7 +4,7 @@ import AllCardsNavButton from "./nav-buttons/AllCardsNavButton";
 export default function Nav() {
 
   const styles = {
-    container: "bg-sky-500 h-14 flex",
+    container: "bg-sky-500 h-18 flex",
   };
   return (
     <div data-component="Nav" className={styles.container}>
