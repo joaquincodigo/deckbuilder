@@ -55,13 +55,43 @@ export default function CardsList({ searchFormData }) {
   //   }
   // }, []);
 
-  const fetchMoreCards = async () => {
-    return;
+  const fetchMoreCards = async (searchFormData) => {
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
+    setIsLoading(true);
+
+    let URL;
+    const offset = currentCardsRef.current.length;
+
+
+    console.log("fetchMoreCards running. Loading is:", isLoadingRef.current);
+
+    if (!searchFormData) {
+      URL = `/api/cards?offset=${offset}&limit=72`;
+    } else {
+      const query = searchFormData.allCardsQuery;
+      URL = `/api/cards?query=${query}&offset=${offset}&limit=72`;
+    }
+
+    // Fetch and load the cards
+    try {
+      const response = await fetch(URL);
+      const newCards = await response.json();
+      setCurrentCards((prev) => [...prev, ...newCards]);
+    } catch (err) {
+      console.error("Error fetching more cards:", err);
+    } finally {
+      isLoadingRef.current = false;
+      setIsLoading(false);
+    }
   };
 
   const fetchCards = async (searchFormData) => {
-    let URL;
+    if (isLoadingRef.current) return;
+    isLoadingRef.current = true; // We have to update the ref now, we can't wait until the re-render useEffect to update the ref. That would be too late.
+    setIsLoading(true);
 
+    let URL;
     if (!searchFormData) {
       // First 72 cards of the entire card pool
       URL = "/api/cards";
@@ -125,12 +155,12 @@ export default function CardsList({ searchFormData }) {
     // rowStopIndex includes overscan rows beyond the end the visible virtualized window.
     // When the rendered range reaches or exceeds the last row, trigger fetching more cards.
     if (rowStopIndex >= lastRowIndex) {
-      fetchMoreCards();
+      fetchMoreCards(searchFormData);
     }
   };
 
   const styles = {
-    container: "bg-gray-900 overflow-auto flex-1",
+    container: "bg-gray-900 overflow-auto flex-1 mt-16",
   };
 
   // Wait for the container measurement before rendering the <Grid/>
