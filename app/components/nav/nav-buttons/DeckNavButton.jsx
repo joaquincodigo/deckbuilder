@@ -9,7 +9,7 @@ export default function DeckNavButton({ setCurrentScreen }) {
       onClick={() => setCurrentScreen("DeckScreen")}
       className={styles.button}
     >
-      IM DECK NAV BTN
+      Deck
     </button>
   );
 }

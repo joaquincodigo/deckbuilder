@@ -9,7 +9,7 @@ export default function AllCardsNavButton({ setCurrentScreen }) {
       onClick={() => setCurrentScreen("AllCardsScreen")}
       className={styles.button}
     >
-      IM ALLCARDS NAV BTN
+      All cards
     </button>
   );
 }
