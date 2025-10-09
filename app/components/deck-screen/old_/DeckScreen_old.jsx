@@ -1,4 +1,4 @@
-import Header from "./header/Header";
+import Header from "../header/Header";
 import EdgeIndicator from "./edge-indicator/EdgeIndicator";
 
 export default function DeckScreen() {

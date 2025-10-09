@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SaveDeckInput from "@/app/components/deck-screen/save-deck-form/SaveDeckInput";
+import SaveDeckInput from "@/app/components/deck-screen/old_/save-deck-form/SaveDeckInput";
 import SaveDeckButton from "@/app/components/deck-screen/save-deck-form/SaveDeckButton";
 import { showToast } from "@/app/components/modals/ToastManager";
 import DeckDeletionModal from "@/app/components/modals/DeckDeletionModal";
