@@ -10,7 +10,7 @@ export default function AllCardsNavButton() {
   return (
     <button
       data-component="AllCardsNavButton"
-      onClick={() => setCurrentScreen("AllCardsScreen")}
+      onMouseDown={() => setCurrentScreen("AllCardsScreen")}
       className={styles.button}
     >
       All cards

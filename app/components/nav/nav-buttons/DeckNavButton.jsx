@@ -10,7 +10,7 @@ export default function DeckNavButton() {
   return (
     <button
       data-component="DeckNavButton"
-      onClick={() => setCurrentScreen("DeckScreen")}
+      onMouseDown={() => setCurrentScreen("DeckScreen")}
       className={styles.button}
     >
       Deck
