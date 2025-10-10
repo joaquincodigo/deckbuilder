@@ -1,4 +1,5 @@
 import { useScreen } from "@/app/context/ScreenContext";
+import CardsGrid from "./CardsGrid/CardsGrid";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
@@ -15,15 +16,7 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      I am all cards screen
-      {items.map((i) => (
-        <div
-          key={i}
-          className="h-[90px] flex items-center mb-3 bg-green-300 mx-3 ps-3 text-lg rounded-md"
-        >
-          Element {i}
-        </div>
-      ))}
+      <CardsGrid />
     </div>
   );
 }

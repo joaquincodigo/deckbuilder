@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 const ScreenContext = createContext();
 
 export function ScreenProvider({ children }) {
-  const [currentScreen, setCurrentScreen] = useState("DeckScreen");
+  const [currentScreen, setCurrentScreen] = useState("AllCardsScreen");
   return (
     <ScreenContext.Provider value={{ currentScreen, setCurrentScreen }}>
       {children}
