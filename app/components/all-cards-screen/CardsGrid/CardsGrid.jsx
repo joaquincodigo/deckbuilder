@@ -9,11 +9,11 @@ export default function CardsGrid({ currentCards }) {
 
   const getColumnWidth = () => {
     const viewportWidth = useViewportWidth();
-    return viewportWidth / 3;
+    return viewportWidth / getColumnCount();
   };
 
   const getRowCount = () => {
-    return 20;
+    return currentCards.length;
     // return currentCards.length;
   };
 
@@ -28,7 +28,6 @@ export default function CardsGrid({ currentCards }) {
     return rowHeight;
   };
 
-  const testArr = Array.from({ length: 800 }, (_, i) => i);
 
   return (
     <Grid
@@ -37,9 +36,8 @@ export default function CardsGrid({ currentCards }) {
       rowCount={getRowCount()}
       rowHeight={getRowHeight()}
       cellComponent={Cell}
-      cellProps={{ testArr }}
+      cellProps={{ currentCards }}
     />
   );
 }
 
-// data-component="CardsGrid"

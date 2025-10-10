@@ -12,11 +12,11 @@ export default function AllCardsScreen() {
     }`,
   };
 
-  const items = Array.from({ length: 100 }, (_, i) => i);
+  const currentCards = Array.from({ length: 800 }, (_, i) => i);
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      <CardsGrid />
+      <CardsGrid currentCards={currentCards}/>
     </div>
   );
 }
