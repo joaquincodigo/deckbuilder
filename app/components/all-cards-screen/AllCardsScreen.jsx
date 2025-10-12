@@ -16,7 +16,7 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      <CardsGrid currentCards={currentCards}/>
+      {/* <CardsGrid currentCards={currentCards}/> */}
     </div>
   );
 }

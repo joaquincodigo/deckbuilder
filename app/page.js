@@ -3,7 +3,7 @@
 import { ScreenProvider } from "./context/ScreenContext";
 import useRealVh from "./hooks/useRealVh";
 import ScreenContainer from "./components/ScreenContainer";
-import Nav from "./components/nav/Nav";
+import TabsContainer from "./components/tabs-container/TabsContainer";
 
 export default function Page() {
   useRealVh(); // initialize the --vh variable
@@ -16,7 +16,7 @@ export default function Page() {
     <ScreenProvider>
       <div data-component="Page" className={styles.page}>
         <ScreenContainer />
-        <Nav />
+        <TabsContainer />
       </div>
     </ScreenProvider>
   );

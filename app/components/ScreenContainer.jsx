@@ -7,9 +7,9 @@ export default function ScreenContainer() {
   };
 
   return (
-    <div data-component="ScreenContainer" className={styles.container}>
+    <main data-component="ScreenContainer" className={styles.container}>
       <DeckScreen />
       <AllCardsScreen />
-    </div>
+    </main>
   );
 }

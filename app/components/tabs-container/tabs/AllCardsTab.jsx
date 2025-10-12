@@ -1,10 +1,13 @@
 import { useScreen } from "@/app/context/ScreenContext";
 
 export default function AllCardsNavButton() {
-  const { setCurrentScreen } = useScreen();
+  const {currentScreen, setCurrentScreen } = useScreen();
 
   const styles = {
-    button: "h-full w-1/2 bg-blue-500",
+    button: `h-full w-1/2 ${
+      currentScreen === "AllCardsScreen" ? "bg-blue-500" : ""
+    }`,
+    
   };
 
   return (

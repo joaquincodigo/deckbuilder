@@ -1,10 +1,12 @@
 import { useScreen } from "@/app/context/ScreenContext";
 
 export default function DeckNavButton() {
-  const { setCurrentScreen } = useScreen();
+  const { currentScreen, setCurrentScreen } = useScreen();
 
   const styles = {
-    button: "h-full w-1/2 bg-amber-500",
+    button: `h-full w-1/2 ${
+      currentScreen === "DeckScreen" ? "bg-amber-500" : ""
+    }`,
   };
 
   return (
