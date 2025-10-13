@@ -3,7 +3,7 @@ import AllCardsScreen from "./all-cards-screen/AllCardsScreen";
 
 export default function ScreenContainer() {
   const styles = {
-    container: "flex-1 relative bg-green-500",
+    container: "flex-1 relative bg-green-500 drop-shadow-xl/30 z-30",
   };
 
   return (
