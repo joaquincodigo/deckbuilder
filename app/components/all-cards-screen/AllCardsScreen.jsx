@@ -22,7 +22,7 @@ export default function AllCardsScreen() {
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
       {currentCards ? (
-        <CardsGrid currentCards={currentCards} />
+      <CardsGrid currentCards={currentCards} />
       ) : (
         <p>Loading...</p>
       )}
