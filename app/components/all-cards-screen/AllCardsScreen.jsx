@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
 import CardsGrid from "./CardsGrid/CardsGrid";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
+  const [currentCards, setCurrentCards] = useState([]);
 
   const styles = {
     container: `w-full h-full bg-blue-500 absolute inset-0 overflow-auto p-2 ${
@@ -12,7 +14,6 @@ export default function AllCardsScreen() {
     }`,
   };
 
-  const currentCards = Array.from({ length: 100 }, (_, i) => `Element ${i}`);
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
       <CardsGrid currentCards={currentCards} />

@@ -15,10 +15,13 @@ export default function Page() {
   return (
     <ScreenProvider>
       <div data-component="Page" className={styles.page}>
+
         <ScreensContainer />
+
         <DeckTab />
         <AllCardsTab />
         <TabsBackground />
+
       </div>
     </ScreenProvider>
   );

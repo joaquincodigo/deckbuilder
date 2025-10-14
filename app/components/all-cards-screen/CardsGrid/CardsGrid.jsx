@@ -21,8 +21,12 @@ export default function CardsGrid({ currentCards }) {
   const getRowHeight = () => {
     /*
     Cards have a 59:86 width/height ratio, so:
+
          ColWidth  is to 59
     like ColHeight is to 86
+
+    By rule of three:
+         ColHeight = (ColWidth * 86) / 59
     */
 
     const rowHeight = (getColumnWidth() * 86) / 59;
