@@ -1,6 +1,6 @@
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
 import { Grid } from "react-window";
-import Cell from "./Cell";
+import CardCell from "./CardCell";
 
 export default function CardsGrid({ currentCards }) {
   const getColumnCount = () => {
@@ -14,8 +14,7 @@ export default function CardsGrid({ currentCards }) {
   };
 
   const getRowCount = () => {
-    return currentCards.length;
-    // return currentCards.length;
+    return currentCards.length / getColumnCount();
   };
 
   const getRowHeight = () => {
@@ -39,8 +38,8 @@ export default function CardsGrid({ currentCards }) {
       columnWidth={getColumnWidth()}
       rowCount={getRowCount()}
       rowHeight={getRowHeight()}
-      cellComponent={Cell}
-      cellProps={{ currentCards }}
+      cellComponent={CardCell}
+      cellProps={{ currentCards, columnCount: getColumnCount() }}
     />
   );
 }
