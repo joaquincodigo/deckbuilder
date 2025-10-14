@@ -4,6 +4,18 @@
   --vh: 100%;
 }
 
+html {
+  overflow: hidden;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  position: fixed;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
 @theme inline {
   --font-matrix-card-name: var(--font-matrix-card-name);
   --font-matrix-card-type: var(--font-matrix-card-type);
@@ -11,6 +23,3 @@
   --color-btn-bg: #0181cc;
   --color-btn-border: #00d6f7;
 }
-
-
-

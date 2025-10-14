@@ -5,18 +5,17 @@ export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
 
   const styles = {
-    container: `w-full h-full bg-blue-500 absolute inset-0 overflow-auto ${
+    container: `w-full h-full bg-blue-500 absolute inset-0 overflow-auto p-2 ${
       currentScreen === "AllCardsScreen"
         ? "opacity-100 visible"
         : "opacity-0 invisible"
     }`,
   };
 
-  const currentCards = Array.from({ length: 800 }, (_, i) => i);
-
+  const currentCards = Array.from({ length: 100 }, (_, i) => `Element ${i}`);
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      {/* <CardsGrid currentCards={currentCards}/> */}
+      <CardsGrid currentCards={currentCards} />
     </div>
   );
 }

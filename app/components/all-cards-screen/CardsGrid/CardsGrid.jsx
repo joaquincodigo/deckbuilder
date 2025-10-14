@@ -9,7 +9,8 @@ export default function CardsGrid({ currentCards }) {
 
   const getColumnWidth = () => {
     const viewportWidth = useViewportWidth();
-    return viewportWidth / getColumnCount();
+    const gridArea = viewportWidth - 16; // 16px of padding.
+    return gridArea / getColumnCount();
   };
 
   const getRowCount = () => {
@@ -28,7 +29,6 @@ export default function CardsGrid({ currentCards }) {
     return rowHeight;
   };
 
-
   return (
     <Grid
       columnCount={getColumnCount()}
@@ -40,4 +40,3 @@ export default function CardsGrid({ currentCards }) {
     />
   );
 }
-
