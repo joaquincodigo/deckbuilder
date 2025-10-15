@@ -7,7 +7,6 @@ import AllCardsTab from "./components/tabs/AllCardsTab";
 import TabsBackground from "./components/tabs/TabsBackground";
 
 export default function Page() {
-
   const styles = {
     page: "h-full w-screen pb-16 flex flex-col bg-purple-500",
   };
@@ -17,7 +16,6 @@ export default function Page() {
       <div data-component="Page" className={styles.page}>
 
         <ScreensContainer />
-
         <DeckTab />
         <AllCardsTab />
         <TabsBackground />

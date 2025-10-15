@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import SearchInput from "./search-input/SearchInput";
-import FiltersButton from "./filters/FiltersButton";
+import SearchFiltersButton from "../../../search-form/SearchFiltersButton";
 import FiltersPanel from "./filters/FiltersPanel";
 
 export default function SearchForm({ setSearchFormData }) {
@@ -32,7 +32,7 @@ export default function SearchForm({ setSearchFormData }) {
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.searchBarWrapper}>
         <SearchInput />
-        <FiltersButton onClick={toggleFiltersPanel} />
+        <SearchFiltersButton onClick={toggleFiltersPanel} />
       </div>
 
       <FiltersPanel

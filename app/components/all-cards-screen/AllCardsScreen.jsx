@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
 import { fetchInitialCards } from "@/app/lib/fetchCards";
 import CardsGrid from "./cards-grid/CardsGrid";
-import LoadingCards from "./LoadingCards";
+import LoadingFallback from "./LoadingFallback";
+import SearchForm from "./search-form/SearchForm";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
@@ -24,7 +25,7 @@ export default function AllCardsScreen() {
   }, []);
 
   const styles = {
-    container: `w-full h-full bg-blue-500 absolute inset-0 overflow-auto p-2 ${
+    container: `w-full h-full bg-blue-500 absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
       currentScreen === "AllCardsScreen"
         ? "opacity-100 visible"
         : "opacity-0 invisible"
@@ -33,6 +34,7 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
+      <SearchForm />
       {currentCards ? (
         <CardsGrid
           currentCards={currentCards}
@@ -40,7 +42,7 @@ export default function AllCardsScreen() {
           setIsFetching={setIsFetching}
         />
       ) : (
-        <LoadingCards />
+        <LoadingFallback />
       )}
     </div>
   );

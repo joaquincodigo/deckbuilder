@@ -22,11 +22,11 @@ export default function CardsGrid({ currentCards, isFetching }) {
     /*
     Cards have a 59:86 width/height ratio, so:
 
-         ColWidth  is to 59
-    like ColHeight is to 86
+         Width  is to 59
+    like Height is to 86
 
     By rule of three:
-         ColHeight = (ColWidth * 86) / 59
+         Height = (Width * 86) / 59
     */
 
     const rowHeight = (getColumnWidth() * 86) / 59;
@@ -42,15 +42,6 @@ export default function CardsGrid({ currentCards, isFetching }) {
       console.log("fetch trigger here!");
     }
   }
-
-  <Grid
-    columnCount={10}
-    rowCount={100}
-    columnWidth={100}
-    rowHeight={50}
-    cellComponent={CardCell}
-    onCellsRendered={handleCellsRendered}
-  />;
 
   return (
     <Grid
