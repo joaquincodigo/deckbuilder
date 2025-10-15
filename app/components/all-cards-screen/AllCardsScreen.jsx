@@ -1,14 +1,26 @@
 import { useEffect, useState } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
-import { fetchCards } from "@/app/lib/fetchCards";
+import { fetchInitialCards } from "@/app/lib/fetchCards";
 import CardsGrid from "./CardsGrid/CardsGrid";
+import LoadingCards from "./LoadingCards";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
   const [currentCards, setCurrentCards] = useState();
+  const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
+  const [isFetching, setIsFetching] = useState(false);
 
+  // Initial Load
   useEffect(() => {
-    fetchCards().then(setCurrentCards).catch(console.error);
+    async function loadInitialCards() {
+      setIsFetching(true);
+      const [initialCardState, remainingCardsToFetch] =
+        await fetchInitialCards();
+      setCurrentCards(initialCardState);
+      setRemainingCardsToFetch(remainingCardsToFetch);
+      setIsFetching(false);
+    }
+    loadInitialCards();
   }, []);
 
   const styles = {
@@ -22,9 +34,9 @@ export default function AllCardsScreen() {
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
       {currentCards ? (
-      <CardsGrid currentCards={currentCards} />
+        <CardsGrid currentCards={currentCards} isFetching={isFetching} />
       ) : (
-        <p>Loading...</p>
+        <LoadingCards />
       )}
     </div>
   );

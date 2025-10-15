@@ -1,8 +1,9 @@
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
+import { fetchCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
 import CardCell from "./CardCell";
 
-export default function CardsGrid({ currentCards }) {
+export default function CardsGrid({ currentCards, isFetching }) {
   const getColumnCount = () => {
     return 3;
   };
@@ -32,12 +33,33 @@ export default function CardsGrid({ currentCards }) {
     return rowHeight;
   };
 
+  function handleCellsRendered(visibleCells, allCells) {
+    const threshold = 6; // how close to the end before triggering
+    const totalRows = getRowCount();
+
+    // when bottom of rendered area reaches near the end
+    if (allCells.rowStopIndex >= totalRows - threshold) {
+      console.log("fetch trigger here!");
+    }
+  }
+
+  <Grid
+    columnCount={10}
+    rowCount={100}
+    columnWidth={100}
+    rowHeight={50}
+    cellComponent={CardCell}
+    onCellsRendered={handleCellsRendered}
+  />;
+
   return (
     <Grid
       columnCount={getColumnCount()}
       columnWidth={getColumnWidth()}
       rowCount={getRowCount()}
       rowHeight={getRowHeight()}
+      overscanCount={11}
+      onCellsRendered={handleCellsRendered}
       cellComponent={CardCell}
       cellProps={{ currentCards, columnCount: getColumnCount() }}
     />
