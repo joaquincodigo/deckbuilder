@@ -1,6 +1,7 @@
 import { getCardData } from "@/app/lib/getCardData";
 
 export async function GET(request) {
+  
   // Parse request
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query")?.toLowerCase() || "";
