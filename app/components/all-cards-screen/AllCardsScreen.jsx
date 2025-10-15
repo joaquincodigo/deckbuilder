@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
 import { fetchInitialCards } from "@/app/lib/fetchCards";
-import CardsGrid from "./CardsGrid/CardsGrid";
+import CardsGrid from "./cards-grid/CardsGrid";
 import LoadingCards from "./LoadingCards";
 
 export default function AllCardsScreen() {
@@ -34,7 +34,11 @@ export default function AllCardsScreen() {
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
       {currentCards ? (
-        <CardsGrid currentCards={currentCards} isFetching={isFetching} />
+        <CardsGrid
+          currentCards={currentCards}
+          isFetching={isFetching}
+          setIsFetching={setIsFetching}
+        />
       ) : (
         <LoadingCards />
       )}
