@@ -5,9 +5,12 @@ export async function fetchInitialCards() {
   return [initialCardState, remainingCardsToFetch];
 }
 
-export async function fetchQueriedCards(queryParams, filterParams) {
-  let remainingCardsToFetch;
-  let queriedCardsState;
+export async function fetchQueriedCards(formData) {
+  const query = formData.get("allCardsQuery") || "";
+  const URL = `/api/initial-queried-cards?query=${query}`;
+
+  const response = await fetch(URL);
+  const [queriedCardsState, remainingCardsToFetch] = await response.json();
 
   return [queriedCardsState, remainingCardsToFetch];
 }
