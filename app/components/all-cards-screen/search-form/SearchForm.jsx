@@ -5,7 +5,11 @@ import SearchInput from "./SearchInput";
 import FiltersPanel from "./FiltersPanel";
 import { fetchQueriedCards } from "@/app/lib/fetchCards";
 
-export default function SearchForm() {
+export default function SearchForm({
+  setCurrentCards,
+  setRemainingCardsToFetch,
+  setIsLoading,
+}) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
 
   const toggleFiltersPanel = (e) => {
@@ -15,12 +19,13 @@ export default function SearchForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const formData = new FormData(e.target);
     const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
       formData
     );
-
-    console.log([first72Queried, remainingCardsToFetch]);
+    setCurrentCards(first72Queried);
+    setRemainingCardsToFetch(remainingCardsToFetch);
   };
 
   const styles = {

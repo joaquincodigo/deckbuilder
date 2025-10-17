@@ -3,7 +3,7 @@ import { fetchCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
 import CardCell from "./CardCell";
 
-export default function CardsGrid({ currentCards, isFetching }) {
+export default function CardsGrid({ currentCards, isLoading, setIsLoading }) {
   const getColumnCount = () => {
     return 3;
   };

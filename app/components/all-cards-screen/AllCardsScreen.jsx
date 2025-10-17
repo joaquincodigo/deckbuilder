@@ -9,17 +9,17 @@ export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
   const [currentCards, setCurrentCards] = useState();
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
-  const [isFetching, setIsFetching] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initial Load
   useEffect(() => {
     async function loadInitialCards() {
-      setIsFetching(true);
+      setIsLoading(true);
       const [initialCardState, remainingCardsToFetch] =
         await fetchInitialCards();
       setCurrentCards(initialCardState);
       setRemainingCardsToFetch(remainingCardsToFetch);
-      setIsFetching(false);
+      setIsLoading(false);
     }
     loadInitialCards();
   }, []);
@@ -34,12 +34,16 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      <SearchForm />
+      <SearchForm
+        setCurrentCards={setCurrentCards}
+        setIsLoading={setIsLoading}
+        setRemainingCardsToFetch={setRemainingCardsToFetch}
+      />
       {currentCards ? (
         <CardsGrid
           currentCards={currentCards}
-          isFetching={isFetching}
-          setIsFetching={setIsFetching}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
       ) : (
         <LoadingFallback />
