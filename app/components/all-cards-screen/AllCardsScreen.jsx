@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
 import { fetchInitialCards } from "@/app/lib/fetchCards";
 import CardsGrid from "./cards-grid/CardsGrid";
@@ -11,15 +11,18 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    console.log("isLoading:", isLoading);
+  }, [isLoading]);
+
   // Initial Load
   useEffect(() => {
+    console.log("Running initial load");
     async function loadInitialCards() {
-      setIsLoading(true);
       const [initialCardState, remainingCardsToFetch] =
         await fetchInitialCards();
       setCurrentCards(initialCardState);
       setRemainingCardsToFetch(remainingCardsToFetch);
-      setIsLoading(false);
     }
     loadInitialCards();
   }, []);
@@ -36,15 +39,10 @@ export default function AllCardsScreen() {
     <div data-component="AllCardsScreen" className={styles.container}>
       <SearchForm
         setCurrentCards={setCurrentCards}
-        setIsLoading={setIsLoading}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
       />
       {currentCards ? (
-        <CardsGrid
-          currentCards={currentCards}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
-        />
+        <CardsGrid currentCards={currentCards} />
       ) : (
         <LoadingFallback />
       )}

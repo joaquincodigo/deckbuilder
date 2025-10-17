@@ -15,12 +15,7 @@ export async function fetchQueriedCards(formData) {
   return [queriedCardsState, remainingCardsToFetch];
 }
 
-export async function fetchAdditionalCards(
-  queryParams,
-  filterParams,
-  offset,
-  cardsRemainingToFetch
-) {}
+export async function fetchAdditionalCards(formData, offset) {}
 
 // export async function fetchCards(searchFormData, offset = 0) {
 //   let URL;

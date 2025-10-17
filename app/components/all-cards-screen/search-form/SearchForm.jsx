@@ -8,7 +8,6 @@ import { fetchQueriedCards } from "@/app/lib/fetchCards";
 export default function SearchForm({
   setCurrentCards,
   setRemainingCardsToFetch,
-  setIsLoading,
 }) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
 
@@ -19,13 +18,14 @@ export default function SearchForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    console.log("Query search triggered");
     const formData = new FormData(e.target);
     const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
       formData
     );
     setCurrentCards(first72Queried);
     setRemainingCardsToFetch(remainingCardsToFetch);
+    console.log("Query search finished");
   };
 
   const styles = {

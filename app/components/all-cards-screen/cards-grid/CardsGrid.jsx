@@ -1,9 +1,16 @@
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
-import { fetchCards } from "@/app/lib/fetchCards";
+import { fetchAdditionalCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
 import CardCell from "./CardCell";
 
-export default function CardsGrid({ currentCards, isLoading, setIsLoading }) {
+export default function CardsGrid({
+  currentCards,
+  isLoadingRef,
+  setLoading,
+  formData,
+  cardsRemainingToFetch,
+  setCardsRemainingToFetch,
+}) {
   const getColumnCount = () => {
     return 3;
   };
@@ -33,15 +40,18 @@ export default function CardsGrid({ currentCards, isLoading, setIsLoading }) {
     return rowHeight;
   };
 
-  function handleCellsRendered(visibleCells, allCells) {
-    const threshold = 6; // how close to the end before triggering
+  const handleCellsRendered = async (visibleCells, allCells) => {
+    // If we are already fetching or there's nothing to load, do nothing.
+
+    console.log("HandleCellsRendered EXECUTED!");
+    const threshold = 6; // how many rows close to the end before triggering
     const totalRows = getRowCount();
 
-    // when bottom of rendered area reaches near the end
+    // When bottom of rendered area reaches near the end
     if (allCells.rowStopIndex >= totalRows - threshold) {
-      console.log("fetch trigger here!");
+      // const additionalCards = await fetchAdditionalCards(formData);
     }
-  }
+  };
 
   return (
     <Grid
