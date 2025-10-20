@@ -5,8 +5,7 @@ import CardCell from "./CardCell";
 
 export default function CardsGrid({
   currentCards,
-  isLoadingRef,
-  setLoading,
+  isLoading,
   formData,
   cardsRemainingToFetch,
   setCardsRemainingToFetch,
@@ -41,14 +40,13 @@ export default function CardsGrid({
   };
 
   const handleCellsRendered = async (visibleCells, allCells) => {
-    // If we are already fetching or there's nothing to load, do nothing.
+    if (isLoading) return;
 
-    console.log("HandleCellsRendered EXECUTED!");
-    const threshold = 6; // how many rows close to the end before triggering
-    const totalRows = getRowCount();
+    // const threshold = 0;
+    // const totalRows = getRowCount();
 
-    // When bottom of rendered area reaches near the end
-    if (allCells.rowStopIndex >= totalRows - threshold) {
+    if (visibleCells.rowStopIndex === allCells.rowStopIndex) {
+      console.log("Fetching triggered");
       // const additionalCards = await fetchAdditionalCards(formData);
     }
   };
