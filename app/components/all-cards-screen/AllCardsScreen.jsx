@@ -12,9 +12,19 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   useEffect(() => {
     console.log("isLoading:", isLoading);
   }, [isLoading]);
+
+  useEffect(() => {
+    console.log("remianingCardsToFetch:", remainingCardsToFetch);
+  }, [remainingCardsToFetch]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
+  useEffect(() => {
+    console.log("currentCards:", currentCards);
+  }, [currentCards]);
 
   // Initial Load
   useEffect(() => {
@@ -22,14 +32,15 @@ export default function AllCardsScreen() {
     async function loadInitialCards() {
       const [initialCardState, remainingCardsToFetch] =
         await fetchInitialCards();
-      flushSync(
-()=>{
-      setCurrentCards(initialCardState);
-      setRemainingCardsToFetch(remainingCardsToFetch);
-}
-        )
+      // Force a render before setting is loading to false
+      // to not trigger onCellsRendered callback of <Grid />
+      // on half render with isLoading off.
+      flushSync(() => {
+        setCurrentCards(initialCardState);
+        setRemainingCardsToFetch(remainingCardsToFetch);
+      });
       console.log("Initial load finished");
-      setIsLoading(false)
+      setIsLoading(false);
     }
     loadInitialCards();
   }, []);
@@ -49,7 +60,14 @@ export default function AllCardsScreen() {
         setRemainingCardsToFetch={setRemainingCardsToFetch}
       />
       {currentCards ? ( // TODO: Fix this
-        <CardsGrid currentCards={currentCards} isLoading={isLoading} />
+        <CardsGrid
+          currentCards={currentCards}
+          setCurrentCards={setCurrentCards}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
+          remainingCardsToFetch={remainingCardsToFetch}
+          setRemainingCardsToFetch={setRemainingCardsToFetch}
+        />
       ) : (
         <LoadingFallback />
       )}

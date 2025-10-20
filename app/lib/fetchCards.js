@@ -15,16 +15,20 @@ export async function fetchQueriedCards(formData) {
   return [queriedCardsState, remainingCardsToFetch];
 }
 
-export async function fetchAdditionalCards(formData, offset) {}
+export async function fetchAdditionalCards(formData, offset) {
+  let URL;
 
-// export async function fetchCards(searchFormData, offset = 0) {
-//   let URL;
-//   if (!searchFormData && !offset) URL = "/api/cards";
-//   else if (offset) URL = `/api/cards&${offset}`;
-//   else
-//     URL = `/api/cards?query=${searchFormData.allCardsQuery}&offset=${offset}`;
+  if (!formData) {
+    URL = `/api/additional-cards?offset=${offset}`;
+  } else {
+    const query = formData.get("allCardsQuery") || "";
+    URL = `/api/addiontinal-cards?offset=${offset}&query=${query}`;
+  }
 
-//   const res = await fetch(URL);
-//   if (!res.ok) throw new Error("Fetch failed");
-//   return res.json();
-// }
+  const response = await fetch(URL);
+  if (!response.ok) throw new Error("Failed to fetch cards");
+
+  const [additionalCards, remainingCardsToFetch] = await response.json();
+
+  return [additionalCards, remainingCardsToFetch];
+}

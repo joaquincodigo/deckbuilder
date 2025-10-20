@@ -1,3 +1,4 @@
+import { flushSync } from "react-dom";
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
 import { fetchAdditionalCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
@@ -5,10 +6,12 @@ import CardCell from "./CardCell";
 
 export default function CardsGrid({
   currentCards,
+  setCurrentCards,
   isLoading,
+  setIsLoading,
   formData,
-  cardsRemainingToFetch,
-  setCardsRemainingToFetch,
+  remainingCardsToFetch,
+  setRemainingCardsToFetch,
 }) {
   const getColumnCount = () => {
     return 3;
@@ -46,8 +49,23 @@ export default function CardsGrid({
     // const totalRows = getRowCount();
 
     if (visibleCells.rowStopIndex === allCells.rowStopIndex) {
-      console.log("Fetching triggered");
-      // const additionalCards = await fetchAdditionalCards(formData);
+      setIsLoading(true);
+      if (remainingCardsToFetch > 0) {
+        console.log("Fetching triggered");
+        const offset = currentCards.length;
+
+        const [additionalCards, remainingCardsToFetch] =
+          await fetchAdditionalCards(formData, offset);
+
+        // We force a render here to prevent another fetch mid-render
+        // by onCellsRendered triggering too quickly
+        flushSync(() => {
+          setCurrentCards((prev) => [...prev, ...additionalCards]);
+          setRemainingCardsToFetch(remainingCardsToFetch);
+        });
+
+        setIsLoading(false);
+      }
     }
   };
 
