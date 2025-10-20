@@ -1,7 +1,10 @@
-export default function FiltersPanel(isFiltersPanelOpen) {
+export default function FiltersPanel({
+  isFiltersPanelOpen,
+  toggleFiltersPanel,
+}) {
   const styles = {
-    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-pink-500 transition-[max-height] ease-out duration-[150ms]
-    ${isFiltersPanelOpen ? "max-h-[500px] ease-in duration-[250ms]" : "max-h-0"}`,
+    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-pink-500 transition-all ease-in-out duration-200
+    ${isFiltersPanelOpen ? "h-42 p-2" : "h-0"}`,
   };
 
   return (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchButton from "./SearchButton";
 import SearchFiltersButton from "./SearchFiltersButton";
 import SearchInput from "./SearchInput";
@@ -15,6 +15,12 @@ export default function SearchForm({
     e.preventDefault();
     setIsFiltersPanelOpen((prev) => !prev);
   };
+
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  useEffect(() => {
+    console.log("isFiltersPanelOpen:", isFiltersPanelOpen);
+  }, [isFiltersPanelOpen]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +50,8 @@ export default function SearchForm({
         <SearchButton />
         <SearchFiltersButton onClick={toggleFiltersPanel} />
         <FiltersPanel
-          isFiltersPanelOpen={(isFiltersPanelOpen, toggleFiltersPanel)}
+          isFiltersPanelOpen={isFiltersPanelOpen}
+          toggleFiltersPanel={toggleFiltersPanel}
         />
       </div>
     </form>

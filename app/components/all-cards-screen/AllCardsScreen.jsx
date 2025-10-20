@@ -12,20 +12,6 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log("isLoading:", isLoading);
-  }, [isLoading]);
-
-  useEffect(() => {
-    console.log("remianingCardsToFetch:", remainingCardsToFetch);
-  }, [remainingCardsToFetch]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
-  useEffect(() => {
-    console.log("currentCards:", currentCards);
-  }, [currentCards]);
-
   // Initial Load
   useEffect(() => {
     console.log("Running initial load");
@@ -39,7 +25,6 @@ export default function AllCardsScreen() {
         setCurrentCards(initialCardState);
         setRemainingCardsToFetch(remainingCardsToFetch);
       });
-      console.log("Initial load finished");
       setIsLoading(false);
     }
     loadInitialCards();
