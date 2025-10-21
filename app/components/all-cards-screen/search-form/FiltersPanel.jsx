@@ -3,8 +3,8 @@ export default function FiltersPanel({
   toggleFiltersPanel,
 }) {
   const styles = {
-    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-pink-500 transition-all ease-in-out duration-200
-    ${isFiltersPanelOpen ? "h-42 p-2" : "h-0"}`,
+    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-pink-500 transition-all ease-in-out duration-200 px-2
+    ${isFiltersPanelOpen ? "h-42 py-2" : "h-0"}`,
   };
 
   return (
