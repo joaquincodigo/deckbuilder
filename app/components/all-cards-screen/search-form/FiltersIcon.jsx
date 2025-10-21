@@ -1,6 +1,6 @@
 export default function FiltersIcon() {
   const styles = {
-    icon: "w-7 h-7",
+    icon: "w-7 h-7 transition-all duration-150 active:scale-85 active:stroke-sky-200",
   };
 
   return (
