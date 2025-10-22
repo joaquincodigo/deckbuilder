@@ -16,6 +16,18 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+
+label {
+  margin-right: 1ch;
+}
+
+input, select {
+  background-color: white;
+  color: black;
+  padding-bottom: 0.5rem;
+}
+
+
 @theme inline {
   --font-matrix-card-name: var(--font-matrix-card-name);
   --font-matrix-card-type: var(--font-matrix-card-type);

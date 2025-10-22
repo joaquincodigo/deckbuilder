@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import SearchInput from "./search-input/SearchInput";
-import SearchFiltersButton from "../../../search-form/SearchFiltersButton";
+import SearchFiltersButton from "../../../search-form/filters-button/FiltersButton";
 import FiltersPanel from "./filters/FiltersPanel";
 
 export default function SearchForm({ setSearchFormData }) {

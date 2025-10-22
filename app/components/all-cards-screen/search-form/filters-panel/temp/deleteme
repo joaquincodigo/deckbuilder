@@ -1,0 +1,48 @@
+import LevelSelector from "./LevelSelector";
+
+export default function FiltersPanel({
+  isFiltersPanelOpen,
+  toggleFiltersPanel,
+}) {
+  const styles = {
+    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-blue-500 text-white text-lg transition-all ease-in-out duration-200 shadow-lg ${
+      isFiltersPanelOpen ? "h-42 py-2" : "h-0"
+    }`,
+    panelRow: "mb-3",
+    atkInput: "border-btn-border h-8 w-12 text-center text-red-500",
+  };
+
+  return (
+    <div data-component="FiltersPanel" className={styles.panel}>
+      {/* LEVEL */}
+      <div className={styles.panelRow}>
+        <LevelSelector />
+      </div>
+
+      {/* ATK */}
+      <div className={styles.panelRow}>
+        <label htmlFor="atk">ATK</label>
+        <input
+          className={styles.atkInput}
+          id="atk"
+          type="number"
+          min="1"
+          max="9999"
+          step="1"
+        />
+      </div>
+
+      {/* DEF */}
+      <div className={styles.panelRow}>
+        <label htmlFor="def">DEF</label>
+        <input
+          className={styles.atkInput}
+          id="def"
+          type="number"
+          min="1"
+          max="9999"
+          step="1"
+        />
+      </div>
+    </div>
+  );

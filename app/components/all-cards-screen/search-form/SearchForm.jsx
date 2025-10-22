@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import SearchButton from "./SearchButton";
-import SearchFiltersButton from "./SearchFiltersButton";
-import SearchInput from "./SearchInput";
-import FiltersPanel from "./FiltersPanel";
+import SearchButton from "./search-button/SearchButton";
+import SearchFiltersButton from "./filters-button/FiltersButton";
+import SearchInput from "./search-input/SearchInput";
+import FiltersPanel from "./filters-panel/FiltersPanel";
 import { fetchQueriedCards } from "@/app/lib/fetchCards";
 
 export default function SearchForm({
@@ -15,12 +15,6 @@ export default function SearchForm({
     e.preventDefault();
     setIsFiltersPanelOpen((prev) => !prev);
   };
-
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log("isFiltersPanelOpen:", isFiltersPanelOpen);
-  }, [isFiltersPanelOpen]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const handleSubmit = async (e) => {
     e.preventDefault();
