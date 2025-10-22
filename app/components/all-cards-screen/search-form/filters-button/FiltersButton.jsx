@@ -9,7 +9,7 @@ export default function SearchFiltersButton({ onClick }) {
   return (
     <button
       data-component="SearchFiltersButton"
-      onClick={onClick}
+      onMouseDown={onClick}
       type="submit"
       className={styles.btn}
     >
