@@ -3,6 +3,7 @@ import LevelSelector from "./LevelSelector";
 import TypeSelector from "./TypeSelector";
 import AttackInput from "./AttackInput";
 import DefenseInput from "./DefenseInput";
+import AttributeSelector from "./AttributeSelector";
 
 export default function FilterMonsterSection() {
   const styles = {
@@ -17,6 +18,10 @@ export default function FilterMonsterSection() {
     >
       <div className={styles.inputRow}>
         <CategorySelector />
+      </div>
+
+      <div className={styles.inputRow}>
+        <AttributeSelector />
       </div>
 
       <div className={styles.inputRow}>

@@ -12,13 +12,12 @@ export default function FiltersPanel({
 
   const styles = {
     panel: `fixed top-14 left-2 right-2 overflow-hidden bg-blue-500 text-white text-lg transition-all ease-in-out duration-150 shadow-lg ${
-      isFiltersPanelOpen ? "max-h-72 mb-4" : "max-h-0"
+      isFiltersPanelOpen ? "max-h-[90%] mb-4" : "max-h-0"
     }`,
   };
 
   return (
     <div data-component="FiltersPanel" className={styles.panel}>
-
       <FiltersPanelHeader
         filtersSection={filtersSection}
         setFiltersSection={setFiltersSection}

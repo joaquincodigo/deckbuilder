@@ -1,6 +1,6 @@
 export default function AttackInput() {
   const styles = {
-    AttackInput: "flex justify-center items-center px-2 w-15",
+    AttackInput: "flex justify-center items-center px-2 w-14",
   };
 
   const handleInput = (e) => {

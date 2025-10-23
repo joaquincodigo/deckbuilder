@@ -25,7 +25,7 @@ export default function TypeSelector() {
   ];
 
   const styles = {
-    typeSelector: "bg-white border-btn-border h-8 px-2 text-center",
+    typeSelector: "bg-white border-btn-border h-8 px-2",
   };
 
   return (
@@ -34,7 +34,7 @@ export default function TypeSelector() {
       <select
         id="category"
         defaultValue="any"
-        className={styles.categorySelector}
+        className={styles.typeSelector}
       >
         {types.map((type) => (
           <option key={type} value={type}>

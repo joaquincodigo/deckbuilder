@@ -1,6 +1,6 @@
 export default function DefenseInput() {
   const styles = {
-    DefenseInput: "flex justify-center items-center px-2 w-15",
+    DefenseInput: "flex justify-center items-center px-2 w-14",
   };
 
   const handleInput = (e) => {

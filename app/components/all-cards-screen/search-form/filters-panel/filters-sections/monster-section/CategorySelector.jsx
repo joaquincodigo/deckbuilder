@@ -1,6 +1,6 @@
 export default function CategorySelector() {
   const styles = {
-    categorySelector: "bg-white border-btn-border h-8 px-2 text-center",
+    categorySelector: "bg-white border-btn-border h-8 px-2",
   };
 
   const categories = [
