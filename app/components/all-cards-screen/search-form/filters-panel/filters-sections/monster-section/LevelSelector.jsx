@@ -3,7 +3,7 @@ export default function LevelSelector() {
     levelSelector: "bg-white border-btn-border h-8 px-2 text-center",
   };
 
-  const possibleLevels = [
+  const levels = [
     "any",
     ...Array.from({ length: 12 }, (_, i) => i + 1),
   ];
@@ -12,7 +12,7 @@ export default function LevelSelector() {
     <>
       <label htmlFor="level">Level</label>
       <select id="level" defaultValue="any" className={styles.levelSelector}>
-        {possibleLevels.map((level) => (
+        {levels.map((level) => (
           <option key={level} value={level}>
             {level === "any" ? "Any" : level}
           </option>

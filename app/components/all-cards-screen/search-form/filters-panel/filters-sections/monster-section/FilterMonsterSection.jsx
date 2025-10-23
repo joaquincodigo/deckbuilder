@@ -1,11 +1,13 @@
+import CategorySelector from "./CategorySelector";
+import LevelSelector from "./LevelSelector";
+import TypeSelector from "./TypeSelector";
 import AttackInput from "./AttackInput";
 import DefenseInput from "./DefenseInput";
-import LevelSelector from "./LevelSelector";
 
 export default function FilterMonsterSection() {
   const styles = {
     FilterMonsterSection: "px-6",
-    inputRow: "flex mb-2",
+    inputRow: "flex items-center mb-3",
   };
 
   return (
@@ -13,9 +15,16 @@ export default function FilterMonsterSection() {
       data-component="FilterMonsterSection"
       className={styles.FilterMonsterSection}
     >
+      <div className={styles.inputRow}>
+        <CategorySelector />
+      </div>
 
       <div className={styles.inputRow}>
         <LevelSelector />
+      </div>
+
+      <div className={styles.inputRow}>
+        <TypeSelector />
       </div>
 
       <div className={styles.inputRow}>

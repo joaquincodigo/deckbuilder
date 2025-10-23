@@ -6,7 +6,7 @@ export default function FiltersPanelHeader({
   setFiltersSection,
 }) {
   const styles = {
-    wrapper: "w-full mb-2",
+    wrapper: "w-full mb-3",
     FiltersPanelHeader: "w-full flex justify-around py-2",
     instructions: `text-center ${filtersSection ? "hidden" : "block"}`,
   };
