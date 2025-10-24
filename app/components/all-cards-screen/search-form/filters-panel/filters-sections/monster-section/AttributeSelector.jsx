@@ -1,6 +1,9 @@
+import Image from "next/image";
+
 export default function AttributeSelector() {
   const styles = {
     attributeSelector: "bg-white border-btn-border h-8 px-2",
+    option: "flex",
   };
 
   const attributes = [

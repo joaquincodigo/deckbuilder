@@ -1,16 +1,32 @@
-export default function FiltersPanelHeaderButton({ onClick }) {
+import Image from "next/image";
+
+export default function FiltersPanelHeaderButton({ onClick, imgSrc, label }) {
   const styles = {
-    FiltersPanelHeaderButton:
-      "bg-btn-bg border-1 border-btn-border aspect-square w-14 h-14 flex justify-center items-center",
+    wrapper: "flex flex-col w-14",
+    btn: "w-full aspect-[59/86] relative outline outline-1 outline-btn-border transition-[width,height] duration-150 active:scale-95",
+    label: "flex justify-center",
   };
 
   return (
-    <button
-      data-component="FiltersPanelHeaderButton"
-      className={styles.FiltersPanelHeaderButton}
-      onMouseDown={onClick}
-    >
-      X
-    </button>
+    <div className={styles.wrapper} data-component="FiltersPanelheaderButton">
+      <button
+        data-component="FiltersPanelHeaderButton"
+        onMouseDown={onClick}
+        className={styles.btn}
+      >
+        <Image
+          src={imgSrc}
+          alt="Section button"
+          fill
+          sizes="100vw"
+          style={{ objectFit: "contain" }}
+          className={styles.btn}
+        />
+      </button>
+
+      <span className={styles.label}>{label}</span>
+    </div>
   );
 }
+
+// icon: "w-7 h-7  active:stroke-sky-200",

@@ -18,10 +18,20 @@ export default function FiltersPanelHeader({
         className={styles.FiltersPanelHeader}
       >
         <FiltersPanelHeaderButton
+          label="Monsters"
           onClick={() => setFiltersSection("monster")}
+          imgSrc="/card-layouts/normal.webp"
         />
-        <FiltersPanelHeaderButton onClick={() => setFiltersSection("spell")} />
-        <FiltersPanelHeaderButton onClick={() => setFiltersSection("trap")} />
+        <FiltersPanelHeaderButton
+          label="Spells"
+          onClick={() => setFiltersSection("spell")}
+          imgSrc="/card-layouts/spell.webp"
+        />
+        <FiltersPanelHeaderButton
+          label="Traps"
+          onClick={() => setFiltersSection("trap")}
+          imgSrc="/card-layouts/trap.webp"
+        />
       </div>
 
       <p className={styles.instructions}>
