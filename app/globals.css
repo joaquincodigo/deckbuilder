@@ -27,6 +27,11 @@ input, select {
   padding-bottom: 0.5rem;
 }
 
+@layer utilities {
+  .spin-slow {
+    animation: spin 1.7s linear infinite;
+  }
+}
 
 @theme inline {
   --font-matrix-card-name: var(--font-matrix-card-name);

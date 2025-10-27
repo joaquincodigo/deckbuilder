@@ -3,6 +3,7 @@ import { useScreen } from "@/app/context/ScreenContext";
 import { fetchInitialCards } from "@/app/lib/fetchCards";
 import CardsGrid from "./cards-grid/CardsGrid";
 import LoadingFallback from "./LoadingFallback";
+import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
 import { flushSync } from "react-dom";
 
@@ -36,6 +37,8 @@ export default function AllCardsScreen() {
         ? "opacity-100 visible"
         : "opacity-0 invisible"
     }`,
+    spinnerContainer: "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
+    loadingText: "text-white font-bold"
   };
 
   return (
@@ -54,7 +57,12 @@ export default function AllCardsScreen() {
           setRemainingCardsToFetch={setRemainingCardsToFetch}
         />
       ) : (
-        <LoadingFallback />
+        <>
+          <div className={styles.spinnerContainer}>
+            <Spinner size={50} color="white" />
+            <p className={styles.loadingText}>Loading cards...</p>
+          </div>
+        </>
       )}
     </div>
   );
