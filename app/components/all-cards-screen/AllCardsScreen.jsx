@@ -32,7 +32,7 @@ export default function AllCardsScreen() {
   }, []);
 
   const styles = {
-    container: `w-full h-full bg-blue-500 absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
+    container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
       currentScreen === "AllCardsScreen"
         ? "opacity-100 visible"
         : "opacity-0 invisible"

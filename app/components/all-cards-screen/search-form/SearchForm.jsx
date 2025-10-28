@@ -29,7 +29,7 @@ export default function SearchForm({
   };
 
   const styles = {
-    form: "fixed top-0 left-0 right-0 h-12 px-2 pt-2 z-10 bg-blue-500",
+    form: "fixed top-0 left-0 right-0 h-12 px-2 pt-2 z-10 bg-allcards-bg",
     searchBarWrapper: "h-full w-full flex gap-x-2",
   };
 

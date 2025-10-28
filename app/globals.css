@@ -16,12 +16,12 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-
 label {
   margin-right: 1ch;
 }
 
-input, select {
+input,
+select {
   background-color: white;
   color: black;
   padding-bottom: 0.5rem;
@@ -39,4 +39,5 @@ input, select {
   --font-matrix-italic: var(--font-matrix-italic);
   --color-btn-bg: #0181cc;
   --color-btn-border: #00d6f7;
+  --color-allcards-bg: #121837;
 }

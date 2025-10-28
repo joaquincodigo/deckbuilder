@@ -11,7 +11,7 @@ export default function FiltersPanel({
   const [filtersSection, setFiltersSection] = useState();
 
   const styles = {
-    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-blue-500 text-white text-lg transition-all ease-in-out duration-150 shadow-lg ${
+    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-allcards-bg text-white text-lg transition-all ease-in-out duration-150 shadow-lg ${
       isFiltersPanelOpen ? "max-h-[90%] mb-4" : "max-h-0"
     }`,
   };

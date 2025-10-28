@@ -2,8 +2,8 @@
 
 import { ScreenProvider } from "./context/ScreenContext";
 import ScreensContainer from "./components/ScreensContainer";
-import DeckTab from "./components/tabs/DeckTab";
-import AllCardsTab from "./components/tabs/AllCardsTab";
+import DeckTab from "./components/tabs/deck-tab/DeckTab";
+import AllCardsTab from "./components/tabs/all-cards-tab/AllCardsTab";
 import TabsBackground from "./components/tabs/TabsBackground";
 
 export default function Page() {

@@ -48,7 +48,8 @@ export default function CardsGrid({
     const threshold = 5;
 
     // Trigger when the user is 5 rows before the last one loaded
-    if (visibleCells.rowStopIndex === allCells.rowStopIndex - threshold) {
+
+    if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       setIsLoading(true);
       if (remainingCardsToFetch > 0) {
         console.log("Fetching triggered");
