@@ -1,5 +1,8 @@
-export default function Spinner({ size = 40, color = "currentColor" }) {
-
+export default function Spinner({
+  size = 40,
+  color = "currentColor",
+  className = "",
+}) {
   const px = typeof size === "number" ? `${size}px` : size;
 
   return (
@@ -8,7 +11,7 @@ export default function Spinner({ size = 40, color = "currentColor" }) {
       height={px}
       viewBox="0 0 100 100"
       style={{ color }}
-      className="spin-slow"
+      className={`spin-slow ${className}`}
     >
       <circle cx="50" cy="10" r="8" fill="currentColor" />
       <circle cx="78" cy="22" r="8" fill="currentColor" />

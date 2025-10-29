@@ -13,6 +13,12 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  useEffect(() => {
+    console.log(currentCards);
+  }, [currentCards]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
   // Initial Load
   useEffect(() => {
     console.log("Running initial load");
@@ -37,8 +43,9 @@ export default function AllCardsScreen() {
         ? "opacity-100 visible"
         : "opacity-0 invisible"
     }`,
-    spinnerContainer: "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
-    loadingText: "text-white font-bold"
+    spinnerContainer:
+      "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
+    loadingText: "text-white font-bold",
   };
 
   return (

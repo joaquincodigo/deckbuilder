@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { flushSync } from "react-dom";
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
 import { fetchAdditionalCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
 import CardCell from "./CardCell";
+import Spinner from "../../ui/Spinner";
 
 export default function CardsGrid({
   currentCards,
@@ -13,7 +15,10 @@ export default function CardsGrid({
   remainingCardsToFetch,
   setRemainingCardsToFetch,
 }) {
+  const [isLoadingMoreCards, setIsLoadingMoreCards] = useState(false);
+
   const getColumnCount = () => {
+    // Todo, other than mobile
     return 3;
   };
 
@@ -24,7 +29,7 @@ export default function CardsGrid({
   };
 
   const getRowCount = () => {
-    return currentCards.length / getColumnCount();
+    return Math.ceil(currentCards.length / getColumnCount());
   };
 
   const getRowHeight = () => {
@@ -47,14 +52,11 @@ export default function CardsGrid({
 
     const threshold = 5;
 
-    // Trigger when the user is 5 rows before the last one loaded
-
+    // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       setIsLoading(true);
       if (remainingCardsToFetch > 0) {
-        console.log("Fetching triggered");
         const offset = currentCards.length;
-
         const [additionalCards, remainingCardsToFetch] =
           await fetchAdditionalCards(formData, offset);
 
@@ -70,16 +72,24 @@ export default function CardsGrid({
     }
   };
 
+  const styles = {
+    gridWrapper: "relative w-full h-full",
+    spinner: "absolute bottom-0 left-1/2 -translate-x-1/2",
+  };
+
   return (
-    <Grid
-      columnCount={getColumnCount()}
-      columnWidth={getColumnWidth()}
-      rowCount={getRowCount()}
-      rowHeight={getRowHeight()}
-      overscanCount={11}
-      onCellsRendered={handleCellsRendered}
-      cellComponent={CardCell}
-      cellProps={{ currentCards, columnCount: getColumnCount() }}
-    />
+    <div className={styles.gridWrapper}>
+      <Grid
+        columnCount={getColumnCount()}
+        columnWidth={getColumnWidth()}
+        rowCount={getRowCount()}
+        rowHeight={getRowHeight()}
+        overscanCount={11}
+        onCellsRendered={handleCellsRendered}
+        cellComponent={CardCell}
+        cellProps={{ currentCards, columnCount: getColumnCount() }}
+      />
+      <Spinner className={styles.spinner} color="white" />
+    </div>
   );
 }

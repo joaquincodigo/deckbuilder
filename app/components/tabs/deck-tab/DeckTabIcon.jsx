@@ -17,7 +17,7 @@ export default function DeckTabIcon() {
         <path
           fill="none"
           stroke="#FF00FF"
-          stroke-width="1.8732"
+          strokeWidth="1.8732"
           d="M61.618,110.375"
         />
         <g>
