@@ -15,7 +15,7 @@ export default function CardsGrid({
   remainingCardsToFetch,
   setRemainingCardsToFetch,
 }) {
-  const [isLoadingMoreCards, setIsLoadingMoreCards] = useState(false);
+  const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(true);
 
   const getColumnCount = () => {
     // Todo, other than mobile
@@ -56,6 +56,7 @@ export default function CardsGrid({
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       setIsLoading(true);
       if (remainingCardsToFetch > 0) {
+        setIsBottomSpinnerVisible(true);
         const offset = currentCards.length;
         const [additionalCards, remainingCardsToFetch] =
           await fetchAdditionalCards(formData, offset);
@@ -67,6 +68,7 @@ export default function CardsGrid({
           setRemainingCardsToFetch(remainingCardsToFetch);
         });
 
+        setIsBottomSpinnerVisible(false);
         setIsLoading(false);
       }
     }
@@ -74,7 +76,8 @@ export default function CardsGrid({
 
   const styles = {
     gridWrapper: "relative w-full h-full",
-    spinner: "absolute bottom-0 left-1/2 -translate-x-1/2",
+    spinner: "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-1",
+
   };
 
   return (
@@ -89,7 +92,9 @@ export default function CardsGrid({
         cellComponent={CardCell}
         cellProps={{ currentCards, columnCount: getColumnCount() }}
       />
-      <Spinner className={styles.spinner} color="white" />
+      {isBottomSpinnerVisible && (
+        <Spinner className={styles.spinner} size={40} color="white" />
+      )}
     </div>
   );
 }
