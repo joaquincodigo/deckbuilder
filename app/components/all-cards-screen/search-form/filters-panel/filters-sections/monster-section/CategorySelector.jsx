@@ -1,6 +1,7 @@
 export default function CategorySelector() {
   const styles = {
-    categorySelector: "bg-white border-btn-border h-8 px-2",
+    label: "col-start-1 col-span-4",
+    categorySelector: "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
   };
 
   const categories = [
@@ -11,9 +12,10 @@ export default function CategorySelector() {
 		"Ritual",
   ];
 
+
   return (
     <>
-      <label htmlFor="category">Category</label>
+      <label className={styles.label} htmlFor="category">Category</label>
       <select id="category" defaultValue="any" className={styles.categorySelector}>
         {categories.map((category) => (
           <option key={category} value={category}>

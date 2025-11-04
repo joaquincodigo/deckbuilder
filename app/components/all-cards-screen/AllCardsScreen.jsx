@@ -13,12 +13,6 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log(currentCards);
-  }, [currentCards]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
   // Initial Load
   useEffect(() => {
     console.log("Running initial load");

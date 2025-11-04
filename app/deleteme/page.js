@@ -1,27 +1,51 @@
-"use client";
-import { useState, useEffect } from "react";
-
-export default function ComponentName() {
-  const [state, setState] = useState(true);
-
+export default function Deleteme() {
   const styles = {
-    myElem: `bg-green-400 w-screen transition-all duration-500 ease-in-out ${state ? "h-0" : "h-24"}`,
+    Deleteme:
+      "bg-blue-900 w-screen h-screen grid grid-cols-15 auto-rows-[40px]",
+    block: "bg-pink-800 text-white h-7 border-white border-2 rounded-sm",
   };
 
-  useEffect(() => {
-    console.log("state is:", state);
-  }, [state]);
   return (
-    <>
-      <div className={styles.myElem}>I am div</div>
-      <button
-        className="bg-blue-500 text-white font-bold p-3"
-        onClickCapture={() => {
-          setState((prev) => !prev);
-        }}
-      >
-        click me
-      </button>
-    </>
+    <div data-component="Deleteme" className={styles.Deleteme}>
+      {/* Row 1 */}
+      <div className={styles.block}>PA</div>
+      <div className={styles.block + " col-start-2 col-span-4"}>Label</div>
+      <div className={styles.block + " col-start-6 col-span-6"}>Input</div>
+      <div className={styles.block}>GA</div>
+      <div className={styles.block + " col-start-13 col-span-2"}>Input</div>
+      <div className={styles.block}>PA</div>
+
+      {/* Row 2 */}
+      <div className={styles.block}>PA</div>
+      <div className={styles.block + " col-start-2 col-span-4"}>Label</div>
+      <div className={styles.block + " col-start-6 col-span-6"}>Input</div>
+      <div className={styles.block}>GA</div>
+      <div className={styles.block + " col-start-13 col-span-2"}>Input</div>
+      <div className={styles.block}>PA</div>
+
+      {/* Row 3 */}
+      <div className={styles.block}>PA</div>
+      <div className={styles.block + " col-start-2 col-span-4"}>Label</div>
+      <div className={styles.block + " col-start-6 col-span-6"}>Input</div>
+      <div className={styles.block}>GA</div>
+      <div className={styles.block + " col-start-13 col-span-2"}>Input</div>
+      <div className={styles.block}>PA</div>
+
+      {/* Row 4 */}
+      <div className={styles.block}>PA</div>
+      <div className={styles.block + " col-start-2 col-span-4"}>Label</div>
+      <div className={styles.block + " col-start-6 col-span-6"}>Input</div>
+      <div className={styles.block}>GA</div>
+      <div className={styles.block + " col-start-13 col-span-2"}>Input</div>
+      <div className={styles.block}>PA</div>
+
+      {/* Row 5 */}
+      <div className={styles.block}>PA</div>
+      <div className={styles.block + " col-start-2 col-span-4"}>Label</div>
+      <div className={styles.block + " col-start-6 col-span-6"}>Input</div>
+      <div className={styles.block}>GA</div>
+      <div className={styles.block + " col-start-13 col-span-2"}>Input</div>
+      <div className={styles.block}>PA</div>
+    </div>
   );
 }

@@ -1,5 +1,8 @@
 export default function AttackInput() {
   const styles = {
+    label: "col-start-1 col-span-4",
+    attackCommparisonSelect: "col-start-5 col-span-6",
+    separator: "col-start-11 col-span-1",
     AttackInput: "flex justify-center items-center px-2 w-14",
   };
 
@@ -11,7 +14,20 @@ export default function AttackInput() {
 
   return (
     <>
-      <label htmlFor="atk">ATK</label>
+      <label className={styles.label} htmlFor="atk">
+        Attack
+      </label>
+
+      <select
+        id="defenseComparisonSelect"
+        className={styles.attackCommparisonSelect}
+        defaultValue={"equal"}
+      >
+        <option value="equal">Equal to</option>
+        <option value="less">Less than</option>
+        <option value="greater">More than</option>
+      </select>
+      <span className={styles.separator}></span>
       <input
         className={styles.AttackInput}
         id="atk"

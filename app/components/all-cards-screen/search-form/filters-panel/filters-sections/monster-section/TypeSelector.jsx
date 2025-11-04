@@ -25,12 +25,13 @@ export default function TypeSelector() {
   ];
 
   const styles = {
-    typeSelector: "bg-white border-btn-border h-8 px-2",
+    label: "col-start-1 col-span-4",
+    typeSelector: "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
   };
 
   return (
     <>
-      <label htmlFor="category">Type</label>
+      <label className={styles.label} htmlFor="category">Type</label>
       <select
         id="category"
         defaultValue="any"

@@ -2,7 +2,8 @@ import Image from "next/image";
 
 export default function AttributeSelector() {
   const styles = {
-    attributeSelector: "bg-white border-btn-border h-8 px-2",
+    label: "col-start-1 col-span-4",
+    attributeSelector: "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
     option: "flex",
   };
 
@@ -18,7 +19,9 @@ export default function AttributeSelector() {
 
   return (
     <>
-      <label htmlFor="attribute">Attribute</label>
+      <label htmlFor="attribute" className={styles.label}>
+        Attribute
+      </label>
       <select
         id="attribute"
         defaultValue="any"

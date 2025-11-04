@@ -15,7 +15,7 @@ export default function CardsGrid({
   remainingCardsToFetch,
   setRemainingCardsToFetch,
 }) {
-  const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(true);
+  const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(false);
 
   const getColumnCount = () => {
     // Todo, other than mobile
