@@ -2,7 +2,7 @@ export default function LevelSelector() {
   const styles = {
     label: "col-start-1 col-span-4",
     levelSelector:
-      "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2 text-center",
+      "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
   };
 
   const levels = ["any", ...Array.from({ length: 12 }, (_, i) => i + 1)];

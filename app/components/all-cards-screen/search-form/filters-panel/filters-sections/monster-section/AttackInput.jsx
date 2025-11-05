@@ -1,7 +1,7 @@
 export default function AttackInput() {
   const styles = {
     label: "col-start-1 col-span-4",
-    attackCommparisonSelect: "col-start-5 col-span-6",
+    attackCommparisonSelect: "col-start-5 col-span-6 px-2",
     separator: "col-start-11 col-span-1",
     AttackInput: "flex justify-center items-center px-2 w-14",
   };
