@@ -1,7 +1,6 @@
 import FiltersPanelHeaderButton from "./FiltersPanelHeaderButton";
 
 export default function FiltersPanelHeader({
-  onClick,
   filtersSection,
   setFiltersSection,
 }) {
@@ -19,18 +18,21 @@ export default function FiltersPanelHeader({
       >
         <FiltersPanelHeaderButton
           label="Monsters"
-          onClick={() => setFiltersSection("monster")}
           imgSrc="/card-layouts/normal.webp"
+          onClick={() => setFiltersSection("monster")}
+          isSelected={filtersSection === "monster"}
         />
         <FiltersPanelHeaderButton
           label="Spells"
-          onClick={() => setFiltersSection("spell")}
           imgSrc="/card-layouts/spell.webp"
+          onClick={() => setFiltersSection("spell")}
+          isSelected={filtersSection === "spell"}
         />
         <FiltersPanelHeaderButton
           label="Traps"
-          onClick={() => setFiltersSection("trap")}
           imgSrc="/card-layouts/trap.webp"
+          onClick={() => setFiltersSection("trap")}
+          isSelected={filtersSection === "trap"}
         />
       </div>
 
