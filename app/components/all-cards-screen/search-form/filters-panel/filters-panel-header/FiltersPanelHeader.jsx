@@ -5,8 +5,8 @@ export default function FiltersPanelHeader({
   setFiltersSection,
 }) {
   const styles = {
-    wrapper: "w-full mb-3",
-    FiltersPanelHeader: "w-full flex justify-around py-2",
+    wrapper: "w-full",
+    FiltersPanelHeader: "w-full flex justify-around",
     instructions: `text-center ${filtersSection ? "hidden" : "block"}`,
   };
 
@@ -16,6 +16,9 @@ export default function FiltersPanelHeader({
         data-component="FiltersPanelHeader"
         className={styles.FiltersPanelHeader}
       >
+        {/* We need this to register the cardType in the formData */}
+        <input type="hidden" name="cardType" value={filtersSection} />
+
         <FiltersPanelHeaderButton
           label="Monsters"
           imgSrc="/card-layouts/normal.webp"

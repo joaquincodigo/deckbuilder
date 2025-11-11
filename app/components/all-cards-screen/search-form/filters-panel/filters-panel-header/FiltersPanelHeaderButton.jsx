@@ -17,6 +17,7 @@ export default function FiltersPanelHeaderButton({
   return (
     <div className={styles.wrapper} data-component="FiltersPanelheaderButton">
       <button
+        type="button"
         data-component="FiltersPanelHeaderButton"
         onMouseDown={onClick}
         className={styles.btn}

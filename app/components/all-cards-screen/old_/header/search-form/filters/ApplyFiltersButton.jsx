@@ -6,7 +6,7 @@ export default function ApplyFiltersButton({ onClick }) {
     text: "inline-block leading-none relative -top-[2px] font-bold",
   };
   return (
-    <Button onClick={onClick} className={styles.button}>
+    <Button onMouseDown={onClick} className={styles.button}>
       <span className={styles.text}>Apply filters</span>
     </Button>
   );

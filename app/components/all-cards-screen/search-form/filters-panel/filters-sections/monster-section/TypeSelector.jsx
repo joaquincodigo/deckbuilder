@@ -25,8 +25,9 @@ export default function TypeSelector() {
   ];
 
   const styles = {
-    label: "col-start-1 col-span-4",
-    typeSelector: "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
+    label: "col-start-1 col-end-4",
+    typeSelector:
+      "col-start-4 col-end-13 bg-white border-btn-border h-8 px-2",
   };
 
   return (

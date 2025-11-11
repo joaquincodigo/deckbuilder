@@ -18,14 +18,22 @@ export default function SearchForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Query search triggered");
+    console.log("Submitting form...");
     const formData = new FormData(e.target);
-    const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
-      formData
-    );
-    setCurrentCards(first72Queried);
-    setRemainingCardsToFetch(remainingCardsToFetch);
-    console.log("Query search finished");
+
+    // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+    console.log(Object.fromEntries(formData));
+    // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
+
+    // const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
+    //   formData
+    // );
+    // setCurrentCards(first72Queried);
+    // setRemainingCardsToFetch(remainingCardsToFetch);
+
+
+    console.log("End of form submition");
   };
 
   const styles = {

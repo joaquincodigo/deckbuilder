@@ -1,7 +1,7 @@
 export default function CategorySelector() {
   const styles = {
-    label: "col-start-1 col-span-4",
-    categorySelector: "col-start-5 col-span-6 bg-white border-btn-border h-8 px-2",
+    label: "col-start-1 col-end-3",
+    categorySelector: "col-start-4 col-end-13 bg-white border-btn-border h-8 px-2",
   };
 
   const categories = [

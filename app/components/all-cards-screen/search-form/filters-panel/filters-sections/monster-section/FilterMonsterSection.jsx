@@ -8,7 +8,7 @@ import AttributeSelector from "./AttributeSelector";
 export default function FilterMonsterSection() {
   const styles = {
     FilterMonsterSection:
-      "px-6 grid grid-cols-13 auto-rows-[2rem] gap-y-4",
+      "grid grid-cols-12 auto-rows-[2rem] gap-y-4",
   };
 
   return (
