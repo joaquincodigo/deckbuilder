@@ -12,7 +12,7 @@ export default function LevelSelector() {
       <label className={styles.label} htmlFor="level">
         Level
       </label>
-      <select id="level" defaultValue="any" className={styles.levelSelector}>
+      <select name="level" id="level" defaultValue="any" className={styles.levelSelector}>
         {levels.map((level) => (
           <option key={level} value={level}>
             {level === "any" ? "Any" : level}

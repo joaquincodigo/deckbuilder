@@ -1,9 +1,4 @@
-export default function FilterSpellSection() {
-  const styles = {
-    FilterSpellSection: "px-6",
-    spellTypeSelector: "bg-white border-btn-border h-8 px-2",
-  };
-
+export default function FiltersSpellSection() {
   const spellTypes = [
     "Normal",
     "Continuous",
@@ -13,16 +8,22 @@ export default function FilterSpellSection() {
     "Ritual",
   ];
 
+  const styles = {
+    FiltersSpellSection: "grid grid-cols-12 auto-rows-[2rem] gap-y-4",
+    label: "col-start-1 col-end-4",
+    typeSelector: "col-start-4 col-end-13 bg-white border-btn-border h-8 px-2",
+  };
+
   return (
-    <div
-      data-component="FilterSpellSection"
-      className={styles.FilterSpellSection}
-    >
-      <label htmlFor="spell-type">Spell type</label>
+    <div className={styles.FiltersSpellSection} data-component="FiltersSpellSection">
+      <label className={styles.label} htmlFor="spellType">
+        Type
+      </label>
       <select
-        id="spell-type"
+        name="spellType"
+        id="spellType"
         defaultValue="any"
-        className={styles.spellTypeSelector}
+        className={styles.typeSelector}
       >
         {spellTypes.map((type) => (
           <option key={type} value={type}>

@@ -16,7 +16,7 @@ export default function CategorySelector() {
   return (
     <>
       <label className={styles.label} htmlFor="category">Category</label>
-      <select id="category" defaultValue="any" className={styles.categorySelector}>
+      <select name="category" id="category" defaultValue="any" className={styles.categorySelector}>
         {categories.map((category) => (
           <option key={category} value={category}>
             {category === "any" ? "Any" : category}

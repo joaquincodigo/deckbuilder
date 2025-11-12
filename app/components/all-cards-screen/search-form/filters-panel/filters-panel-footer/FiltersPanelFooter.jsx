@@ -3,7 +3,7 @@ import ResetFiltersButton from "../reset-filters-button/ResetFiltersButton";
 
 export default function FiltersPanelFooter({ toggleFiltersPanel }) {
   const styles = {
-    FiltersPanelFooter: "grid grid-cols-12 h-8",
+    FiltersPanelFooter: "grid grid-cols-12 h-8 px-6",
   };
 
   return (

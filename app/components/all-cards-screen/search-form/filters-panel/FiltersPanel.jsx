@@ -12,9 +12,10 @@ export default function FiltersPanel({
   const [filtersSection, setFiltersSection] = useState();
 
   const styles = {
-    panel: `fixed top-14 left-2 right-2 overflow-hidden bg-allcards-bg text-white text-lg transition-all ease-in-out duration-150 shadow-lg flex flex-col gap-y-8 ${
-      isFiltersPanelOpen ? "max-h-[90%] px-2 py-4" : "max-h-0"
-    }`,
+    panel: `fixed top-14 right-0 overflow-hidden bg-allcards-bg text-white text-lg transition-all ease-in-out duration-150 shadow-lg flex flex-col gap-y-6 ${
+      isFiltersPanelOpen ? "max-h-[90%] pt-2 px-4" : "max-h-0"
+    } ${isFiltersPanelOpen && filtersSection ? "pb-6" : ""}`,
+    filtersWrapper: "px-6",
   };
 
   return (
@@ -26,9 +27,11 @@ export default function FiltersPanel({
       />
 
       {/* BODY */}
-      {filtersSection === "monster" && <FilterMonsterSection />}
-      {filtersSection === "spell" && <FilterSpellSection />}
-      {filtersSection === "trap" && <FilterTrapSection />}
+      <div className={styles.filtersWrapper}>
+        {filtersSection === "monster" && <FilterMonsterSection />}
+        {filtersSection === "spell" && <FilterSpellSection />}
+        {filtersSection === "trap" && <FilterTrapSection />}
+      </div>
 
       {/* FOOTER */}
       {filtersSection && (

@@ -7,7 +7,7 @@ export default function FiltersPanelHeader({
   const styles = {
     wrapper: "w-full",
     FiltersPanelHeader: "w-full flex justify-around",
-    instructions: `text-center ${filtersSection ? "hidden" : "block"}`,
+    instructions: `text-center mt-3 text-blue-200 ${filtersSection ? "hidden" : "block"}`,
   };
 
   return (

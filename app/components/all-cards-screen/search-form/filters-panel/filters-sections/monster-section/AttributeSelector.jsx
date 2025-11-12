@@ -23,6 +23,7 @@ export default function AttributeSelector() {
         Attribute
       </label>
       <select
+        name="atribute"
         id="attribute"
         defaultValue="any"
         className={styles.attributeSelector}

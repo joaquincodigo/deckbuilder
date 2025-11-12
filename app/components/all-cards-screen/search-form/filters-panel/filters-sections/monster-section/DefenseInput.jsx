@@ -19,6 +19,7 @@ export default function DefenseInput() {
       </label>
 
       <select
+        name="defenseComparisonSelect"
         id="defenseComparisonSelect"
         className={styles.defenseComparisonSelect}
         defaultValue={"equal"}
@@ -31,6 +32,7 @@ export default function DefenseInput() {
 
       <input
         className={styles.defenseInput}
+        name="def"
         id="def"
         type="number"
         min="0"

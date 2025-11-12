@@ -1,5 +1,4 @@
 export default function TypeSelector() {
-
   const types = [
     "any",
     "Aqua",
@@ -26,14 +25,16 @@ export default function TypeSelector() {
 
   const styles = {
     label: "col-start-1 col-end-4",
-    typeSelector:
-      "col-start-4 col-end-13 bg-white border-btn-border h-8 px-2",
+    typeSelector: "col-start-4 col-end-13 bg-white border-btn-border h-8 px-2",
   };
 
   return (
     <>
-      <label className={styles.label} htmlFor="category">Type</label>
+      <label className={styles.label} htmlFor="category">
+        Type
+      </label>
       <select
+        name="monsterType"
         id="category"
         defaultValue="any"
         className={styles.typeSelector}

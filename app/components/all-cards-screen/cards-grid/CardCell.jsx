@@ -22,6 +22,7 @@ export default function CardCell({
     >
       {isCardLoading && (
         <Image
+          sizes="100%"
           src="/ui/card-back-low-res.webp"
           alt="Loading card image..."
           className="absolute top-0 left-0"
@@ -30,9 +31,10 @@ export default function CardCell({
         />
       )}
       <Image
+        sizes="100%"
         src={`/card_images/lowres/${card.id}.webp`}
         alt={card.name}
-        onLoadingComplete={() => setIsCardLoading(true)}
+        onLoad={() => setIsCardLoading(true)}
         fill
         style={{ objectFit: "fill" }}
       />
