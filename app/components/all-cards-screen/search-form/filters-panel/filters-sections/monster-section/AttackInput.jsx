@@ -1,7 +1,7 @@
 export default function AttackInput() {
   const styles = {
     label: "col-start-1 col-end-4",
-    attackCommparisonSelect: "col-start-4 col-end-10 px-2",
+    attackComparisonSelect: "col-start-4 col-end-10 px-2",
     attackInput:
       "flex text-center bg-green-400 justify-center items-center col-start-11 col-end-13 text-center",
   };
@@ -19,9 +19,9 @@ export default function AttackInput() {
       </label>
 
       <select
-        name="defenseComparisonSelect"
-        id="defenseComparisonSelect"
-        className={styles.attackCommparisonSelect}
+        name="attackComparisonSelect"
+        id="attackComparisonSelect"
+        className={styles.attackComparisonSelect}
         defaultValue={"equal"}
       >
         <option value="equal">Equal to</option>
@@ -38,6 +38,7 @@ export default function AttackInput() {
         max="9999"
         step="1"
         onInput={handleInput}
+        placeholder="Any"
       />
     </>
   );

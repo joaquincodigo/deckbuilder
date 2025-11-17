@@ -39,6 +39,7 @@ export default function DefenseInput() {
         max="9999"
         step="1"
         onInput={handleInput}
+        placeholder="Any"
       />
     </>
   );
