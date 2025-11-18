@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
-import CardSelector from "./CardSelector";
+import CardSelector from "./card-selector/CardSelector";
 
 export default function CardCell({
   columnIndex,
