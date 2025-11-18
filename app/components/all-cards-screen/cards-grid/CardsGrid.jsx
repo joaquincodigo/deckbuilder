@@ -16,6 +16,8 @@ export default function CardsGrid({
   setRemainingCardsToFetch,
 }) {
   const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
+
 
   const getColumnCount = () => {
     // Todo, other than mobile
@@ -74,10 +76,14 @@ export default function CardsGrid({
     }
   };
 
+  const handleCellClick = () => {
+    alert("clicked");
+  };
+
   const styles = {
     gridWrapper: "relative w-full h-full",
-    spinner: "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-1",
-
+    spinner:
+      "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-1",
   };
 
   return (
@@ -90,7 +96,7 @@ export default function CardsGrid({
         overscanCount={11}
         onCellsRendered={handleCellsRendered}
         cellComponent={CardCell}
-        cellProps={{ currentCards, columnCount: getColumnCount() }}
+        cellProps={{ currentCards, columnCount: getColumnCount(), selectedCard, setSelectedCard }}
       />
       {isBottomSpinnerVisible && (
         <Spinner className={styles.spinner} size={40} color="white" />
