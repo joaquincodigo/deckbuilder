@@ -1,5 +1,4 @@
 import { useScreen } from "@/app/context/ScreenContext";
-import { useEffect } from "react";
 
 export default function DeckScreen() {
   const { currentScreen } = useScreen();

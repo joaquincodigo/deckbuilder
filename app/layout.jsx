@@ -1,6 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
-import { ToastManager } from "@/app/components/modals/ToastManager";
+// import { ToastManager } from "@/app/components/modals/ToastManager";
 
 const MatrixEffect = localFont({
   src: "./fonts/MatrixEffect.ttf",
@@ -33,8 +33,11 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className={styles.body}>{children}</body>
-      <ToastManager />
+      <body className={styles.body}>
+        {children}
+        <div id="modal-root"></div>
+      </body>
+      {/* <ToastManager /> */}
     </html>
   );
 }

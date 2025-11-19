@@ -45,7 +45,7 @@ export default function CardCell({
         fill
         style={{ objectFit: "fill" }}
       />
-      {selectedCard === card && <CardSelector />}
+      {selectedCard === card && <CardSelector card={card} />}
     </div>
   );
 }
