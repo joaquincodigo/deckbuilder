@@ -18,7 +18,6 @@ export default function CardsGrid({
   const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
 
-
   const getColumnCount = () => {
     // Todo, other than mobile
     return 3;
@@ -56,7 +55,7 @@ export default function CardsGrid({
 
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
-      setIsLoading(true);
+      console.log("grid handle cell rendered triggered");
       if (remainingCardsToFetch > 0) {
         setIsBottomSpinnerVisible(true);
         const offset = currentCards.length;
@@ -71,13 +70,8 @@ export default function CardsGrid({
         });
 
         setIsBottomSpinnerVisible(false);
-        setIsLoading(false);
       }
     }
-  };
-
-  const handleCellClick = () => {
-    alert("clicked");
   };
 
   const styles = {
@@ -96,7 +90,12 @@ export default function CardsGrid({
         overscanCount={11}
         onCellsRendered={handleCellsRendered}
         cellComponent={CardCell}
-        cellProps={{ currentCards, columnCount: getColumnCount(), selectedCard, setSelectedCard }}
+        cellProps={{
+          currentCards,
+          columnCount: getColumnCount(),
+          selectedCard,
+          setSelectedCard,
+        }}
       />
       {isBottomSpinnerVisible && (
         <Spinner className={styles.spinner} size={40} color="white" />

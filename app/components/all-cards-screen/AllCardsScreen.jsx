@@ -17,9 +17,10 @@ export default function AllCardsScreen() {
   useEffect(() => {
     console.log("Running initial load");
     async function loadInitialCards() {
+      console.log("loadInitialCards triggered");
       const [initialCardState, remainingCardsToFetch] =
         await fetchInitialCards();
-      // Force a render before setting is loading to false
+      // Force a render before setting isLoading to false
       // to not trigger onCellsRendered callback of <Grid />
       // on half render with isLoading off.
       flushSync(() => {
@@ -30,6 +31,19 @@ export default function AllCardsScreen() {
     }
     loadInitialCards();
   }, []);
+
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  // useEffect(() => {
+    // console.log("Current cards are:", currentCards);
+  // }, [currentCards]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
+
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  useEffect(() => {
+    console.log("isLoading is:", isLoading);
+  }, [isLoading]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
 
   const styles = {
     container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
@@ -47,8 +61,15 @@ export default function AllCardsScreen() {
       <SearchForm
         setCurrentCards={setCurrentCards}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
+        setIsLoading={setIsLoading}
       />
-      {currentCards ? ( // TODO: Fix this
+
+      {isLoading ? ( // TODO: Fix this
+        <div className={styles.spinnerContainer}>
+          <Spinner size={50} color="white" />
+          <p className={styles.loadingText}>Loading cards...</p>
+        </div>
+      ) : (
         <CardsGrid
           currentCards={currentCards}
           setCurrentCards={setCurrentCards}
@@ -57,13 +78,6 @@ export default function AllCardsScreen() {
           remainingCardsToFetch={remainingCardsToFetch}
           setRemainingCardsToFetch={setRemainingCardsToFetch}
         />
-      ) : (
-        <>
-          <div className={styles.spinnerContainer}>
-            <Spinner size={50} color="white" />
-            <p className={styles.loadingText}>Loading cards...</p>
-          </div>
-        </>
       )}
     </div>
   );
