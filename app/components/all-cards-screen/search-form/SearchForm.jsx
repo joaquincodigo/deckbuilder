@@ -18,18 +18,20 @@ export default function SearchForm({
   };
 
   const handleSubmit = async (e) => {
-    setIsLoading(true)
+    console.log("[SUBMIT FORM STAT]");
+    setIsLoading(true);
     e.preventDefault();
-    console.log("Submitting form...");
+    setIsFiltersPanelOpen(false);
     const formData = new FormData(e.target);
+    console.log("FORM DATA OBJECT:", Object.fromEntries(formData));
 
     const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
       formData
     );
     setCurrentCards(first72Queried);
     setRemainingCardsToFetch(remainingCardsToFetch);
-    setIsLoading(false)
-    console.log("End of form submition");
+    setIsLoading(false);
+    console.log("[SUBMIT FORM END]");
   };
 
   const styles = {

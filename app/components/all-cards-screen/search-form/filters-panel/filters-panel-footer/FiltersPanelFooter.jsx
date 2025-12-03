@@ -12,7 +12,7 @@ export default function FiltersPanelFooter({ toggleFiltersPanel }) {
       className={styles.FiltersPanelFooter}
     >
       <ResetFiltersButton onClick={toggleFiltersPanel} />
-      <ApplyFiltersButton onClick={toggleFiltersPanel} />
+      <ApplyFiltersButton />
     </div>
   );
 }

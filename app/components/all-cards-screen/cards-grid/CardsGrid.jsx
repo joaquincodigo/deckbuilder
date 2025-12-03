@@ -55,7 +55,6 @@ export default function CardsGrid({
 
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
-      console.log("grid handle cell rendered triggered");
       if (remainingCardsToFetch > 0) {
         setIsBottomSpinnerVisible(true);
         const offset = currentCards.length;

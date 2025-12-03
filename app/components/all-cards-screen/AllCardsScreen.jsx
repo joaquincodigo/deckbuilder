@@ -32,19 +32,6 @@ export default function AllCardsScreen() {
     loadInitialCards();
   }, []);
 
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  // useEffect(() => {
-    // console.log("Current cards are:", currentCards);
-  // }, [currentCards]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
-
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log("isLoading is:", isLoading);
-  }, [isLoading]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
   const styles = {
     container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
       currentScreen === "AllCardsScreen"

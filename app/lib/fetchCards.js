@@ -6,7 +6,9 @@ export async function fetchInitialCards() {
 }
 
 export async function fetchQueriedCards(formData) {
+  const params = new URLSearchParams()
   const query = formData.get("allCardsQuery") || "";
+  
   const URL = `/api/initial-queried-cards?query=${query}`;
 
   const response = await fetch(URL);
