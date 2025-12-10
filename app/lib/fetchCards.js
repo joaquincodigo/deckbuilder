@@ -1,10 +1,3 @@
-export async function fetchInitialCards() {
-  const response = await fetch("/api/initial-cards");
-  if (!response.ok) throw new Error("Fetch failed");
-  const [initialCardState, remainingCardsToFetch] = await response.json();
-  return [initialCardState, remainingCardsToFetch];
-}
-
 export async function fetchQueriedCards(formData) {
   const params = new URLSearchParams()
   const query = formData.get("allCardsQuery") || "";

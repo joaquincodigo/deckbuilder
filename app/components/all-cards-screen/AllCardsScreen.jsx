@@ -1,35 +1,30 @@
 import { useEffect, useState, useRef } from "react";
 import { useScreen } from "@/app/context/ScreenContext";
-import { fetchInitialCards } from "@/app/lib/fetchCards";
 import CardsGrid from "./cards-grid/CardsGrid";
-import LoadingFallback from "./LoadingFallback";
 import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
-import { flushSync } from "react-dom";
+import { getInitialCards } from "@/app/actions/getInitialCards";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
-  const [currentCards, setCurrentCards] = useState();
-  const [remainingCardsToFetch, setRemainingCardsToFetch] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [currentCards, setCurrentCards] = useState([]);
+  const [currentOffset, setCurrentOffset] = useState(0);
+  const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
 
   // Initial Load
   useEffect(() => {
-    console.log("Running initial load");
-    async function loadInitialCards() {
-      console.log("loadInitialCards triggered");
-      const [initialCardState, remainingCardsToFetch] =
-        await fetchInitialCards();
-      // Force a render before setting isLoading to false
-      // to not trigger onCellsRendered callback of <Grid />
-      // on half render with isLoading off.
-      flushSync(() => {
-        setCurrentCards(initialCardState);
-        setRemainingCardsToFetch(remainingCardsToFetch);
-      });
+    async function initialLoad() {
+      const [initial72Cards, offset, remaining] = await getInitialCards();
+
+      setCurrentCards(initial72Cards);
+      setCurrentOffset(offset);
+      setRemainingCardsToFetch(remaining);
+
       setIsLoading(false);
     }
-    loadInitialCards();
+
+    initialLoad();
   }, []);
 
   const styles = {
