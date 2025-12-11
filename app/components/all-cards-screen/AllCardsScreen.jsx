@@ -15,9 +15,6 @@ export default function AllCardsScreen() {
 
   // Initial Load
   useEffect(() => {
-
-    setIsLoading(true)
-    
     async function initialLoad() {
 
       const [initial72Cards, offset, remaining] = await getInitialCards();
