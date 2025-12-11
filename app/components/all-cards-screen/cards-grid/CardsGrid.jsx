@@ -76,7 +76,7 @@ export default function CardsGrid({
   const styles = {
     gridWrapper: "relative w-full h-full",
     spinner:
-      "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-1",
+      "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-0.5",
   };
 
   return (
@@ -97,7 +97,7 @@ export default function CardsGrid({
         }}
       />
       {isBottomSpinnerVisible && (
-        <Spinner className={styles.spinner} size={40} color="white" />
+        <Spinner className={styles.spinner} size={30} color="white" />
       )}
     </div>
   );

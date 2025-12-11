@@ -4,6 +4,7 @@ import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
 import FiltersPanel from "./filters-panel/FiltersPanel";
 import { fetchQueriedCards } from "@/app/lib/fetchCards";
+import { getInitialQueriedCards } from "@/app/actions/getInitialQueriedCards";
 
 export default function SearchForm({
   setCurrentCards,
@@ -18,20 +19,18 @@ export default function SearchForm({
   };
 
   const handleSubmit = async (e) => {
-    console.log("[SUBMIT FORM STAT]");
+    setIsFiltersPanelOpen(false);
     setIsLoading(true);
     e.preventDefault();
-    setIsFiltersPanelOpen(false);
-    const formData = new FormData(e.target);
-    console.log("FORM DATA OBJECT:", Object.fromEntries(formData));
 
-    const [first72Queried, remainingCardsToFetch] = await fetchQueriedCards(
-      formData
-    );
-    setCurrentCards(first72Queried);
-    setRemainingCardsToFetch(remainingCardsToFetch);
+    const formData = new FormData(e.target);
+
+    const [initialQueriedCards, currentOffset, remainingCardsToFetch] =
+      getInitialQueriedCards(formData);
+
+    console.log(initialQueriedCards);
+
     setIsLoading(false);
-    console.log("[SUBMIT FORM END]");
   };
 
   const styles = {

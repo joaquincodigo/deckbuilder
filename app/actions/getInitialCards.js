@@ -3,10 +3,11 @@
 import { getCardData } from "../lib/getCardData";
 
 export async function getInitialCards() {
-  const cardData = getCardData();
-  const initial72 = cardData.slice(0, 72);
-  const offset = 72;
-  const remaining = cardData.length - offset;
+  const allCards = getCardData();
+  
+  const initial72Cards = allCards.slice(0, 72);
+  const currentOffset = 72;
+  const remainingCardsToFetch = allCards.length - currentOffset;
 
-  return [initial72, offset, remaining];
+  return [initial72Cards, currentOffset, remainingCardsToFetch];
 }
