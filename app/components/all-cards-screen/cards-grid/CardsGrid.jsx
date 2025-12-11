@@ -50,7 +50,7 @@ export default function CardsGrid({
 
   const handleCellsRendered = async (visibleCells, allCells) => {
     if (isLoading) return;
-
+    console.log("handleCells triggered");
     const threshold = 5;
 
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
