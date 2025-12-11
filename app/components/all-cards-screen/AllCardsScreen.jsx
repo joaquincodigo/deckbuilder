@@ -4,6 +4,7 @@ import CardsGrid from "./cards-grid/CardsGrid";
 import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
 import { getInitialCards } from "@/app/actions/getInitialCards";
+import { flushSync } from "react-dom";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
@@ -17,9 +18,11 @@ export default function AllCardsScreen() {
     async function initialLoad() {
       const [initial72Cards, offset, remaining] = await getInitialCards();
 
-      setCurrentCards(initial72Cards);
-      setCurrentOffset(offset);
-      setRemainingCardsToFetch(remaining);
+      flushSync(() => {
+        setCurrentCards(initial72Cards);
+        setCurrentOffset(offset);
+        setRemainingCardsToFetch(remaining);
+      });
 
       setIsLoading(false);
     }
