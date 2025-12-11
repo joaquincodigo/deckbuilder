@@ -27,6 +27,12 @@ export default function AllCardsScreen() {
     initialLoad();
   }, []);
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTINGyyp
+  useEffect(() => {
+    console.log("currentCards:", currentCards);
+  }, [currentCards]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTINGyyp
+
   const styles = {
     container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
       currentScreen === "AllCardsScreen"
@@ -42,6 +48,7 @@ export default function AllCardsScreen() {
     <div data-component="AllCardsScreen" className={styles.container}>
       <SearchForm
         setCurrentCards={setCurrentCards}
+        setCurrentOffset={setCurrentOffset}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
         setIsLoading={setIsLoading}
       />
@@ -55,10 +62,12 @@ export default function AllCardsScreen() {
         <CardsGrid
           currentCards={currentCards}
           setCurrentCards={setCurrentCards}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
           remainingCardsToFetch={remainingCardsToFetch}
           setRemainingCardsToFetch={setRemainingCardsToFetch}
+          currentOffset={currentOffset}
+          setCurrentOffset={setCurrentOffset}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
       )}
     </div>

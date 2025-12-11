@@ -8,6 +8,7 @@ import { getInitialQueriedCards } from "@/app/actions/getInitialQueriedCards";
 
 export default function SearchForm({
   setCurrentCards,
+  setCurrentOffset,
   setRemainingCardsToFetch,
   setIsLoading,
 }) {
@@ -26,9 +27,11 @@ export default function SearchForm({
     const formData = new FormData(e.target);
 
     const [initialQueriedCards, currentOffset, remainingCardsToFetch] =
-      getInitialQueriedCards(formData);
+      await getInitialQueriedCards(formData);
 
-    console.log(initialQueriedCards);
+    setCurrentCards(initialQueriedCards);
+    setCurrentOffset(currentOffset);
+    setRemainingCardsToFetch(remainingCardsToFetch);
 
     setIsLoading(false);
   };
