@@ -17,6 +17,7 @@ export default function CardsGrid({
   setRemainingCardsToFetch,
 }) {
   const [selectedCard, setSelectedCard] = useState(false);
+  const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(false);
 
   const getColumnCount = () => {
     // Todo, other than mobile
@@ -57,8 +58,14 @@ export default function CardsGrid({
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       if (remainingCardsToFetch > 0) {
+        isLoadingCards.current = true;
         setIsBottomSpinnerVisible(true);
-        isLoadingCards.current = true
+        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+        console.log(
+          "from handleCellRender start - isLoadingCards is:",
+          isLoadingCards.current
+        );
+        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
         const [additionalCards, remainingCardsToFetch] =
           await fetchAdditionalCards(formData, currentOffset);
 
@@ -69,8 +76,14 @@ export default function CardsGrid({
           setRemainingCardsToFetch(remainingCardsToFetch);
         });
 
-        isLoadingCards.current = false
+        isLoadingCards.current = false;
         setIsBottomSpinnerVisible(false);
+        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+        console.log(
+          "Setted at the end of handleRenderCell - isLoadingCards is:",
+          isLoadingCards.current
+        );
+        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
       }
     }
   };
@@ -98,7 +111,7 @@ export default function CardsGrid({
           setSelectedCard,
         }}
       />
-      {isLoadingCards && (
+      {isBottomSpinnerVisible && (
         <Spinner className={styles.spinner} size={30} color="white" />
       )}
     </div>
