@@ -7,15 +7,15 @@ import CardCell from "./CardCell";
 import Spinner from "../../ui/Spinner";
 
 export default function CardsGrid({
+  formData,
+  isLoadingCards,
   currentCards,
   setCurrentCards,
-  isLoading,
-  setIsLoading,
-  formData,
+  currentOffset,
+  setCurrentOffset,
   remainingCardsToFetch,
   setRemainingCardsToFetch,
 }) {
-  const [isBottomSpinnerVisible, setIsBottomSpinnerVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
 
   const getColumnCount = () => {
@@ -49,17 +49,18 @@ export default function CardsGrid({
   };
 
   const handleCellsRendered = async (visibleCells, allCells) => {
-    if (isLoading) return;
+    if (isLoadingCards.current) return;
     console.log("handleCells triggered");
+
     const threshold = 5;
 
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       if (remainingCardsToFetch > 0) {
         setIsBottomSpinnerVisible(true);
-        const offset = currentCards.length;
+        isLoadingCards.current = true
         const [additionalCards, remainingCardsToFetch] =
-          await fetchAdditionalCards(formData, offset);
+          await fetchAdditionalCards(formData, currentOffset);
 
         // We force a render here to prevent another fetch mid-render
         // by onCellsRendered triggering too quickly
@@ -68,6 +69,7 @@ export default function CardsGrid({
           setRemainingCardsToFetch(remainingCardsToFetch);
         });
 
+        isLoadingCards.current = false
         setIsBottomSpinnerVisible(false);
       }
     }
@@ -96,7 +98,7 @@ export default function CardsGrid({
           setSelectedCard,
         }}
       />
-      {isBottomSpinnerVisible && (
+      {isLoadingCards && (
         <Spinner className={styles.spinner} size={30} color="white" />
       )}
     </div>

@@ -8,7 +8,8 @@ import { flushSync } from "react-dom";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
-  const [isLoading, setIsLoading] = useState(true);
+  const isLoadingCards = useRef(true);
+
   const [currentCards, setCurrentCards] = useState([]);
   const [currentOffset, setCurrentOffset] = useState(0);
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
@@ -16,7 +17,6 @@ export default function AllCardsScreen() {
   // Initial Load
   useEffect(() => {
     async function initialLoad() {
-
       const [initial72Cards, offset, remaining] = await getInitialCards();
 
       flushSync(() => {
@@ -25,7 +25,7 @@ export default function AllCardsScreen() {
         setRemainingCardsToFetch(remaining);
       });
 
-      setIsLoading(false);
+      isLoadingCards.current = false;
     }
 
     initialLoad();
@@ -50,14 +50,15 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      <SearchForm
+      {/* <SearchForm
         setCurrentCards={setCurrentCards}
         setCurrentOffset={setCurrentOffset}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
         setIsLoading={setIsLoading}
-      />
+        hasGridRenderedOnce={hasGridRenderedOnce}
+      /> */}
 
-      {isLoading ? ( // TODO: Fix this
+      {isLoadingCards && currentCards.length === 0 ? ( // TODO: Fix this
         <div className={styles.spinnerContainer}>
           <Spinner size={50} color="white" />
           <p className={styles.loadingText}>Loading cards...</p>
@@ -70,8 +71,7 @@ export default function AllCardsScreen() {
           setRemainingCardsToFetch={setRemainingCardsToFetch}
           currentOffset={currentOffset}
           setCurrentOffset={setCurrentOffset}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
+          isLoadingCards={isLoadingCards}
         />
       )}
     </div>
