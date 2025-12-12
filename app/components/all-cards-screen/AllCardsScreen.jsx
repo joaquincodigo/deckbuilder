@@ -60,7 +60,7 @@ export default function AllCardsScreen() {
         setRemainingCardsToFetch={setRemainingCardsToFetch}
       /> */}
 
-      {isLoadingCards.current && currentCards.length === 0 ? ( // TODO: Fix this
+      {currentCards.length === 0 ? (
         <div className={styles.spinnerContainer}>
           <Spinner size={50} color="white" />
           <p className={styles.loadingText}>Loading cards...</p>
