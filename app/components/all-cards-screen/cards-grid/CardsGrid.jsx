@@ -51,21 +51,16 @@ export default function CardsGrid({
 
   const handleCellsRendered = async (visibleCells, allCells) => {
     if (isLoadingCards.current) return;
-    console.log("handleCells triggered");
 
     const threshold = 5;
 
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       if (remainingCardsToFetch > 0) {
+
         isLoadingCards.current = true;
         setIsBottomSpinnerVisible(true);
-        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-        console.log(
-          "from handleCellRender start - isLoadingCards is:",
-          isLoadingCards.current
-        );
-        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
         const [additionalCards, remainingCardsToFetch] =
           await fetchAdditionalCards(formData, currentOffset);
 
@@ -78,12 +73,6 @@ export default function CardsGrid({
 
         isLoadingCards.current = false;
         setIsBottomSpinnerVisible(false);
-        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-        console.log(
-          "Setted at the end of handleRenderCell - isLoadingCards is:",
-          isLoadingCards.current
-        );
-        // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
       }
     }
   };

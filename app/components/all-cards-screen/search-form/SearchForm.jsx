@@ -10,7 +10,6 @@ export default function SearchForm({
   setCurrentCards,
   setCurrentOffset,
   setRemainingCardsToFetch,
-  setIsLoading,
 }) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
 
@@ -20,22 +19,22 @@ export default function SearchForm({
   };
 
   const handleSubmit = async (e) => {
-    setIsFiltersPanelOpen(false);
-    setIsLoading(true);
     e.preventDefault();
+    setCurrentCards([]);
+    setIsFiltersPanelOpen(false);
 
     const formData = new FormData(e.target);
 
     const [initialQueriedCards, currentOffset, remainingCardsToFetch] =
       await getInitialQueriedCards(formData);
+
+    console.log("retuned initialQueriedCards", initialQueriedCards);
+    console.log("currentOffset", currentOffset);
+    console.log("retuned remainingCardsToFetch", remainingCardsToFetch);
     setCurrentCards(initialQueriedCards);
     setCurrentOffset(currentOffset);
     setRemainingCardsToFetch(remainingCardsToFetch);
-
-    setIsLoading(false);
   };
-
-
 
   const styles = {
     form: "fixed top-0 left-0 right-0 h-12 px-2 pt-2 z-10 bg-allcards-bg",

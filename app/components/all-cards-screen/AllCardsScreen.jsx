@@ -9,9 +9,6 @@ import { flushSync } from "react-dom";
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
   const isLoadingCards = useRef(true);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  console.log("isLoadingCards is:", isLoadingCards.current);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
   const [currentCards, setCurrentCards] = useState([]);
   const [currentOffset, setCurrentOffset] = useState(0);
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
@@ -27,19 +24,10 @@ export default function AllCardsScreen() {
         setRemainingCardsToFetch(remaining);
       });
       isLoadingCards.current = false;
-      // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-      console.log("isLoadingCards is from initial load:", isLoadingCards.current);
-      // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
     }
 
     initialLoad();
   }, []);
-
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTINGyyp
-  useEffect(() => {
-    console.log("currentCards:", currentCards);
-  }, [currentCards]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTINGyyp
 
   const styles = {
     container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
@@ -54,11 +42,11 @@ export default function AllCardsScreen() {
 
   return (
     <div data-component="AllCardsScreen" className={styles.container}>
-      {/* <SearchForm
+      <SearchForm
         setCurrentCards={setCurrentCards}
         setCurrentOffset={setCurrentOffset}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
-      /> */}
+      />
 
       {currentCards.length === 0 ? (
         <div className={styles.spinnerContainer}>

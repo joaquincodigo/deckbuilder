@@ -11,6 +11,10 @@ export async function getInitialQueriedCards(formData) {
   // shared
   const query = (formData.get("query") || "").trim().toLowerCase();
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  console.log("cardType=", formData.get("cardType"));
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
   // monster filters
   const attribute = formData.get("attribute");
   const monsterType = formData.get("monsterType"); // matches card.race
@@ -107,7 +111,10 @@ export async function getInitialQueriedCards(formData) {
   });
 
   const initialQueriedCards = filtered.slice(currentOffset, currentOffset + 70);
-  const remainingCardsToFetch = Math.max(filtered.length - (currentOffset + 70), 0);
+  const remainingCardsToFetch = Math.max(
+    filtered.length - (currentOffset + 70),
+    0
+  );
 
   return [initialQueriedCards, currentOffset, remainingCardsToFetch];
 }

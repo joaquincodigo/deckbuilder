@@ -9,8 +9,8 @@ export default function SearchInput() {
       data-component="SearchInput"
       type="search"
       placeholder="Search cards"
-      id="allCardsQuery"
-      name="allCardsQuery"
+      id="query"
+      name="query"
       className={styles.searchInput}
     />
   );
