@@ -38,6 +38,7 @@ export default function AllCardsScreen() {
     spinnerContainer:
       "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
     loadingText: "text-white font-bold",
+    noResults: "text-white font-bold w-full h-full flex items-center justify-center pb-20"
   };
 
   return (
@@ -48,12 +49,19 @@ export default function AllCardsScreen() {
         setRemainingCardsToFetch={setRemainingCardsToFetch}
       />
 
-      {currentCards.length === 0 ? (
+      {isLoadingCards.current && currentCards.length === 0 ? (
+        // Case 1: LOADING CARDS
         <div className={styles.spinnerContainer}>
           <Spinner size={50} color="white" />
           <p className={styles.loadingText}>Loading cards...</p>
         </div>
+      ) : currentCards.length === 0 ? (
+        // Case 2: NO MATCHING RESULTS
+        <div className={styles.noResults}>
+          <p>No matching results.</p>
+        </div>
       ) : (
+        // Case 3: SHOW RESULTS
         <CardsGrid
           currentCards={currentCards}
           setCurrentCards={setCurrentCards}
