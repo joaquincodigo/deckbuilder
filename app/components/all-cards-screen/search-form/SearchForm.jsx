@@ -3,7 +3,6 @@ import SearchButton from "./search-button/SearchButton";
 import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
 import FiltersPanel from "./filters-panel/FiltersPanel";
-import { fetchQueriedCards } from "@/app/lib/fetchCards";
 import { getInitialQueriedCards } from "@/app/actions/getInitialQueriedCards";
 
 export default function SearchForm({
@@ -28,12 +27,10 @@ export default function SearchForm({
     const [initialQueriedCards, currentOffset, remainingCardsToFetch] =
       await getInitialQueriedCards(formData);
 
-    console.log("retuned initialQueriedCards", initialQueriedCards);
-    console.log("currentOffset", currentOffset);
-    console.log("retuned remainingCardsToFetch", remainingCardsToFetch);
     setCurrentCards(initialQueriedCards);
     setCurrentOffset(currentOffset);
     setRemainingCardsToFetch(remainingCardsToFetch);
+    
   };
 
   const styles = {

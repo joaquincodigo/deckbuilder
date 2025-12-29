@@ -5,6 +5,7 @@ import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
 import { getInitialCards } from "@/app/actions/getInitialCards";
 import { flushSync } from "react-dom";
+import NoMatchingReultsIcon from "./NoMatchingResultsIcon";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
@@ -38,7 +39,8 @@ export default function AllCardsScreen() {
     spinnerContainer:
       "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
     loadingText: "text-white font-bold",
-    noResults: "text-white font-bold w-full h-full flex items-center justify-center pb-20"
+    noResults:
+      "text-white font-bold w-full h-full flex flex-col items-center justify-center pb-20",
   };
 
   return (
@@ -58,6 +60,7 @@ export default function AllCardsScreen() {
       ) : currentCards.length === 0 ? (
         // Case 2: NO MATCHING RESULTS
         <div className={styles.noResults}>
+          <NoMatchingReultsIcon />
           <p>No matching results.</p>
         </div>
       ) : (
