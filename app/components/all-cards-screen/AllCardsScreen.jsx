@@ -5,7 +5,7 @@ import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
 import { getInitialCards } from "@/app/actions/getInitialCards";
 import { flushSync } from "react-dom";
-import NoMatchingReultsIcon from "./NoMatchingResultsIcon";
+import NoMatchingResultsIcon from "./NoMatchingResultsIcon";
 
 export default function AllCardsScreen() {
   const { currentScreen } = useScreen();
@@ -60,7 +60,7 @@ export default function AllCardsScreen() {
       ) : currentCards.length === 0 ? (
         // Case 2: NO MATCHING RESULTS
         <div className={styles.noResults}>
-          <NoMatchingReultsIcon />
+          <NoMatchingResultsIcon />
           <p>No matching results.</p>
         </div>
       ) : (

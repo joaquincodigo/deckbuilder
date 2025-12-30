@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use, useRef } from "react";
 import SearchButton from "./search-button/SearchButton";
 import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
@@ -11,6 +11,9 @@ export default function SearchForm({
   setRemainingCardsToFetch,
 }) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filtersSection, setFiltersSection] = useState("");
+  const formRef = useRef()
 
   const toggleFiltersPanel = (e) => {
     e.preventDefault();
@@ -30,7 +33,6 @@ export default function SearchForm({
     setCurrentCards(initialQueriedCards);
     setCurrentOffset(currentOffset);
     setRemainingCardsToFetch(remainingCardsToFetch);
-    
   };
 
   const styles = {
@@ -38,19 +40,33 @@ export default function SearchForm({
     searchBarWrapper: "h-full w-full flex gap-x-2",
   };
 
+  const handleResetFilters = () => {
+    setSearchQuery("");
+    setIsFiltersPanelOpen(false)
+    setFiltersSection();
+    formRef.current.reset()
+  };
+
   return (
     <form
       data-component="SearchForm"
+      ref={formRef}
       onSubmit={handleSubmit}
       className={styles.form}
     >
       <div className={styles.searchBarWrapper}>
-        <SearchInput />
+        <SearchInput
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <SearchButton />
         <SearchFiltersButton onClick={toggleFiltersPanel} />
         <FiltersPanel
           isFiltersPanelOpen={isFiltersPanelOpen}
           toggleFiltersPanel={toggleFiltersPanel}
+          filtersSection={filtersSection}
+          setFiltersSection={setFiltersSection}
+          handleResetFilters={handleResetFilters}
         />
       </div>
     </form>

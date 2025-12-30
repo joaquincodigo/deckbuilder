@@ -8,9 +8,10 @@ import FiltersPanelFooter from "./filters-panel-footer/FiltersPanelFooter";
 export default function FiltersPanel({
   isFiltersPanelOpen,
   toggleFiltersPanel,
+  filtersSection,
+  setFiltersSection,
+  handleResetFilters
 }) {
-  const [filtersSection, setFiltersSection] = useState();
-
   const styles = {
     panel: `fixed top-14 right-0 overflow-hidden bg-allcards-bg text-white text-lg transition-all ease-in-out duration-150 shadow-lg flex flex-col gap-y-6 ${
       isFiltersPanelOpen ? "max-h-[90%] pt-2 px-4" : "max-h-0"
@@ -35,7 +36,7 @@ export default function FiltersPanel({
 
       {/* FOOTER */}
       {filtersSection && (
-        <FiltersPanelFooter toggleFiltersPanel={toggleFiltersPanel} />
+        <FiltersPanelFooter toggleFiltersPanel={toggleFiltersPanel} handleResetFilters={handleResetFilters} />
       )}
     </div>
   );
