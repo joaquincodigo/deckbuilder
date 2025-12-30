@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { flushSync } from "react-dom";
 import { useViewportWidth } from "@/app/hooks/useViewportSize";
-import { fetchAdditionalCards } from "@/app/lib/fetchCards";
 import { Grid } from "react-window";
 import CardCell from "./CardCell";
 import Spinner from "../../ui/Spinner";
+import { getQueriedCards } from "@/app/actions/getQueriedCards";
 
 export default function CardsGrid({
   formData,
@@ -49,6 +49,12 @@ export default function CardsGrid({
     return rowHeight;
   };
 
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  useEffect(() => {
+    console.log("form data is:", formData);
+  }, [formData]);
+  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+
   const handleCellsRendered = async (visibleCells, allCells) => {
     if (isLoadingCards.current) return;
 
@@ -57,12 +63,12 @@ export default function CardsGrid({
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       if (remainingCardsToFetch > 0) {
-
         isLoadingCards.current = true;
         setIsBottomSpinnerVisible(true);
-
-        const [additionalCards, remainingCardsToFetch] =
-          await fetchAdditionalCards(formData, currentOffset);
+        const [additionalCards, remainingCardsToFetch] = await getQueriedCards(
+          formData,
+          currentOffset
+        );
 
         // We force a render here to prevent another fetch mid-render
         // by onCellsRendered triggering too quickly

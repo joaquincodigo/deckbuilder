@@ -3,7 +3,7 @@ import SearchButton from "./search-button/SearchButton";
 import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
 import FiltersPanel from "./filters-panel/FiltersPanel";
-import { getInitialQueriedCards } from "@/app/actions/getInitialQueriedCards";
+import { getQueriedCards } from "@/app/actions/getQueriedCards";
 
 export default function SearchForm({
   setCurrentCards,
@@ -13,7 +13,7 @@ export default function SearchForm({
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filtersSection, setFiltersSection] = useState("");
-  const formRef = useRef()
+  const formRef = useRef();
 
   const toggleFiltersPanel = (e) => {
     e.preventDefault();
@@ -27,10 +27,10 @@ export default function SearchForm({
 
     const formData = new FormData(e.target);
 
-    const [initialQueriedCards, currentOffset, remainingCardsToFetch] =
-      await getInitialQueriedCards(formData);
+    const [queriedCards, currentOffset, remainingCardsToFetch] =
+      await getQueriedCards(formData);
 
-    setCurrentCards(initialQueriedCards);
+    setCurrentCards(queriedCards);
     setCurrentOffset(currentOffset);
     setRemainingCardsToFetch(remainingCardsToFetch);
   };
@@ -42,9 +42,9 @@ export default function SearchForm({
 
   const handleResetFilters = () => {
     setSearchQuery("");
-    setIsFiltersPanelOpen(false)
-    setFiltersSection();
-    formRef.current.reset()
+    setIsFiltersPanelOpen(false);
+    formRef.current.reset();
+    setFiltersSection("");
   };
 
   return (

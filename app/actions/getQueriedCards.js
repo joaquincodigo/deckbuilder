@@ -2,34 +2,30 @@
 
 import { getCardData } from "../lib/getCardData";
 
-export async function getInitialQueriedCards(formData) {
+export async function getQueriedCards(formData, currentOffset) {
   const allCards = getCardData();
 
-  const cardType = formData.get("cardType") || ""; // '', 'monster', 'spell', 'trap'
-  const currentOffset = Number(formData.get("offset") || 0);
+  const cardType = formData?.get("cardType") || ""; // '', 'monster', 'spell', 'trap'
+  const offset = Number(currentOffset || 0);
 
   // shared
-  const query = (formData.get("query") || "").trim().toLowerCase();
-
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  console.log("cardType=", formData.get("cardType"));
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
+  const query = (formData?.get("query") || "").trim().toLowerCase();
 
   // monster filters
-  const attribute = formData.get("attribute");
-  const monsterType = formData.get("monsterType"); // matches card.race
-  const levelCmp = formData.get("levelComparisonSelect");
-  const levelVal = formData.get("level");
+  const attribute = formData?.get("attribute");
+  const monsterType = formData?.get("monsterType"); // matches card.race
+  const levelCmp = formData?.get("levelComparisonSelect");
+  const levelVal = formData?.get("level");
 
-  const atkCmp = formData.get("attackComparisonSelect");
-  const atkVal = formData.get("atk");
+  const atkCmp = formData?.get("attackComparisonSelect");
+  const atkVal = formData?.get("atk");
 
-  const defCmp = formData.get("defenseComparisonSelect");
-  const defVal = formData.get("def");
+  const defCmp = formData?.get("defenseComparisonSelect");
+  const defVal = formData?.get("def");
 
   // spell/trap filters
-  const spellType = formData.get("spellType");
-  const trapType = formData.get("trapType");
+  const spellType = formData?.get("spellType");
+  const trapType = formData?.get("trapType");
 
   function cmp(value, target, mode) {
     if (!target) return true;
@@ -110,11 +106,9 @@ export async function getInitialQueriedCards(formData) {
     return true;
   });
 
-  const initialQueriedCards = filtered.slice(currentOffset, currentOffset + 70);
-  const remainingCardsToFetch = Math.max(
-    filtered.length - (currentOffset + 70),
-    0
-  );
+  const queriedCards = filtered.slice(offset, offset + 70);
+  const newOffset = offset + 70;
+  const remainingCardsToFetch = Math.max(filtered.length - (offset + 70), 0);
 
-  return [initialQueriedCards, currentOffset, remainingCardsToFetch];
+  return [queriedCards, newOffset, remainingCardsToFetch];
 }
