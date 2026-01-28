@@ -8,13 +8,13 @@ export default function AttributeSelector() {
 
   const attributes = [
     "any",
-    "Dark",
-    "Divine",
-    "Eart",
-    "Fire",
-    "Light",
-    "Water",
-    "Wind",
+    "DARK",
+    "DIVINE",
+    "EARTH",
+    "FIRE",
+    "LIGHT",
+    "WATER",
+    "WIND",
   ];
 
   return (
@@ -23,7 +23,7 @@ export default function AttributeSelector() {
         Attribute
       </label>
       <select
-        name="atribute"
+        name="attribute"
         id="attribute"
         defaultValue="any"
         className={styles.attributeSelector}

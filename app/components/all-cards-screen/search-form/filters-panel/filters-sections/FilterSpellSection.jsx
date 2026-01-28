@@ -1,5 +1,6 @@
 export default function FiltersSpellSection() {
   const spellTypes = [
+    "any",
     "Normal",
     "Continuous",
     "Equip",

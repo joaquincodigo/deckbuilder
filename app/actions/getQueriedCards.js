@@ -3,6 +3,7 @@
 import { getCardData } from "../lib/getCardData";
 
 export async function getQueriedCards(formData, currentOffset) {
+  console.log("RECIEVED FORM DATA IN THE SERVER IS:", formData);
   const allCards = getCardData();
 
   const cardType = formData?.get("cardType") || ""; // '', 'monster', 'spell', 'trap'
@@ -12,6 +13,7 @@ export async function getQueriedCards(formData, currentOffset) {
   const query = (formData?.get("query") || "").trim().toLowerCase();
 
   // monster filters
+  const category = formData?.get("category"); // "any" | "Normal" | "Effect" | "Fusion" | "Ritual"
   const attribute = formData?.get("attribute");
   const monsterType = formData?.get("monsterType"); // matches card.race
   const levelCmp = formData?.get("levelComparisonSelect");
@@ -47,6 +49,13 @@ export async function getQueriedCards(formData, currentOffset) {
     return "unknown";
   }
 
+  function getMonsterCategory(type) {
+    const parts = type.split(" ");
+    // Normal Monster, Effect Monster, Fusion Monster, Ritual Monster
+    // Flip Effect Monster -> ["Flip","Effect","Monster"]
+    return parts[0] === "Flip" ? parts[1] : parts[0];
+  }
+
   const filtered = allCards.filter((card) => {
     const kind = getCardKind(card);
 
@@ -63,11 +72,17 @@ export async function getQueriedCards(formData, currentOffset) {
     // MONSTER
     if (kind === "monster") {
       if (cardType === "" || cardType === "monster") {
+
+        if (category && category !== "any") {
+          const cardCategory = getMonsterCategory(card.type);
+          if (cardCategory !== category) return false;
+        }
+
         if (attribute && attribute !== "any") {
           if (card.attribute !== attribute) return false;
         }
 
-        if (monsterType && monsterType !== "any") {
+        if (monsterType && monsterTyppe !== "any") {
           if (card.race !== monsterType) return false;
         }
 
