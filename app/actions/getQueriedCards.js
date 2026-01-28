@@ -82,7 +82,7 @@ export async function getQueriedCards(formData, currentOffset) {
           if (card.attribute !== attribute) return false;
         }
 
-        if (monsterType && monsterTyppe !== "any") {
+        if (monsterType && monsterType !== "any") {
           if (card.race !== monsterType) return false;
         }
 

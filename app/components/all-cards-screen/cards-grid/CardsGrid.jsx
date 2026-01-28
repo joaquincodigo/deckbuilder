@@ -49,12 +49,6 @@ export default function CardsGrid({
     return rowHeight;
   };
 
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-  useEffect(() => {
-    console.log("form data is:", formData);
-  }, [formData]);
-  // TESTING-TESTING-TESTING-TESTING-TESTING-TESTING
-
   const handleCellsRendered = async (visibleCells, allCells) => {
     if (isLoadingCards.current) return;
 

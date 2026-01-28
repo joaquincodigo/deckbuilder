@@ -9,6 +9,7 @@ export default function SearchForm({
   setCurrentCards,
   setCurrentOffset,
   setRemainingCardsToFetch,
+  isLoadingCards,
 }) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -22,6 +23,7 @@ export default function SearchForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    isLoadingCards.current = true;
     setCurrentCards([]);
     setIsFiltersPanelOpen(false);
 

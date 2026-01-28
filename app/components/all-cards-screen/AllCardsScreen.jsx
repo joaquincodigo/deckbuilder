@@ -14,6 +14,10 @@ export default function AllCardsScreen() {
   const [currentOffset, setCurrentOffset] = useState(0);
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
 
+  useEffect(() => {
+    console.log("IS LOADING CARDS IS ", isLoadingCards.current);
+  }, [isLoadingCards]);
+
   // Initial Load
   useEffect(() => {
     async function initialLoad() {
@@ -49,6 +53,7 @@ export default function AllCardsScreen() {
         setCurrentCards={setCurrentCards}
         setCurrentOffset={setCurrentOffset}
         setRemainingCardsToFetch={setRemainingCardsToFetch}
+        isLoadingCards={isLoadingCards}
       />
 
       {isLoadingCards.current && currentCards.length === 0 ? (
