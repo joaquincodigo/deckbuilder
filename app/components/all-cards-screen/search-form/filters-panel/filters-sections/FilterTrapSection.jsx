@@ -1,5 +1,5 @@
 export default function FilterTrapSection() {
-  const trapTypes = ["Normal", "Continuous", "Counter"];
+  const trapTypes = ["any", "Normal", "Continuous", "Counter"];
 
   const styles = {
     FiltersTrapSection: "grid grid-cols-12 auto-rows-[2rem] gap-y-4",
