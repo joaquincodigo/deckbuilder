@@ -57,6 +57,8 @@ export default function CardsGrid({
     // Trigger fetching more cards when the user is 5 rows before the last one loaded
     if (visibleCells.rowStopIndex >= allCells.rowStopIndex - threshold) {
       if (remainingCardsToFetch > 0) {
+      console.log("FETCHING ADDITIONAL CARDS");
+      console.log("FORM DATA:", formData);
         isLoadingCards.current = true;
         setIsBottomSpinnerVisible(true);
         const [additionalCards, remainingCardsToFetch] = await getQueriedCards(

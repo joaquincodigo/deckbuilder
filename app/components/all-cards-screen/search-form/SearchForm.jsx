@@ -1,9 +1,11 @@
-import { useState, useEffect, use, useRef } from "react";
+import { useState, useRef } from "react";
 import SearchButton from "./search-button/SearchButton";
 import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
 import FiltersPanel from "./filters-panel/FiltersPanel";
 import { getQueriedCards } from "@/app/actions/getQueriedCards";
+import { getInitialCards } from "@/app/actions/getInitialCards";
+import { flushSync } from "react-dom";
 
 export default function SearchForm({
   setCurrentCards,
@@ -35,6 +37,7 @@ export default function SearchForm({
     setCurrentCards(queriedCards);
     setCurrentOffset(currentOffset);
     setRemainingCardsToFetch(remainingCardsToFetch);
+    isLoadingCards.current = false;
   };
 
   const styles = {
@@ -42,11 +45,21 @@ export default function SearchForm({
     searchBarWrapper: "h-full w-full flex gap-x-2",
   };
 
-  const handleResetFilters = () => {
+  const handleResetFilters = async () => {
+    isLoadingCards.current = true;
     setSearchQuery("");
     setIsFiltersPanelOpen(false);
     formRef.current.reset();
     setFiltersSection("");
+
+    // Initial load
+    const [initial72Cards, offset, remaining] = await getInitialCards();
+    flushSync(() => {
+      setCurrentCards(initial72Cards);
+      setCurrentOffset(offset);
+      setRemainingCardsToFetch(remaining);
+    });
+    isLoadingCards.current = false;
   };
 
   return (

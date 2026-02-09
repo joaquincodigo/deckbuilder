@@ -15,8 +15,14 @@ export default function AllCardsScreen() {
   const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
 
   useEffect(() => {
-    console.log("IS LOADING CARDS IS ", isLoadingCards.current);
+    console.log("CurrentCards:", currentCards);
   }, [isLoadingCards]);
+  useEffect(() => {
+    console.log("currentOffset:", currentOffset);
+  }, [currentCards]);
+  useEffect(() => {
+    console.log("remainingCardsToFetch:", remainingCardsToFetch);
+  }, [remainingCardsToFetch]);
 
   // Initial Load
   useEffect(() => {
