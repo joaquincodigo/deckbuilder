@@ -1,43 +1,31 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import SearchButton from "./search-button/SearchButton";
 import SearchFiltersButton from "./filters-button/FiltersButton";
 import SearchInput from "./search-input/SearchInput";
 import FiltersPanel from "./filters-panel/FiltersPanel";
-import { getQueriedCards } from "@/app/actions/getQueriedCards";
-import { getInitialCards } from "@/app/actions/getInitialCards";
-import { flushSync } from "react-dom";
 
-export default function SearchForm({
-  setCurrentCards,
-  setCurrentOffset,
-  setRemainingCardsToFetch,
-  isLoadingCards,
-}) {
+export default function SearchForm({ searchFormState, setSearchFormState }) {
   const [isFiltersPanelOpen, setIsFiltersPanelOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filtersSection, setFiltersSection] = useState("");
-  const formRef = useRef();
 
   const toggleFiltersPanel = (e) => {
     e.preventDefault();
     setIsFiltersPanelOpen((prev) => !prev);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    isLoadingCards.current = true;
-    setCurrentCards([]);
-    setIsFiltersPanelOpen(false);
 
-    const formData = new FormData(e.target);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
-    const [queriedCards, currentOffset, remainingCardsToFetch] =
-      await getQueriedCards(formData);
+    setSearchFormState(data); // formState as plain JS object 
+  };
 
-    setCurrentCards(queriedCards);
-    setCurrentOffset(currentOffset);
-    setRemainingCardsToFetch(remainingCardsToFetch);
-    isLoadingCards.current = false;
+  const handleResetFilters = () => {
+    return;
   };
 
   const styles = {
@@ -45,27 +33,9 @@ export default function SearchForm({
     searchBarWrapper: "h-full w-full flex gap-x-2",
   };
 
-  const handleResetFilters = async () => {
-    isLoadingCards.current = true;
-    setSearchQuery("");
-    setIsFiltersPanelOpen(false);
-    formRef.current.reset();
-    setFiltersSection("");
-
-    // Initial load
-    const [initial72Cards, offset, remaining] = await getInitialCards();
-    flushSync(() => {
-      setCurrentCards(initial72Cards);
-      setCurrentOffset(offset);
-      setRemainingCardsToFetch(remaining);
-    });
-    isLoadingCards.current = false;
-  };
-
   return (
     <form
       data-component="SearchForm"
-      ref={formRef}
       onSubmit={handleSubmit}
       className={styles.form}
     >

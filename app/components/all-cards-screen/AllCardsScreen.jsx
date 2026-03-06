@@ -1,91 +1,100 @@
-import { useEffect, useState, useRef } from "react";
-import { useScreen } from "@/app/context/ScreenContext";
+import { useState, useMemo } from "react";
 import CardsGrid from "./cards-grid/CardsGrid";
-import Spinner from "../ui/Spinner";
 import SearchForm from "./search-form/SearchForm";
-import { getInitialCards } from "@/app/actions/getInitialCards";
-import { flushSync } from "react-dom";
-import NoMatchingResultsIcon from "./NoMatchingResultsIcon";
+import filterCards from "@/app/lib/filterCards";
+// import Spinner from "../ui/Spinner";
+// import SearchForm from "./search-form/SearchForm";
+// import NoMatchingResultsIcon from "./NoMatchingResultsIcon";
 
-export default function AllCardsScreen() {
-  const { currentScreen } = useScreen();
-  const isLoadingCards = useRef(true);
-  const [currentCards, setCurrentCards] = useState([]);
-  const [currentOffset, setCurrentOffset] = useState(0);
-  const [remainingCardsToFetch, setRemainingCardsToFetch] = useState(0);
+import DeckScreen from "../deck-screen/DeckScreen";
 
-  useEffect(() => {
-    console.log("CurrentCards:", currentCards);
-  }, [isLoadingCards]);
-  useEffect(() => {
-    console.log("currentOffset:", currentOffset);
-  }, [currentCards]);
-  useEffect(() => {
-    console.log("remainingCardsToFetch:", remainingCardsToFetch);
-  }, [remainingCardsToFetch]);
+// export default function AllCardsScreen({ cards }) {
+//   const { currentScreen } = useScreen();
+//   const isLoadingCards = useRef(true);
 
-  // Initial Load
-  useEffect(() => {
-    async function initialLoad() {
-      const [initial72Cards, offset, remaining] = await getInitialCards();
+//   const styles = {
+//     container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
+//       currentScreen === "AllCardsScreen"
+//         ? "opacity-100 visible"
+//         : "opacity-0 invisible"
+//     }`,
+//     spinnerContainer:
+//       "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
+//     loadingText: "text-white font-bold",
+//     noResults:
+//       "text-white font-bold w-full h-full flex flex-col items-center justify-center pb-20",
+//   };
 
-      flushSync(() => {
-        setCurrentCards(initial72Cards);
-        setCurrentOffset(offset);
-        setRemainingCardsToFetch(remaining);
-      });
-      isLoadingCards.current = false;
-    }
+//   return (
+//     <div data-component="AllCardsScreen" className={styles.container}>
+//       <SearchForm
+//         setCurrentCards={setCards}
+//         setCurrentOffset={setCurrentOffset}
+//         setRemainingCardsToFetch={setRemainingCardsToFetch}
+//         isLoadingCards={isLoadingCards}
+//       />
 
-    initialLoad();
-  }, []);
+//       {isLoadingCards.current && cards.length === 0 ? (
+//         // Case 1: LOADING CARDS
+//         <div className={styles.spinnerContainer}>
+//           <Spinner size={50} color="white" />
+//           <p className={styles.loadingText}>Loading cards...</p>
+//         </div>
+//       ) : cards.length === 0 ? (
+//         // Case 2: NO MATCHING RESULTS
+//         <div className={styles.noResults}>
+//           <NoMatchingResultsIcon />
+//           <p>No matching results.</p>
+//         </div>
+//       ) : (
+//         // Case 3: SHOW RESULTS
+//         <CardsGrid
+//           currentCards={cards}
+//           setCurrentCards={setCards}
+//           remainingCardsToFetch={remainingCardsToFetch}
+//           setRemainingCardsToFetch={setRemainingCardsToFetch}
+//           currentOffset={currentOffset}
+//           setCurrentOffset={setCurrentOffset}
+//           isLoadingCards={isLoadingCards}
+//         />
+//       )}
+//     </div>
+//   );
+// }
+
+export default function AllCardsScreen({
+  allCards,
+  deck,
+  moveCardToDeck,
+  screen,
+}) {
+  const [searchFormState, setSearchFormState] = useState({});
+
+  const filteredCards = useMemo(() => {
+    const filtered = filterCards(searchFormState, allCards);
+    return filtered;
+  }, [allCards, searchFormState]);
 
   const styles = {
-    container: `w-full h-full bg-allcards-bg absolute inset-0 overflow-hidden px-2 pb-2 pt-14 ${
-      currentScreen === "AllCardsScreen"
-        ? "opacity-100 visible"
-        : "opacity-0 invisible"
+    AllCardsScreen: `bg-blue-900 text-white overflow-y-auto ${
+      screen === "allCards"
+        ? "opacity-100 visible h-full w-full"
+        : "opacity-0 invisible w-0 h-0"
     }`,
-    spinnerContainer:
-      "w-full h-full flex flex-col gap-y-2 items-center justify-center pb-20",
-    loadingText: "text-white font-bold",
-    noResults:
-      "text-white font-bold w-full h-full flex flex-col items-center justify-center pb-20",
   };
 
   return (
-    <div data-component="AllCardsScreen" className={styles.container}>
+    <div className={styles.AllCardsScreen}>
       <SearchForm
-        setCurrentCards={setCurrentCards}
-        setCurrentOffset={setCurrentOffset}
-        setRemainingCardsToFetch={setRemainingCardsToFetch}
-        isLoadingCards={isLoadingCards}
+        searchFormState={searchFormState}
+        setSearchFormState={setSearchFormState}
       />
 
-      {isLoadingCards.current && currentCards.length === 0 ? (
-        // Case 1: LOADING CARDS
-        <div className={styles.spinnerContainer}>
-          <Spinner size={50} color="white" />
-          <p className={styles.loadingText}>Loading cards...</p>
-        </div>
-      ) : currentCards.length === 0 ? (
-        // Case 2: NO MATCHING RESULTS
-        <div className={styles.noResults}>
-          <NoMatchingResultsIcon />
-          <p>No matching results.</p>
-        </div>
-      ) : (
-        // Case 3: SHOW RESULTS
-        <CardsGrid
-          currentCards={currentCards}
-          setCurrentCards={setCurrentCards}
-          remainingCardsToFetch={remainingCardsToFetch}
-          setRemainingCardsToFetch={setRemainingCardsToFetch}
-          currentOffset={currentOffset}
-          setCurrentOffset={setCurrentOffset}
-          isLoadingCards={isLoadingCards}
-        />
-      )}
+      <CardsGrid
+        filteredCards={filteredCards}
+        deck={deck}
+        moveCardToDeck={moveCardToDeck}
+      />
     </div>
   );
 }

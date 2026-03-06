@@ -1,6 +1,6 @@
 export default function AllCardsTabIcon() {
   const styles = {
-    icon: "w-11 h-11",
+    icon: "w-9 h-9",
   };
 
   return (

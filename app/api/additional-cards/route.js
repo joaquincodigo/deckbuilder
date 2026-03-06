@@ -1,4 +1,4 @@
-import { getCardData } from "@/app/lib/getCardData";
+import { getAllCards } from "@/app/actions/getAllCards";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
@@ -11,7 +11,7 @@ export async function GET(request) {
   const LIMIT = 72;
 
   // Fetch data (await in case getCardData is async) and guard
-  const cardData = getCardData();
+  const cardData = getAllCards();
 
   // Search (guard card.name)
   const queryResult = cardData.filter(

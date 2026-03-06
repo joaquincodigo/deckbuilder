@@ -1,4 +1,4 @@
-import { getCardData } from "@/app/lib/getCardData";
+import { getAllCards } from "@/app/actions/getAllCards";
 
 export async function GET(request) {
   
@@ -7,7 +7,7 @@ export async function GET(request) {
   const query = searchParams.get("query")?.toLowerCase() || "";
 
   // Search
-  const cardData = getCardData();
+  const cardData = getAllCards();
   const queryResult = cardData.filter((card) =>
     card.name.toLowerCase().includes(query)
   );

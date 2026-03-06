@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export function getCardData() {
+export function getAllCards() {
   const filePath = path.join(
     process.cwd(),
     "app",

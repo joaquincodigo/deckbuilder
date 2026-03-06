@@ -1,26 +1,14 @@
-"use client";
+import { getAllCards } from "./actions/getAllCards";
+import { getAllDecks } from "./actions/getAllDecks";
+import ClientWrapper from "./components/client-wrapper/ClientWrapper";
 
-import { ScreenProvider } from "./context/ScreenContext";
-import ScreensContainer from "./components/ScreensContainer";
-import DeckTab from "./components/tabs/deck-tab/DeckTab";
-import AllCardsTab from "./components/tabs/all-cards-tab/AllCardsTab";
-import TabsBackground from "./components/tabs/TabsBackground";
-
-export default function Page() {
-  const styles = {
-    page: "h-full w-screen pb-16 flex flex-col bg-purple-500",
-  };
+export default async function Page() {
+  const allDecks = await getAllDecks();
+  const allCards = await getAllCards();
 
   return (
-    <ScreenProvider>
-      <div data-component="Page" className={styles.page}>
-
-        <ScreensContainer />
-        <DeckTab />
-        <AllCardsTab />
-        <TabsBackground />
-
-      </div>
-    </ScreenProvider>
+    <div data-component="Page">
+      <ClientWrapper allCards={allCards} allDecks={allDecks} />
+    </div>
   );
 }

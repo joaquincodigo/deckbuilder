@@ -1,58 +1,55 @@
-"use server";
-
-import { getCardData } from "../lib/getCardData";
-
-export async function getQueriedCards(formData, currentOffset) {
-  console.log("RECIEVED FORM DATA IN THE SERVER IS:", formData);
-  const allCards = getCardData();
-
-  const cardType = formData?.get("cardType") || ""; // '', 'monster', 'spell', 'trap'
-  const offset = Number(currentOffset || 0);
+export default function filterCards(formData, allCards) {
+  const cardType = formData.cardType || ""; // '', 'monster', 'spell', 'trap'
 
   // shared
-  const query = (formData?.get("query") || "").trim().toLowerCase();
+  const query = (formData?.query || "").trim().toLowerCase();
 
   // monster filters
-  const category = formData?.get("category"); // "any" | "Normal" | "Effect" | "Fusion" | "Ritual"
-  const attribute = formData?.get("attribute");
-  const monsterType = formData?.get("monsterType"); // matches card.race
-  const levelCmp = formData?.get("levelComparisonSelect");
-  const levelVal = formData?.get("level");
+  const category = formData?.category; // "any" | "Normal" | "Effect" | "Fusion" | "Ritual"
+  const attribute = formData?.attribute;
+  const monsterType = formData?.monsterType; // matches card.race
+  const levelCmp = formData?.levelComparisonSelect;
+  const levelVal = formData?.level;
 
-  const atkCmp = formData?.get("attackComparisonSelect");
-  const atkVal = formData?.get("atk");
+  const atkCmp = formData?.attackComparisonSelect;
+  const atkVal = formData?.atk;
 
-  const defCmp = formData?.get("defenseComparisonSelect");
-  const defVal = formData?.get("def");
+  const defCmp = formData?.defenseComparisonSelect;
+  const defVal = formData?.def;
 
   // spell/trap filters
-  const spellType = formData?.get("spellType");
-  const trapType = formData?.get("trapType");
+  const spellType = formData?.spellType;
+  const trapType = formData?.trapType;
 
   function cmp(value, target, mode) {
     if (!target) return true;
+
     const v = Number(value);
     const t = Number(target);
+
     if (Number.isNaN(v) || Number.isNaN(t)) return true;
 
     if (mode === "equal") return v === t;
     if (mode === "less") return v < t;
     if (mode === "greater") return v > t;
+
     return true;
   }
 
   function getCardKind(card) {
     const t = card.type.toLowerCase();
+
     if (t.includes("monster")) return "monster";
     if (t.includes("spell")) return "spell";
     if (t.includes("trap")) return "trap";
+
     return "unknown";
   }
 
   function getMonsterCategory(type) {
     const parts = type.split(" ");
-    // Normal Monster, Effect Monster, Fusion Monster, Ritual Monster
-    // Flip Effect Monster -> ["Flip","Effect","Monster"]
+    // "Normal Monster", "Effect Monster", "Fusion Monster", etc
+    // "Flip Effect Monster" -> ["Flip","Effect","Monster"]
     return parts[0] === "Flip" ? parts[1] : parts[0];
   }
 
@@ -66,13 +63,13 @@ export async function getQueriedCards(formData, currentOffset) {
     if (query) {
       const name = card.name.toLowerCase();
       const desc = card.desc.toLowerCase();
+
       if (!name.includes(query) && !desc.includes(query)) return false;
     }
 
     // MONSTER
     if (kind === "monster") {
       if (cardType === "" || cardType === "monster") {
-
         if (category && category !== "any") {
           const cardCategory = getMonsterCategory(card.type);
           if (cardCategory !== category) return false;
@@ -121,9 +118,5 @@ export async function getQueriedCards(formData, currentOffset) {
     return true;
   });
 
-  const queriedCards = filtered.slice(offset, offset + 70);
-  const newOffset = offset + 70;
-  const remainingCardsToFetch = Math.max(filtered.length - (offset + 70), 0);
-
-  return [queriedCards, newOffset, remainingCardsToFetch];
+  return filtered;
 }

@@ -1,7 +1,7 @@
-import { getCardData } from "@/app/lib/getCardData";
+import { getAllCards } from "@/app/actions/getAllCards";
 
 export async function GET() {
-  const cardData = getCardData();
+  const cardData = getAllCards();
   const first72 = cardData.slice(0, 72);
   const remainingCount = cardData.length - 72;
 
