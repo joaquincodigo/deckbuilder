@@ -7,7 +7,7 @@ export default function DeckCell({ card }) {
 	const [isCardLoading, setIsCardLoading] = useState(true);
 
 	const styles = {
-		DeckCell: "relative aspect-[59/86] border bg-pink-500"
+		DeckCell: "relative aspect-[59/86]"
 	}
 
 	return (

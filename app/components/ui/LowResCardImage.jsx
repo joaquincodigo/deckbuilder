@@ -9,7 +9,7 @@ export default function LowResCardImage({ card, setIsCardLoading }) {
 			className="w-full h-full"
 			sizes="100%"
 			src={`/card_images/lowres/${card.id}.webp`}
-			alt={card.name}
+			alt={card.name || "Loading card image..."}
 			onLoad={() => setIsCardLoading(false)}
 			fill
 			style={{ objectFit: "fill" }}

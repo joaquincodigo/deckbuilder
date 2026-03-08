@@ -4,13 +4,11 @@ import DeckCell from "./DeckCell"
 export default function DeckGrid({ deck }) {
 
 	const styles = {
-		DeckGrid: "w-full bg-pink-100 grid grid-cols-3", // TODO change cols amount per device size
+		DeckGrid: "relative w-full h-full px-2 grid grid-cols-3", // TODO change cols amount per device size
+
+    // gridWrapper: " bg-allcards-bg px-2",
 	}
-
-	// useEffect(() => {
-	// 	console.log("deck is:", deck);
-	// }, [deck]);
-
+	
 	return (
 		<div data-component="DeckGrid" className={styles.DeckGrid}>
 			{deck.cards.map(c => (
