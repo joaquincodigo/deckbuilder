@@ -38,8 +38,6 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
 
   const styles = {
     gridWrapper: "relative w-full h-full bg-allcards-bg px-2",
-    spinner:
-      "absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/40 rounded-full p-0.5",
   };
 
   return (

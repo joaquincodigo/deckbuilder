@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CardSelectorButton from "./CardSelectorButton";
-import CardModal from "@/app/components/modals/CardModal";
+import CardModal from "../../../../ui/modals/CardModal";
 
 export default function CardSelector({ card }) {
   const [isCardModalVisible, setIsCardModalVisible] = useState(false);
