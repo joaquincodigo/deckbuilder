@@ -39,6 +39,7 @@ export default function FiltersPanel({
         <FiltersPanelFooter
           setIsFiltersPanelOpen={setIsFiltersPanelOpen}
           setSearchFormState={setSearchFormState}
+          setFiltersSection={setFiltersSection}
           formRef={formRef}
         />
       )}

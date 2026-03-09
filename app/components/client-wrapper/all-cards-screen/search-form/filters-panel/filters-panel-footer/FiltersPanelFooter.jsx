@@ -4,6 +4,7 @@ import ResetFiltersButton from "../reset-filters-button/ResetFiltersButton";
 export default function FiltersPanelFooter({
   setIsFiltersPanelOpen,
   setSearchFormState,
+  setFiltersSection,
   formRef,
 }) {
   const styles = {
@@ -12,8 +13,9 @@ export default function FiltersPanelFooter({
 
   const handleFiltersReset = () => {
     setIsFiltersPanelOpen(false);
-    formRef.current.reset();
     setSearchFormState({});
+    formRef.current.reset();
+    setFiltersSection("");
   };
 
   return (
