@@ -8,7 +8,7 @@ export default function FiltersPanelHeaderButton({
 }) {
   const styles = {
     wrapper: "flex flex-col w-14",
-    btn: `w-full aspect-[59/86] relative outline outline-btn-border transition-[width,height] duration-75 active:scale-95 mb-0.5 ${
+    btn: `w-full aspect-[59/86] relative outline outline-btn-border transition-[width,height] duration-75 active:scale-95 ${
       isSelected ? "outline-4" : "outline-1"
     }`,
     label: "flex justify-center",

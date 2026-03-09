@@ -21,11 +21,11 @@ export default function SearchForm({ searchFormState, setSearchFormState }) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    setSearchFormState(data); // formState as plain JS object 
+    setSearchFormState(data); // formState as plain JS object
   };
 
   const handleResetFilters = () => {
-    return;
+    setIsFiltersPanelOpen(false);
   };
 
   const styles = {
@@ -48,10 +48,9 @@ export default function SearchForm({ searchFormState, setSearchFormState }) {
         <SearchFiltersButton onClick={toggleFiltersPanel} />
         <FiltersPanel
           isFiltersPanelOpen={isFiltersPanelOpen}
-          toggleFiltersPanel={toggleFiltersPanel}
+          setIsFiltersPanelOpen={setIsFiltersPanelOpen}
           filtersSection={filtersSection}
           setFiltersSection={setFiltersSection}
-          handleResetFilters={handleResetFilters}
         />
       </div>
     </form>

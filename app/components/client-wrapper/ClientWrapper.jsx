@@ -28,6 +28,7 @@ export default function ClientWrapper({ allCards, allDecks }) {
     <>
       <main className={styles.main}>
         <div className={styles.contentContainer}>
+          
           <DeckScreen
             allDecks={allDecks}
             deck={deck}
@@ -41,6 +42,7 @@ export default function ClientWrapper({ allCards, allDecks }) {
             moveCardToDeck={addCardToDeck}
             screen={screen}
           />
+
         </div>
       </main>
       <nav>

@@ -49,7 +49,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
         columnWidth={getColumnWidth()}
         rowCount={getRowCount()}
         rowHeight={getRowHeight()}
-        overscanCount={11}
+        overscanCount={8}
         cellComponent={CardCell}
         cellProps={{
           filteredCards,

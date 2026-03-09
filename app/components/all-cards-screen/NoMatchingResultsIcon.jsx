@@ -5,9 +5,9 @@ export default function NoMatchingResultsIcon() {
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
-        strokeWidth={1.8}
-        stroke="gray"
-        className="size-8"
+        strokeWidth={1.1}
+        stroke="white"
+        className="size-9"
       >
         <path
           strokeLinecap="round"
