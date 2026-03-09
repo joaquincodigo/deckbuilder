@@ -4,7 +4,7 @@ import path from "path";
 export function getAllCards() {
   const filePath = path.join(
     process.cwd(),
-    "app",
+    "public",
     "data",
     "all_goat_cards.json"
   );

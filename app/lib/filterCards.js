@@ -1,4 +1,6 @@
 export default function filterCards(formData, allCards) {
+  if (!formData) return allCards;
+
   const cardType = formData.cardType || ""; // '', 'monster', 'spell', 'trap'
 
   // shared
