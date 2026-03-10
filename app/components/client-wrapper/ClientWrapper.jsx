@@ -26,7 +26,7 @@ export default function ClientWrapper({ allCards, premadeDecks }) {
 
   return (
     <>
-      <main className={styles.main}>
+      <main data-component="ClientWrapper" className={styles.main}>
         <div className={styles.contentContainer}>
           
           <DeckScreen

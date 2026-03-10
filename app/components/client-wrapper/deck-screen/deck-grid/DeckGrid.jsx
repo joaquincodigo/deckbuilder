@@ -3,7 +3,7 @@ import DeckCell from "./DeckCell"
 export default function DeckGrid({ deck }) {
 
 	const styles = {
-		DeckGrid: "relative w-full h-full px-2 grid grid-cols-3", // TODO change cols amount per device size
+		DeckGrid: "fixed top-16 bottom-16 overflow-y-auto w-full h-full grid grid-cols-3 px-2", // TODO change cols amount per device size
 	}
 	return (
 		<div data-component="DeckGrid" className={styles.DeckGrid}>
