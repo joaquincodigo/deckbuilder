@@ -3,13 +3,13 @@ export default function SearchInput({ searchFormState, formRef }) {
     searchInput: "flex-1 p-2 text-lg focus:outline-none focus:ring-0",
   };
 
-  // const handleChange = (e) => {
-  //   const inputText = e.target.value;
-  //   setSearchFormState((prev) => ({
-  //     ...prev,
-  //     query: inputText,
-  //   }));
-  // };
+  const handleChange = (e) => {
+    const inputText = e.target.value;
+    setSearchFormState((prev) => ({
+      ...prev,
+      query: inputText,
+    }));
+  };
 
   return (
     <input

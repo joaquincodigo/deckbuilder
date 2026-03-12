@@ -13,7 +13,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
 
   const getColumnWidth = () => {
     const viewportWidth = useViewportWidth();
-    const gridArea = viewportWidth - 16.5; // Tailwind p-2 = p-[8px]
+    const gridArea = viewportWidth - 16; // Tailwind p-2 = p-[8px]
     return gridArea / getColumnCount();
   };
 
@@ -36,7 +36,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
   };
 
   const styles = {
-    gridWrapper: "relative w-full h-full bg-allcards-bg px-2",
+    gridWrapper: "w-full flex-1",
   };
 
   return (

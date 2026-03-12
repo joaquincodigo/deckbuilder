@@ -25,33 +25,27 @@ export default function SearchForm({ searchFormState, setSearchFormState }) {
   };
 
   const styles = {
-    form: "fixed top-0 left-0 right-0 h-12 px-2 pt-2 z-10 bg-allcards-bg",
-    searchBarWrapper: "h-full w-full flex gap-x-2",
+    searchBarWrapper: "h-12 flex-shrink-0 w-full flex gap-x-2 bg-purple-500",
   };
 
   return (
-    <form
-      ref={formRef}
-      data-component="SearchForm"
-      onSubmit={handleSubmit}
-      className={styles.form}
-    >
+    <form ref={formRef} data-component="SearchForm" onSubmit={handleSubmit}>
       <div className={styles.searchBarWrapper}>
-        <SearchInput
+        {/* <SearchInput
           searchFormState={searchFormState}
-          // setSearchFormState={setSearchFormState}
+          setSearchFormState={setSearchFormState}
         />
         <SearchButton />
-        <SearchFiltersButton onClick={toggleFiltersPanel} />
-        <FiltersPanel
-          isFiltersPanelOpen={isFiltersPanelOpen}
-          setIsFiltersPanelOpen={setIsFiltersPanelOpen}
-          filtersSection={filtersSection}
-          setFiltersSection={setFiltersSection}
-          setSearchFormState={setSearchFormState}
-          formRef={formRef}
-        />
+        <SearchFiltersButton onClick={toggleFiltersPanel} /> */}
       </div>
+      <FiltersPanel
+        isFiltersPanelOpen={isFiltersPanelOpen}
+        setIsFiltersPanelOpen={setIsFiltersPanelOpen}
+        filtersSection={filtersSection}
+        setFiltersSection={setFiltersSection}
+        setSearchFormState={setSearchFormState}
+        formRef={formRef}
+      />
     </form>
   );
 }

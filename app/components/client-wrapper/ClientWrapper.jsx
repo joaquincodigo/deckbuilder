@@ -18,33 +18,29 @@ export default function ClientWrapper({ allCards, premadeDecks }) {
   };
 
   const styles = {
-    main: `fixed inset-x-0 bottom-12 top-0 ${
+    main: `fixed inset-x-0 bottom-12 top-0 p-2 ${
       screen === "deck" ? "bg-orange-500" : "bg-allcards-bg"
     }`,
-    contentContainer: "fixed inset-x-0 top-14 bottom-14 top-0",
   };
 
   return (
     <>
       <main data-component="ClientWrapper" className={styles.main}>
-        <div className={styles.contentContainer}>
-          
-          <DeckScreen
-            premadeDecks={premadeDecks}
-            deck={deck}
-            screen={screen}
-            removeCardFromDeck={removeCardFromDeck}
-          />
+        <DeckScreen
+          premadeDecks={premadeDecks}
+          deck={deck}
+          screen={screen}
+          removeCardFromDeck={removeCardFromDeck}
+        />
 
-          <AllCardsScreen
-            allCards={allCards}
-            deck={deck}
-            moveCardToDeck={addCardToDeck}
-            screen={screen}
-          />
-
-        </div>
+        <AllCardsScreen
+          allCards={allCards}
+          deck={deck}
+          moveCardToDeck={addCardToDeck}
+          screen={screen}
+        />
       </main>
+
       <nav>
         <DeckTab screen={screen} setScreen={setScreen} />
         <AllCardsTab screen={screen} setScreen={setScreen} />

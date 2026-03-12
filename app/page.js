@@ -6,9 +6,5 @@ export default async function Page() {
   const premadeDecks = await getAllDecks();
   const allCards = await getAllCards();
 
-  return (
-    <div data-component="Page">
-      <ClientWrapper allCards={allCards} premadeDecks={premadeDecks} />
-    </div>
-  );
+  return <ClientWrapper allCards={allCards} premadeDecks={premadeDecks} />;
 }
