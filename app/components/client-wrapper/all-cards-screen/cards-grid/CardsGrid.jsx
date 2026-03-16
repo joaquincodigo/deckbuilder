@@ -36,7 +36,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
   };
 
   const styles = {
-    gridWrapper: "w-full flex-1",
+    gridWrapper: "w-full flex-1 overflow-y-scroll",
   };
 
   return (
@@ -46,7 +46,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
         columnWidth={getColumnWidth()}
         rowCount={getRowCount()}
         rowHeight={getRowHeight()}
-        overscanCount={8}
+        overscanCount={3}
         cellComponent={CardCell}
         cellProps={{
           filteredCards,

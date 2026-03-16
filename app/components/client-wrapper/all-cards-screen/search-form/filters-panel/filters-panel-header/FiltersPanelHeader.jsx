@@ -19,6 +19,7 @@ export default function FiltersPanelHeader({
         {/* We need this to register the cardType in the formData */}
         <input type="hidden" name="cardType" value={filtersSection} />
 
+        {/* TODO: COMPRESS THESE IMAGES */}
         <FiltersPanelHeaderButton
           label="Monsters"
           imgSrc="/card-layouts/normal.webp"

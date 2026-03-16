@@ -23640,6 +23640,23 @@
       "def": 500,
       "id": 88472456,
       "level": 4
+    },
+    {
+      "humanReadableCardType": "Effect Monster",
+      "typeline": [
+        "Warrior",
+        "Effect"
+      ],
+      "race": "Warrior",
+      "type": "Effect Monster",
+      "frameType": "effect",
+      "name": "Swift Gaia the Fierce Knight",
+      "attribute": "DARK",
+      "desc": "If this is the only card in your hand, you can Normal Summon it without Tributing.",
+      "atk": 2300,
+      "def": 2100,
+      "id": 16589042,
+      "level": 7
     }
   ]
 }

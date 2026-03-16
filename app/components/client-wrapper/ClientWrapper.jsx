@@ -2,12 +2,12 @@
 import { useState } from "react";
 import DeckTab from "../tabs/deck-tab/DeckTab";
 import AllCardsTab from "../tabs/all-cards-tab/AllCardsTab";
-import AllCardsScreen from "./all-cards-screen/AllCardsScreen_old";
+import AllCardsScreen from "./all-cards-screen/AllCardsScreen";
 import DeckScreen from "./deck-screen/DeckScreen";
 
 export default function ClientWrapper({ allCards, premadeDecks }) {
   const [deck, setDeck] = useState(premadeDecks[1]);
-  const [screen, setScreen] = useState("deck");
+  const [screen, setScreen] = useState("allcards");
 
   const addCardToDeck = () => {
     alert("addCardToDeck not implemented yet");

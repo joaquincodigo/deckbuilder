@@ -6,22 +6,17 @@ export default function Modal({ children, onBackdropClick }) {
 
   const styles = {
     backdrop:
-      "fixed inset-0 bg-black/70 z-[999] flex items-center justify-center",
-    children: "bg-white w-20 h-20",
+      "fixed inset-0 w-screen h-screen bg-black/70 z-[999]",
   };
 
   return createPortal(
     <div
       data-component="ModalBackdrop"
-      onClick={() => {
-        onBackdropClick();
-        console.log("backdrop clicked");
-      }}
+      onClick={onBackdropClick}
       className={styles.backdrop}
     >
       {children}
     </div>,
-
     document.getElementById("modal-root")
   );
 }

@@ -1,12 +1,12 @@
-import LoadButton from "./LoadButton";
-import SaveButton from "./SaveButton";
+import LoadButton from "./load-button/LoadButton";
+import NewButton from "./new-button/NewButton";
+import SaveButton from "./save-button/SaveButton";
 
 export default function Header({ deck }) {
   const styles = {
-    Header:
-      "h-12 w-full flex flex-shrink-0 justify-between gap-x-2 bg-gray-500",
-    buttonsContainer: "flex gap-x-2 bg-cyan-400",
-    nameContainer: "flex items-center bg-green-600",
+    Header: "h-12 w-full flex flex-shrink-0 justify-between gap-x-2 text-lg",
+    buttonsContainer: "flex gap-x-2",
+    nameContainer: "flex items-center",
   };
 
   return (
@@ -15,6 +15,7 @@ export default function Header({ deck }) {
         <h1>{deck.name}</h1>
       </div>
       <div className={styles.buttonsContainer}>
+        <NewButton />
         <LoadButton />
         <SaveButton />
       </div>

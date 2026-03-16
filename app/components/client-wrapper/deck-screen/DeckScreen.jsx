@@ -1,6 +1,5 @@
 import DeckGrid from "./deck-grid/DeckGrid";
 import Header from "./header/Header";
-import { useEffect } from "react";
 
 export default function DeckScreen({ premadeDecks, deck, screen }) {
   const styles = {
@@ -11,14 +10,10 @@ export default function DeckScreen({ premadeDecks, deck, screen }) {
     }`,
   };
 
-  useEffect(() => {
-    console.log("deck state:", deck);
-  }, [deck]);
-
   return (
     <div data-component="DeckScreen" className={styles.DeckScreen}>
       <Header deck={deck} />
-      <DeckGrid deck={deck} />
+      {/* <DeckGrid deck={deck} /> */}
     </div>
   );
 }
