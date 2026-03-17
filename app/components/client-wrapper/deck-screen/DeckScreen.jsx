@@ -13,7 +13,7 @@ export default function DeckScreen({ premadeDecks, deck, screen }) {
   return (
     <div data-component="DeckScreen" className={styles.DeckScreen}>
       <Header deck={deck} />
-      {/* <DeckGrid deck={deck} /> */}
+      <DeckGrid deck={deck} />
     </div>
   );
 }

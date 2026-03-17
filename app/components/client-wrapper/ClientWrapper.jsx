@@ -7,7 +7,7 @@ import DeckScreen from "./deck-screen/DeckScreen";
 
 export default function ClientWrapper({ allCards, premadeDecks }) {
   const [deck, setDeck] = useState(premadeDecks[1]);
-  const [screen, setScreen] = useState("allcards");
+  const [screen, setScreen] = useState("allCards");
 
   const addCardToDeck = () => {
     alert("addCardToDeck not implemented yet");

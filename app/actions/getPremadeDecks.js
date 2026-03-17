@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 
-export function getAllCards() {
+export function getPremadeDecks() {
   const filePath = path.join(
     process.cwd(),
     "public",
     "data",
-    "all_goat_cards.json"
+    "premade_decks.json"
   );
   const fileContent = fs.readFileSync(filePath, "utf-8");
-  const cardsJSON = JSON.parse(fileContent);
-  return cardsJSON;
+  const premadeDecksJSON = JSON.parse(fileContent);
+  return premadeDecksJSON
 }
