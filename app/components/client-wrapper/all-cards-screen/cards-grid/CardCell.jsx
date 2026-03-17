@@ -16,6 +16,8 @@ export default function CardCell({
   const card = filteredCards[cardIndex];
   const [isCardLoading, setIsCardLoading] = useState(true);
 
+  if (!card) return null
+
   return (
     <div
       data-component="CardCell"
