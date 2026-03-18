@@ -1,18 +1,18 @@
 import Image from "next/image";
 
-export default function LowResCardImage({ card, setCardIsLoading }) {
+export default function LowResCardImage({ card, setIsCardLoading }) {
   if (!card) return null;
 
   // only call if provided
   function handleLoad() {
-    if (typeof setCardIsLoading === "function") {
-      setCardIsLoading(false);
+    if (typeof setIsCardLoading === "function") {
+      setIsCardLoading(false);
     }
   }
 
   return (
     <Image
-      onLoad={handleLoad} // safe handler
+      onLoad={handleLoad}
       className="w-full aspect-[59/86]"
       sizes="100%"
       src={`/card_images/lowres/${card.id}.webp`}
