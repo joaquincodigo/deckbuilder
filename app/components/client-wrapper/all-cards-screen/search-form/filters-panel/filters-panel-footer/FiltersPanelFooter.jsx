@@ -23,7 +23,7 @@ export default function FiltersPanelFooter({
       data-component="FiltersPanelFooter"
       className={styles.FiltersPanelFooter}
     >
-      <ApplyFiltersButton onClick={() => setIsFiltersPanelOpen(false)} />
+      <ApplyFiltersButton />
       <ResetFiltersButton onClick={handleFiltersReset} />
     </div>
   );

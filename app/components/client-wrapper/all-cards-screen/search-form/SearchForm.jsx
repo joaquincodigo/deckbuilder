@@ -16,6 +16,7 @@ export default function SearchForm({ searchFormState, setSearchFormState }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsFiltersPanelOpen(false);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
