@@ -18,13 +18,11 @@ export default function AllCardsScreen({
   }, [allCards, searchFormState]);
 
   const styles = {
-    AllCardsScreen: `bg-allcards-bg text-white overflow-y-auto ${
+    AllCardsScreen: `overflow-y-auto flex flex-col gap-y-2 bg-blue-900 text-white ${
       screen === "allCards"
         ? "opacity-100 visible h-full w-full"
-        : "opacity-0 invisible w-0 h-0"
+        : "opacity-0 invisible pointer-events-none absolute inset-0"
     }`,
-    noMatches: "flex justify-center items-center w-full h-full pb-20",
-    noMatchesMsg: "flex flex-col items-center gap-y-2",
   };
 
   return (

@@ -16,7 +16,7 @@ export default function CardCell({
   const card = filteredCards[cardIndex];
   const [isCardLoading, setIsCardLoading] = useState(true);
 
-  if (!card) return null
+  if (!card) return null // Prevent "ghost cards" to fill the columns of the grid
 
   return (
     <div

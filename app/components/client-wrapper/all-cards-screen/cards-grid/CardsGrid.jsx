@@ -36,7 +36,7 @@ export default function CardsGrid({ filteredCards, moveCardToDeck, deck }) {
   };
 
   const styles = {
-    gridWrapper: "w-full flex-1 overflow-y-scroll",
+    gridWrapper: "w-full flex-1 overflow-y-auto",
   };
 
   return (
