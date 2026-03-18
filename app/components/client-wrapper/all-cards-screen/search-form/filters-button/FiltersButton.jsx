@@ -1,9 +1,10 @@
+import FiltersBadge from "./FiltersBadge";
 import FiltersIcon from "./FiltersIcon";
 FiltersIcon;
 
 export default function SearchFiltersButton({ onClick }) {
   const styles = {
-    btn: "h-full aspect-square flex items-center justify-center bg-btn-bg border-1 border-btn-border",
+    btn: "relative h-full aspect-square flex items-center justify-center bg-btn-bg border-1 border-btn-border",
   };
 
   return (
@@ -14,6 +15,7 @@ export default function SearchFiltersButton({ onClick }) {
       className={styles.btn}
     >
       <FiltersIcon />
+      <FiltersBadge />
     </button>
   );
 }

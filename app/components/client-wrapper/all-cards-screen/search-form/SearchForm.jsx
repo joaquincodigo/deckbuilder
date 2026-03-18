@@ -26,7 +26,7 @@ export default function SearchForm({ searchFormState, setSearchFormState }) {
   };
 
   const styles = {
-    searchBarWrapper: "h-12 flex-shrink-0 w-full flex gap-x-2 ",
+    searchBarWrapper: "h-12 flex-shrink-0 w-full flex gap-x-2",
   };
 
   return (
