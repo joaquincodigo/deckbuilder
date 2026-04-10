@@ -1,18 +1,18 @@
-import SaveIcon from "./SaveIcon";
+import NewIcon from "./NewDeckIcon";
 
-export default function SaveButton({ onClick }) {
+export default function NewDeckButton({ onClick }) {
   const styles = {
-    SaveButton:
+    NewDeckButton:
       "h-full aspect-square flex items-center justify-center bg-btn-bg border-1 border-btn-border",
   };
 
   return (
     <button
       onMouseDown={onClick}
-      data-component="SaveButton"
-      className={styles.SaveButton}
+      data-component="NewDeckButton"
+      className={styles.NewDeckButton}
     >
-      <SaveIcon />
+      <NewIcon />
     </button>
   );
 }

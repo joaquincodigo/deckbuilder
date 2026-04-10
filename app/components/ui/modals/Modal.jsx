@@ -2,7 +2,7 @@
 import { createPortal } from "react-dom";
 
 export default function Modal({ children, onBackdropClick }) {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined") return null; 
 
   const styles = {
     backdrop:
